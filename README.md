@@ -1,5 +1,3 @@
-ThesisIST
-=========
 
 Template de Latex para Tese de Mestrado no Instituto Superior Técnico. Este template não é oficial, tendo sido alvo de diversas adaptações e correcções desde o seu autor original. Aconselha-se portanto a verificação da satisfação de todas as regras indicadas para a redacção deste trabalho académico.
 
