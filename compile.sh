@@ -134,9 +134,9 @@ clean
 mkdir -p $outputdir
 lat
 #for now bibtex is not used
-#bib
-#lat
-#lat
+bib
+lat
+lat
 #Rename output file
 mv ./$outputdir/$input.$format "$output".$format
 

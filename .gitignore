@@ -12,7 +12,8 @@
 *.swo
 
 ## Other files of mine
-*.complog
+*.complog*
+latexdoc/*
 
 ## Intermediate documents:
 *.dvi

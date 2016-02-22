@@ -23,7 +23,7 @@
 \input{recursos/simbolos.tex}
 %\pagestyle{document}%Fancy head and foot with lines
 \pagestyle{documentsimple}%Simple head
-%\input{conteudo/main.tex}
+\input{conteudo/main.tex}
 
 %this is just here temporarily, to have references for the biblio
 %\input{2.Chapter/main.tex}
@@ -31,9 +31,10 @@
 
 \phantomsection
 \addcontentsline{toc}{chapter}{Bibliography}
-%bibliography unused for now
-%\bibliographystyle{IEEEtran}
-%\bibliography{recursos/biblio}
+%http://tex.stackexchange.com/questions/17128/using-bibtex-to-make-a-list-of-references-without-having-citations-in-the-body-of
+\nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{recursos/biblio}
 \cleardoublepage
 
 \begin{appendices}
