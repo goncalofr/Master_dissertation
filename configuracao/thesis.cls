@@ -6,7 +6,7 @@
 %% AUTHOR: Pedro Tomás
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
-\ProvidesClass{01.thesis}[2011/08/23]
+\ProvidesClass{thesis}[2011/08/23]
 
 \typeout{}
 \typeout{--------------------------------------------------------------}
@@ -64,8 +64,9 @@
 
 %%%%%%%%%%% CUSTOM OPTIONS:
 % Options for no decimal numbering, or decimal number nested over 3 deep:
-\newif\if@AllHeadings
-\newif\if@NumberStdHeadings
+% To better understand these constructs: http://tex.stackexchange.com/questions/27803/when-to-use-in-an-if-statement 
+\newif\if@AllHeadings   %define a new boolean @AllHeadings
+\newif\if@NumberStdHeadings %where are these options used
 \newif\if@PerChptrNumbering
 \newif\if@emphisbold
 \newif\if@boldhead
@@ -80,7 +81,7 @@
 \newif\if@inlineSubSubSection
 \newif\if@numberSubSubSection
 \newif\if@chapterCaps
-\@AllHeadingsfalse
+\@AllHeadingsfalse  %Set AllHeadings to false
 \@NumberStdHeadingstrue
 \@PerChptrNumberingtrue
 \@emphisboldtrue
@@ -126,14 +127,15 @@
 	\@inlineSubSubSectionfalse\@numberSubSubSectiontrue
 	\@boldheadtrue\@fixedHeadSzfalse}
 % Declare font options
-\DeclareOption{Helvetica}{\renewcommand{\rmdefault}{phv}}
+\DeclareOption{Helvetica}{\renewcommand{\rmdefault}{phv}}   % change the default roman font from computer modern to phv (which I suppose is Helvetica)
 \DeclareOption{AvantGarde}{\renewcommand{\rmdefault}{pag}}
 
 \DeclareOption{master}
    {% DEFINE COMMOND FOR: thesistype
-   \newcommand*{\thesistype}[1]{\th@StoreIn{\th@thesistype}{#1}}
+   \newcommand*{\thesistype}[1]{\th@StoreIn{\th@thesistype}{#1}} %define the thesis type
    \newcommand*{\th@thesistype}
         {Disserta\c{c}\~{a}o para obten\c{c}\~{a}o do Grau de Mestre em}
+    %ex. thesistype{MEEC} "will expand to Disserta....emMEEC"
     }
     
 \DeclareOption{phd}
@@ -158,7 +160,7 @@
 \RequirePackage[ULforem,normalbf]{ulem}
 \RequirePackage{graphicx}
 \RequirePackage{epsf}
-\RequirePackage[absolute]{00.textpos}
+\RequirePackage[absolute]{textpos} %facilitates placing absolute boxes on the page
 \RequirePackage{helvet}
 
 %%%%%% SPECIAL INTERNAL COMMANDS.  Needed by later routines.
@@ -176,6 +178,7 @@
 	}{
 	#1[#2]{#3}}
 }
+%\th@StoreIn: store the second argument in the command specified by the first argument
 \newcommand{\th@StoreIn}[2]{ \gdef#1{#2} }
 
 \newenvironment{setfont}[1]{\fontsize{#1}{#1}\selectfont}{}
@@ -183,6 +186,7 @@
 % Define titlepage commands
 
 % DEFINE COMMOND FOR: univlogo -> UNIVERISTY LOGO
+%about the asterisk: http://tex.stackexchange.com/questions/1050/whats-the-difference-between-newcommand-and-newcommand 
 \newcommand*{\univlogo}[3]{\th@StoreIn{\th@univlogo}{#3} \th@StoreIn{\th@univlogopsx}{#1} \th@StoreIn{\th@univlogopsy}{#2}}
 \newcommand*{\th@univlogo}{
 	\ClassError{thesis}{
@@ -194,7 +198,7 @@
 
 % DEFINE COMMOND FOR: thesislogo -> THESIS LOGO
 \newcommand*{\thesislogo}[3]{\th@StoreIn{\th@thesislogo}{#3} \th@StoreIn{\th@thesislogopsx}{#1} \th@StoreIn{\th@thesislogopsy}{#2}}
-\newcommand*{\th@thesislogo}{\relax}
+\newcommand*{\th@thesislogo}{\relax} %not mandatory
 \newcommand*{\th@thesislogopsx}{2}
 \newcommand*{\th@thesislogopsy}{2}
 

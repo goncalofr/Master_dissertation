@@ -1,18 +1,27 @@
 \setcounter{page}{1} \pagenumbering{Alph}
-
 % Add PDF bookmark 
-\pdfbookmark[0]{Title}{Title}
+\pdfbookmark[0]{Capa}{Title}
 
 \thispagestyle{empty}
-\begin{flushleft} ~\\ \vspace{-12mm} \hspace{-12mm}  \includegraphics[width=50mm]{Cover/istnewlogo} 
-\vspace{10mm}
-%~\\ \vspace{50mm} % gráficos
-\\ \begin{center} \includegraphics[height=50mm]{Cover/coverimage}  \end{center} % gráficos
+%\begin{flushleft} ~\\ \vspace{-12mm} \hspace{-12mm}  \includegraphics[width=50mm]{recursos/imagens/istlogo} 
+\begin{flushleft} ~\\ \vspace{-12mm} \hspace{-12mm}
+
+\begin{figure}[h]
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=0.9\linewidth, width=50mm]{recursos/imagens/istlogo} 
+    \end{subfigure}
+    \begin{subfigure}{0.5\textwidth}
+    \includegraphics[width=0.9\linewidth, width=50mm]{recursos/imagens/am_logo.jpg}
+    \end{subfigure}
+\end{figure}
+
+\vspace{50mm} % gráficos
+%\\ \begin{center} \includegraphics[height=50mm]{Cover/coverimage}  \end{center} % gráficos
  \vspace{5mm}
 \centering
-\LARGE \textbf{Thesis Title}
+\LARGE \textbf{ROVIM T2D}
 \\ \vspace{10mm}
-\Large Subtitle
+\Large Manual do utilizador
 \\ \vspace{15mm}
 \Large \textbf{Full Name} \\
 \vspace{12mm}
@@ -46,7 +55,7 @@ Prof. Lorem Ipsum
 \thispagestyle{empty}
 \cleardoublepage
 
-\setcounter{page}{1} \pagenumbering{roman}
+\setcounter{page}{1} \pagenumbering{arabic}
 
 \baselineskip 18pt % line spacing: -12pt for single spacing
                    %               -18pt for 1 1/2 spacing

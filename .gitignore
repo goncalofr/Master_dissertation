@@ -7,6 +7,13 @@
 *.out
 *.toc
 
+## Vim temporary files
+*.swp
+*.swo
+
+## Other files of mine
+*.complog
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*

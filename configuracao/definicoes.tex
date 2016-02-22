@@ -3,15 +3,16 @@
 \typeout{ +---+ Thesis Template                            }
 \typeout{ +---+      Version 2.0, August 2011                         }
 \typeout{ +---+  for Instituto Superior Tecnico (IST),                 }
-\typeout{ +---+  Universidade Técnica de Lisboa                         }
-\typeout{ * Using Thesis Style form Pedro Tomás                                }
+\typeout{ +---+  Universidade Tecnica de Lisboa                         }
+\typeout{ * Using Thesis Style form Pedro Tomas                                }
 \typeout{ * Created to write Dissertations                             }
 \typeout{ * Conforms with IST Master Degree format and with most important packages setup        }
 \typeout{ * Should conform with IST PhD Degree format (not verified)   }
 \typeout{                                                              }
-\typeout{ AUTHOR: Miguel Amador and João Marques                                          }
+\typeout{ AUTHOR: Miguel Amador and Joao Marques                                          }
+\typeout{ MODIFIED BY: Goncalo Andre                                   }
 \typeout{                                                              }
-\typeout{Important: Use all files in the archive, since this is based in all them. Modify dummy files at wish.                                                              }
+\typeout{ Important: Use all files in the archive, since this is based in all them. Modify dummy files at wish.                                        }
 \typeout{--------------------------------------------------------------}
 \typeout{}
 
@@ -28,12 +29,25 @@
 % PACKAGE fontenc:
 % -----------------
 % chooses T1-fonts and allows correct automatic hyphenation.
-%\usepackage[T1]{fontenc}
+% from: http://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc/677#677
+% If you don't use \usepackage[T1]{fontenc},
+%   -Words containing accented characters cannot be automatically hyphenated,
+%   -You cannot properly copy-and-paste such words from the output (DVI/PS/PDF)
+%   -Characters like the pipe sign, less than and greater sign give unexpected results in text.
+\usepackage[T1]{fontenc}
+% http://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+% allows the user to input accented characters directly form the keyboard
 \usepackage[latin1]{inputenc}
+%\usepackage{lmodern}
 
-% Package ulem.
+%package verbatim - needed for comment environment
+\usepackage{verbatim}
+
+% Package ulem (underlining for emphasis).
+% the ulem package provides various types of underlining that can
+% stretch between words and be broken across lines.
 \usepackage{ulem} % Allows the use of other text emphatizer commands
-\normalem %defines \emph{} to italic, instead of underline. 
+\normalem % () defines \emph{} back to italic, instead of underline (reverts change from ulem package). 
 \raggedbottom %declaration makes all pages the height of the text on that page. No extra vertical space is added. The \flushbottom declaration makes all text pages the same height, adding extra vertical space when necessary to fill out the page.
 
 % PACKAGE date time:
@@ -80,7 +94,7 @@
 \usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{epsfig}
-\usepackage[hang,small,bf]{subfigure}
+%\usepackage[hang,small,bf]{subfigure} - obsolete package, replace by subcaption
 %\usepackage[footnotesize,bf,center]{caption}
 \usepackage{dcolumn}
 \usepackage{bm}
@@ -89,6 +103,10 @@
 \usepackage{multirow}
 
 \usepackage[font=small,labelfont=bf,textfont=normalfont]{caption}
+\usepackage[font=small,labelfont=bf,textfont=normalfont]{subcaption}
+
+% Improves the interface for defining floating objects such as figures and tables
+\usepackage{float}
 
 % PACKAGE algorithmic, algorithm
 % ------------------------------
@@ -110,7 +128,8 @@
 % given at the first usage. IMPORTANT: do not use acronyms in titles/captions; otherwise the definition 
 % will appear on the table of contents.
 \usepackage[printonlyused]{acronym}
-\usepackage[titletoc,title,header]{appendix}
+\usepackage[titletoc,title,header]{appendix} %modify the titles of appendixes
+%Set page numbering by chapter. The noauto option tells the package not to set pagenumbers: this has to be done by the user
 \usepackage[noauto]{chappg}
 
 % PACKAGE extra_functions VER COMO DEVE SER
@@ -119,7 +138,7 @@
 % \fancychapter{chaptername) -> Prints a fancier chapter (you can also use the fancychapter package for this)
 % \hline{width} -> use for a replacement of the \hline command
 % \Mark1, \Mark2, \Mark3, ...
-\usepackage{00.extra_functions}
+\usepackage{extra_functions}
 
 
 % PACKAGE hyperref
@@ -127,21 +146,26 @@
 % Set links for references and citations in document
 % Some MiKTeX distributions have faulty PDF creators in which case this package will not work correctly
 % Long live Linux :D
+% This package should come to the end of the includes, because it redefines many macros
 \usepackage[plainpages=false]{hyperref}
+% configure the hyperref package
 \hypersetup{
-             colorlinks=false,
-             citecolor=red,
-             breaklinks=true,
-             bookmarksnumbered=true,
-             bookmarksopen=true,
+             colorlinks=false, %color the links
+             citecolor=red, %colour of citation links
+             breaklinks=true,   %allow links to break over lines
+             bookmarksnumbered=true, %put section numbers in bookmarks
+             bookmarksopen=true, %open up bookmark three
+             debug=true, %extra diagnostic messages on the log file
+             % pdf metadata
              pdftitle={Thesis Title},
              pdfauthor={Author Name},
              pdfsubject={Master Thesis in Biomedical Engineering},
              pdfcreator={Document Creator Name},
              pdfkeywords={Template, Latex, Thesis}}
-\usepackage{float}
-%\usepackage[final]{00.listofsymbols}
-\usepackage{00.symlist}
+
+%Manage symbols the same way we manage acronyms
+%\usepackage[final]{listofsymbols}
+\usepackage{symlist}
 
 % Set paragraph counter to alphanumeric mode
 \renewcommand{\theparagraph}{\Alph{paragraph}~--}
