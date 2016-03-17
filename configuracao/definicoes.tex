@@ -74,14 +74,15 @@
 % ---------------------------------------
 % These packages are most usefull for advanced tables. The first allows to join rows 
 % throuhg the command \multirow which works similarly with the command \multicolumn
-% The second package allows to color the table (both foreground and background)
-% The third package is only required when tables extend beyond the length of one page;
-% with compatibilities with the tabular environment. The last allow the definitions of landscape pages, allowing the use of a different orientation for wider graphics or tables. See package documentation to see the implementation.
+% The second package allows to color the table (both foreground and background)% The fourth package is only required when tables extend beyond the length of one page;
+% The fourth package is only required when tables extend beyond the length of one page;
+% with compatibilities with the tabular environment. The third allows the definitions of landscape pages, allowing the use of a different orientation for wider graphics or tables. See package documentation to see the implementation.
 \usepackage{multirow}
 \usepackage{colortbl}
-\usepackage{supertabular}
 \usepackage{pdflscape}
-% \usepackage{longtable}
+%\usepackage{xtab}
+\usepackage{longtable}
+%\usepackage{tablefootnote}
 
 % PACKAGE graphics, epsfig, subfigure, caption:
 % ---------------------------------------------
@@ -102,14 +103,22 @@
 \usepackage{rotating}
 \usepackage{multirow}
 
-\usepackage[font=small,labelfont=bf,textfont=normalfont]{caption}
+\usepackage[font=small,labelfont=bf,textfont=normalfont,justification=centering]{caption}
 \usepackage[font=small,labelfont=bf,textfont=normalfont]{subcaption}
 %http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left/91580#91580?newreg=ab93b1a4f79a4315b773d13d37d37678
 %easilly define horizontal orientation of images.
 \usepackage[export]{adjustbox}
 
+%include pdf pages in document
+\usepackage{pdfpages}
+
 % Improves the interface for defining floating objects such as figures and tables
 \usepackage{float}
+
+% PACKAGE listings
+% ------------------------------
+% This package is used to list source code
+\usepackage{listings}
 
 % PACKAGE algorithmic, algorithm
 % ------------------------------
@@ -153,29 +162,40 @@
 % This package should come to the end of the includes, because it redefines many macros
 \usepackage[plainpages=false]{hyperref}
 % configure the hyperref package
+%http://www.pa.op.dlr.de/~PatrickJoeckel/pdflatex/index.html
 \hypersetup{
+             %pdftex,    %required for pdflatex
              colorlinks=false, %color the links
              citecolor=red, %colour of citation links
              breaklinks=true,   %allow links to break over lines
+             %bookmarks=true,    %bookmarks for all entries in the TOC - already defined somewhere
              bookmarksnumbered=true, %put section numbers in bookmarks
              bookmarksopen=true, %open up bookmark three
              debug=true, %extra diagnostic messages on the log file
              % pdf metadata
-             pdftitle={Thesis Title},
-             pdfauthor={Author Name},
-             pdfsubject={Master Thesis in Biomedical Engineering},
-             pdfcreator={Document Creator Name},
-             pdfkeywords={Template, Latex, Thesis}}
+             pdftitle={Manual do utilizador do ROVIM T2D},
+             pdfauthor={Goncalo Andre},
+             pdfsubject={ROVIM T2D},
+             %pdfcreator={Document Creator Name}, - pdflatex should fill this
+             pdfkeywords={Manual, Utilizador, ROVIM, T2D}}
 
 %Manage symbols the same way we manage acronyms
 %\usepackage[final]{listofsymbols}
+\usepackage{wasysym} %latex symbols
 \usepackage{symlist}
 
 % Set paragraph counter to alphanumeric mode
 \renewcommand{\theparagraph}{\Alph{paragraph}~--}
+% increase horizontal space between rows
+\renewcommand{\arraystretch}{1.4}
 
 \newcommand{\figref}[1]{Figure \ref{#1}}
 \newcommand{\equationref}[1]{Equation (\ref{#1})}
 \newcommand{\tableref}[1]{Table (\ref{#1})}
 
 \newcommand{\textreg}{$\textsuperscript{\textregistered}$}
+
+%Specific macros used in this document to replace content, and not configurations:
+\newcommand{\manualversion}{v0.9}
+\newcommand{\swversion}{v1.0}
+\newcommand{\hwversion}{v1.0}

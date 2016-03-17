@@ -1,21 +1,71 @@
 
 \section{Descrição do sistema}
 \label{sec:descricao_sistema}
+O veículo é composto por vários componentes, quer de hardware, quer de software. É importante conhecê-los, de modo a melhor entender o funcionamento da moto e a evitar acidentes.
+%Apresenta-se de seguida uma breve descrição dos mesmos, divididos entre \emph{hardware} e \epmh{software}.
 
 \subsection{\emph{Hardware}}
 \label{ssec:descricao_hardware}
-\subsubsection{Tração}
-\label{sssec:tracao}
+
+\subsubsection{\emph{Chassis}}
+É no \emph{chassis} do \ac{ROVIM} que todos os componentes embarcados do módulo \ac{T2D} são instalados. É uma adaptação do \emph{chassis} de uma moto-quatro com motor de combustão, de onde foram removidas todas as peças não essenciais. A figura \ref{fig:chassis_despido} mostra o \emph{chassis} antes das adaptações para esta aplicação.\todo{Dizer que foi feito o mais possível com parafusos em vez de soldas para manter a flexibilidade no desenho}\\
+\begin{figure}[h] %place around here
+	\centering
+    \includegraphics[width=0.7\linewidth]{recursos/imagens/chassis_despido.jpg}
+    \caption[\emph{chassis}]{Chassis de moto-quatro antes das adaptações para o \ac{ROVIM}.}
+	\label{fig:chassis_despido}\par %end \centering
+\end{figure}
+Foi construída na baía do antigo motor de combustão uma estrutura para duas plataformas de madeira \ac{MDF} empilhadas, para acomodar as baterias (que são o conjunto mais pesado do veículo) e não alterar significativamente o centro de gravidade projectado pelo construtor da moto. Na plataforma inferior foram instalados batentes para impedir as baterias de deslizar e ganchos para poder segurar as baterias com elásticos, enquanto que a superior serviu para instalar outros componentes e ligações.\todo{Mostar fotos da estrutura, plataformas e baía das baterias em anexo}\\
+%estas plataformas sao de \ac{MDF}, madeira leve, resistente e não condutora. Apesar disso, o aro e os parafusos usados na plataforma são de ferro condutor, devido a limitações nos materiais disponíveis. Isso representa um risco adicional de curto-circuito nas baterias que deve ser tomado em conta durante a operação da moto. A solução desenhada para fixar as baterias no sitio consiste nos batentes de madeira colados e nos elásticos. É uma solução que serve para a prova do conceito do robô, mas que é frágil e impede a condução em terrenos acidentados ou inclinados. Está fora dos requisitos para esta fase proteções para a chuva.
+Na forquilha traseira foram criados apoios para o conjunto motor de tração + redutor, de modo ao carreto de saída do redutor assentar no mesmo plano que o carreto do eixo traseiro, assim como um esticador para a corrente.\todo{mostrar foto dos apoios do motor em anexo}. Foi também criado um suporte para fixar um sensor junto ao carreto de saída do redutor, projetado para maximizar as opções de fixação.
+%devido à curta dimensao da corrente, teve que se colocar um esticador, porque o passo dos elos tornava-a muito curta ou muito larga.
+%ficou não suspenso - sujeito a mais vibrações mas elimina o problema de variação da distancia entre carretos (acontecia caso fixasse o motor na mesma zona, mas à parte suspensa), libertando assim espaço para mais baterias na zona central. As vibrações não são problema para as condições projetadas de uso.
+Foi criada uma pequena plataforma para o motor do travão na forquilha traseira, assim como braçadeiras semi-rigidas para o fixar, e apoios de borracha, ambos desenhados para acomodar a variação do ângulo entre o eixo do pivô do travão e o veio deste motor que se dá durante o curso da travagem \todo{está percetível o problema?}.\todo{mostrar foto do pivô do travão em anexo, assim como da plataforma e braçadeiras. Mostrar que o pivo fica mais baixo quando se trava} O travão dianteiro foi mantido inalterado, uma vez que não interferia com as modificações necessárias e permite travar manualmente a moto.\\
+Foi criado um apoio para fixar o redutor do motor de direção na frente do \emph{chassis} e a coluna da direção foi cortada para lhe acoplar uma roda dentada concêntrica, situada no mesmo plano que a roda dentada acoplada na saída do redutor da direção. Infelizmente criou-se neste processo uma zona morta na união das duas partes da coluna: a parte superior da direção (acoplada ao guiador) tem que girar um determinado ângulo\todo{quanto?} até que a zona inferior (acoplada às rodas) comece a girar solidariamente.\todo{mostar em anexo foto do corte na coluna da direção}
+\subsubsection{Baterias}
+Existem 7 baterias \texttt{EnerSys Genesis NP55-12R}; 6 delas montadas em série na moto, e uma bateria suplente. A figura \ref{fig:baterias_cima_frente}, mostra a vista explodida da montagem das baterias fora da moto.\\
+\begin{figure}[h] %place around here
+    \centering %preferable to \begin{center}, because it doesn't add vspace
+	\includegraphics[width=0.7\linewidth]{recursos/imagens/baterias_cima_frente.jpg}
+	\caption[Baterias]{Vista explodida da montagem das baterias fora da moto. Legenda:\\1: terminal V-; 2: terminal V+; 3: espaçadores; 4: cabo connector.}
+	\label{fig:baterias_cima_frente}\par %end \centering
+\end{figure}
+Este\cite{NP55-12R_datasheet} é um modelo de baterias de ácido e chumbo, de 12 V nominais, recarregáveis e seladas. Cada bateria pesa 17.7 Kg. Nova, tem uma corrente nominal de descarga de 150 A, conseguindo atingir picos de 500 A. A um ritmo constante de descarga de 10 A, a carga de uma bateria dura cerca de 5 horas.\\
+As baterias são ligadas entre si como indicado a figura \ref{fig:baterias_cima_frente} por cabos de elevado calibre\todo{quanto?}, e separadas por espaçadores de madeira, para haver circulação de ar no interior da montagem. \todo{referir que não tive acesso a recursos para fixação de baterias em segurança, e que seria dificil fixa-las seguramente ao chassis e ainda conseguir remove-las. Assim desenhei esa soluçao de compromisso}As baterias fixam na plataforma inferior, de lado e atrás com recurso a batentes colados estrategicamente, suficientemente pequenos para permitir a remoção das baterias e à frente encostando a duas tábuas de madeira (dispostas a toda a altura das baterias). Cabos elásticos permitem segurar a parte superior das baterias, ainda que sem grande consistência.\todo{referir anexo com a figura da baia das baterias e foto das baterias montadas}\\
+A tensão aos terminais das baterias varia entre os 57,6 V, quando as baterias estão completamente descarregadas e os 81 V, quando as baterias estão novas e completamente carregadas.\\
+Atualmente, as baterias atuais estão no seu fim de vida (5 anos em repouso\cite{NP55-12R_datasheet}), pelo que devem ser substituídas.
+\todo{baterias de chumbo-ácido são uma tecnologia testada e  fiável, mais barata que as à base de lítio e são fáceis de recarregar.}
+\subsection{Carregadores das baterias}
+Foram adquiridos também dois carregadores para as baterias do \ac{ROVIM}: um individual de 12 V e outro de 72 V, de modo a poder carregar o conjunto das baterias sem as retirar do veículo.
+\subsection{Tração}
+O veículo é movido por um motor \texttt{Agni B95R}. Este é um motor\cite{Agni_B95R_performance} \cite{Agni_workshop} \ac{DC} com escovas. A versão reforçada usada nesta aplicação atinge as 6000 \ac{rpm} e tem uma potência nominal de 16 KW a 72 V, cerca de 230 A de corrente nominal. A potência de pico é de cerca de 30 KW, e a corrente de pico cerca de 400 A.\\
+O motor vem equipado com um termístor\cite{NTC_datasheet} \ac{NTC}, que permite limitar a corrente no motor quando este aquece demasiado. O apêndice \ref{ap:c} contém o esquema elétrico da montagem do termístor. Este termístor tem um resistência de \todo{quantos?} K$\Omega$ (medida com um multímetro) à temperatura ambiente, e de cerca de 2 K$\Omega$ à temperatura máxima aceitável para o funcionamento das escovas do motor.\\
+Este está acoplado a um redutor projetado e construído de raiz para esta aplicação\todo{dizer pq se fêz um de raiz - que se aproveitaram os carretos e corrente originais da moto, que as opções eram muito caras, com pouca redução, ou transmissão de binário unidirecional para as caixas sem-fim coroa-para além disso complicava o acoplamento do redutor ao eixo.}. O binário é transmitido do motor ao eixo traseiro por três acoplamentos de engrenagens e carretos, totalizando uma desmultiplicação total de 19.(63) vezes\todo{confirmar}.\\
+A construção do redutor consiste em duas chapas de metal que cobrem lateralmente as engrenagens e onde assentam os rolamentos do veios, e quatro espaçadores nos cantos das placas, que as fixam em paralelo e com elas formam uma "caixa". O veio do motor fica instalado a uma engrenagem dentro da caixa. À saída, um carreto instalado no último veio (que se propaga para além do espaço entre as duas chapas) transmite o binário para o carreto acoplado ao veio do motor, usando uma corrente.\\
+A figura \ref{fig:motor_redutor_instalados_3_4}\todo{adicionar figura que mostre as engrenagens da caixa, o motor, e a corrente e os carretos - plano 3/4 sugere-se} mostra a instalação no veículo do conjunto motor + redutor. O apêndice \ref{ap:d}\todo{criar apêndice D} contém os desenhos técnicos das peças.\\
+O motor é controlado por um \texttt{Sigmadrive PMT835M}. Este é um controlador de quatro quadrantes para motores \ac{DC} de ímanes permanentes, de 80 V e 350 A de capacidade nominal\cite{datasheet_PMT835M}, especialmente desenhado para uso em veículos elétricos. O controlador trabalha em conjunto com um sensor de velocidade, de relutância magnética variável, construído de propósito para esta aplicação e instalado no carreto de saída do redutor\todo{figura}. O sensor está protegido por uma cápsula selada com cola (Não é possível aceder ao seu interior). A cápsula contém um \ac{LED} que pisca de cada vez que o sensor conta um impulso (passa junto a um dente a uma velocidade suficientemente elevada).\todo{Dizer como foi feito e instalado o sensor de velocidade, e as suas caracteristicas, nomeadamente a velocidade minima de funcionamento}.
 \subsubsection{Travagem}
-\label{sssec:travagem}
-\subsubsection{Direção}
-\label{sssec:direcao}
-\subsubsection{Energia}
-\label{sssec:energia}
-\subsubsection{Controlo}
-\label{sssec:controlo}
+A travagem é assegurada por dois sistemas complementares: um elétrico e autónomo, e outro manual.
+O sistema de travagem manual consiste no travão por cabo das duas rodas frontais. Este travão não foi alterado na conversão do \emph{chassis} e é atuado por uma manete no guiador. Só pode ser usado por um operador humano com acesso ao guiador.
+O sistema elétrico é movido por um servomotor texttt{PARVEX RS430H}. Este é um motor \ac{DC} compacto de ímanes permanentes, de 78 V, que atinge as 3000 \ac{rpm} e os 1.36 N.m usado em pequenas aplicações robóticas\cite{datasheet_RS430H}.
+
+
+%\subsubsection{Energia}
+%\label{sssec:energia}
+%Fazem parte do subsistema de energia
+%\subsubsection{Tração}
+%\label{sssec:tracao}
+%\subsubsection{Travagem}
+%\label{sssec:travagem}
+%\subsubsection{Direção}
+%\label{sssec:direcao}
+%\subsubsection{Controlo}
+%\label{sssec:controlo}
 
 \subsection{\emph{Software}}
 \label{ssec:descricao_software}
+Nota sobre o sw do sigmad que nao se considera aqui.
+
+\label{versao_sw_instalada} v1.0
 \subsubsection{Arquitetura}
 \label{sssec:arquitetura}

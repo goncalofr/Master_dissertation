@@ -2,5 +2,38 @@
 \fancychapter{Apêndice A - código do programa}
 \label{ap:a}
 
+\lstset{ %
+language=[ANSI]C,                % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+%tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false    % sets if automatic breaks should only happen at whitespace
+%escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+
+O código fonte usado na programação da placa de controlo do T2D é aqui listado. Uma cópia exata destes ficheiros, assim como outros ficheiros usados no projeto está acessível em: \url{https://github.com/ROVIM-T2D/ROVIM-T2D-Brain/tree/\swversion}.\\
+Os ficheiros \verb!main.c! e \verb!dalf.h! são alterações aos ficheiros originais fornecidos com a placa Dalf para esta aplicação, e são licenciados pela \emph{Embedded Electronics, LLC}\@.\\
+A biblioteca \verb!dalf.lib! é também necessária para gerar o programa, mas não é listada aqui por não ter sido alterada da versão original, por estar em formato binário, e por regras de licensiamento restritas. A licensa destes ficheiros pode ser consultada no site do fornecedor, em: \url{http://www.embeddedelectronics.net/documents/Ver160/EULA.pdf}.\\
+\todo{mostrar restantes ficheiros de código}\\
+\todo[Fix]{a listagem do código ocupa atualmente ~70 páginas}\\
+%\lstinputlisting{recursos/codigo/\swversion/main.c}
+%\lstinputlisting{recursos/codigo/\swversion/dalf_ext.c}
+%\lstinputlisting{recursos/codigo/\swversion/dalf.h}
+%\lstinputlisting{recursos/codigo/\swversion/config.h}
+%\lstinputlisting{recursos/codigo/\swversion/p18f6722.h}
+%\lstinputlisting{recursos/codigo/\swversion/rovim_t2d.c}
+%\lstinputlisting{recursos/codigo/\swversion/rovim_t2d.h}
+%\lstinputlisting{recursos/codigo/\swversion/rovim.h}
+\lstinputlisting{recursos/codigo/\swversion/rovim_config_t2d_development.h}
 
 \cleardoublepage

@@ -25,9 +25,9 @@ trap 'error_report ${LINENO}' ERR
 #Main script
 #--------------------------------------------------------------------------
 #help message
-usage="Usage: compile.sh [-h|--help] [-c|--clean] [-d|--dvi] [-r|--redirect]\n\t--help\t\
-Display this message and exit.\n\t--clean\tClean temporary files and exit.\
-\n\t--dvi\tOuput .dvi file instead of .pdf.\n\t--redirect\tRedirect (append) output to file\n\t"
+usage="Usage: compile.sh [-h|--help] [-c|--clean] [-d|--dvi] [-r|--redirect] [-o|--once]\n\t--help\t\t\
+Display this message and exit.\n\t--clean\t\tClean temporary files and exit.\
+\n\t--dvi\t\tOuput .dvi file instead of .pdf.\n\t--redirect\tRedirect (append) output to file\n\t--once\t\tRun latex once and exit\n\t"
 description="Automatically generate the final document from current latex \
 sources"
 
@@ -49,6 +49,8 @@ clean ()
     rm -f ./$output.$format
     rm -f ./$logfile
     echo "temporary files cleaned"
+    #re-create directory
+    mkdir -p $outputdir
 }
 
 #Lat function: run latex
@@ -60,7 +62,7 @@ lat ()
     export TEXINPUTS=./configuracao//:${TEXINPUTS}
 
     #run latex
-    if ! pdflatex -file-line-error -halt-on-error -output-directory=$outputdir -output-format=$format $input; then #run latex
+    if ! pdflatex --shell-escape -file-line-error -halt-on-error -output-directory=$outputdir -output-format=$format $input; then #run latex
     #http://blog.sanctum.geek.nz/testing-exit-values-bash/
         echo "An error has occurred while running latex. Return code $$."
         exit;
@@ -109,6 +111,14 @@ case $key in
     format=dvi
     shift # past argument
     ;;
+    -o|--once)
+    #run latex once and exit
+    echo "Running latex one time"
+    lat
+    echo "Output file located at" "./$outputdir/$input.$format"
+    exit
+    shift # past argument
+    ;;
     -r|--redirect)
     #redirect output to file
     redirect=1
@@ -130,15 +140,12 @@ done
 #main job
 #clean and compile
 clean
-#Create directory if it doesn't exist
-mkdir -p $outputdir
 lat
-#for now bibtex is not used
 bib
 lat
 lat
-#Rename output file
-mv ./$outputdir/$input.$format "$output".$format
+#copy output file
+cp ./$outputdir/$input.$format "$output".$format
 
 echo "Job done on file" "$output".$format
 

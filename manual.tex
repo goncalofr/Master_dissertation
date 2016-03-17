@@ -1,14 +1,17 @@
 \documentclass[defaultstyle,10pt,master,Helvetica]{thesis}
 % Helvetica is a similar font to Arial, with small differences.
 
+%--------------------------------------------------------------
 %debug features - some may not be included in the final document
 %obter informacao de debug acerca de parêntesis mal fechados
 \tracinggroups=1
-\usepackage{showframe}    %show page dimensions, to visually confirm page layout
-\usepackage{showlabels}     %show labels in the printed pdf, for easy finding.
+%\usepackage{showframe}    %show page dimensions, to visually confirm page layout
+%\usepackage{showlabels}     %show labels in the printed pdf, for easy finding.
+\usepackage{todo} %keep track of things to do in the document
 %http://tex.stackexchange.com/questions/55618/visual-debugging-of-lengths-in-paragraphs-and-environments
-\usepackage{layouts}
-\usepackage{lua-visual-debug}
+%\usepackage{layouts}  - it is producing a compilation warning
+%\usepackage{lua-visual-debug} only compatible with LuaTex
+%--------------------------------------------------------------
 
 
 %% Packages
@@ -16,12 +19,32 @@
 %% Page formatting
 \input{layout.tex}
 
+% My environments
+%Automatically numerate and label table rows.
+\newcounter{rowno}  %counter for the numbering
+\newenvironment{row_labeled_longtable}[2] %two mandatory arguments - table name and disposition, as in the longtable environment
+{
+\begin{flushleft}   %align table to the left, because it is going to be wide
+    %refstepcounter steps the counter and uses it for the following reference
+    %start a longtable environment, supress left and right borders, and on the first column put "C(counter)" and the label (wich depends on the counter). Then format the columns according to the argument passed.
+    %Rows can only be appended to the table to maintain compatibility
+    \begin{longtable}{ @{} >{\refstepcounter{rowno}C\therowno\label{#1:C\therowno}} #2 @{} }
+}
+{
+\end{longtable}
+\end{flushleft}
+}
+
+%Since we are using a thesis template, with chapters that are not used in this document, We have to modify the numeration
+\renewcommand\thechapter{}
+\renewcommand\thesection{\arabic{section}}
+
 %-----------------------------------------------------------
 %-----------------------------------------------------------
 \begin{document}
 \pagestyle{begin}
-\input{recursos/capa.tex} 
-\input{recursos/tabelas.tex}
+\input{recursos/capa.tex}
+\input{recursos/listas.tex}
 \acresetall     %faz reset as extensoes de acronimos
 \input{recursos/acronimos.tex}
 \input{recursos/historico.tex}
@@ -40,7 +63,9 @@
 \nocite{*}      %show bibliography even if there are no citations
 \bibliographystyle{IEEEtran}
 \bibliography{recursos/biblio}
-\cleardoublepage    %http://tex.stackexchange.com/questions/9191/when-do-i-need-invoke-clearpage-manually
+\todo{colocar bibliografia em portugues}
+\cleardoublepage
+
 
 \begin{appendices}
 	\begin{appendix}
@@ -48,9 +73,16 @@
 		\input{recursos/apendiceA.tex}   
         \input{recursos/apendiceB.tex}
         \input{recursos/apendiceC.tex}
+        \input{recursos/apendiceD.tex}
 		\cleardoublepage
 	\end{appendix}
 \end{appendices}
 
+\phantomsection     %http://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
+\pagenumbering{gobble}
+\addcontentsline{toc}{chapter}{Adenda}    %Add adenda to toc
+\cleardoublepage    %http://tex.stackexchange.com/questions/9191/when-do-i-need-invoke-clearpage-manually
+\input{recursos/adenda.tex}
 
+\todos  %list of things to do - should be the last todo item on the document
 \end{document}

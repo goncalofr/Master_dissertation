@@ -1,0 +1,46 @@
+
+\fancychapter{Apêndice D - desenhos técnicos das peças do redutor do motor de tração}
+\label{ap:d}
+
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/motor.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/montagem_vista_cima.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/chapa_lado_motor.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/chapa_lado_corrente.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/espacador.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/engrenagem_z21.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/engrenagem_z42_d16mm.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/engrenagem_z14.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/veio_16_12mm.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/engrenagem_z42_d17mm.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/veio_17_22mm.pdf}
+\includepdf[landscape=true]{recursos/esquemas/redutor_tracao_v1.0/bolacha_aperto_carreto.pdf}
+Os desenhos deste anexo são uma especificação aproximada do redutor \emph{à priori}, com as limitações inerentes à falta de experiência do projetista. Não contemplam alguns pormenores técnicos avançados, como tolerâncias nos encaixes, materiais a usar, e mecanismos de fixação. Não substituem o parecer de técnicos especializados.\\
+Como tal, o fabricante fez algumas modificações, discutidas na errata
+\section*{Informações sobre o fabricante}
+\raggedright\textbf{Vitor Ferreira \& Filhos, Lda}\\
+Rua Particular à Rua Arco do Carvalhão, Letras J.F.C, 1070 Lisboa\\
+Telefone: 213884764\\
+\url{www.mestredosmotores.com}
+\section*{Errata}
+Errata referente aos desenhos das peças do redutor do motor de tração
+
+\todo[talking point]{Pq não alterei os desenhos em vez de fazer uma errata? Pq alguns parâmetros foram mudados pelo torneiro durante a manufatura (após o desenho da caixa), e documentá-los implicaria desmontar parcialmente ou na totalidade a caixa...}
+\todo{fazer as correções na errata e alterar o nome dos desenhos}
+% If you want to place your tables where they lie in your source code and you do not need any label, do not use table at all!
+\begin{center}
+    %Tried using tabularx and tabulary, and both sucked - could not handle the extra large column well.
+    \begin{tabular}{b{0.15\textwidth} b{0.15\textwidth} b{0.6\textwidth}}
+        \textbf{Desenho} & \textbf{Onde se lê/vê} & \textbf{Deve lêr-se/vêr-se}\\ \midrule
+        espaçador chapa & 85 & 87\\
+        roda 21 & R10 & R9.5\\
+        roda 21 & 12.800 & 12.300\\
+        roda 21 & & Chave (paralelipípedo quadrangular com 6 mm de lado, cantos arredondados e 35 mm de comprimento) para prender engrenagem de 21 dentes ao veio do motor, de acordo com a norma ISO/R773\cite{norma_ISO_R773}.\\
+        20.23 & Face do veio \diameter22 liso & Face do veio \diameter22 liso até 11mm após o \diameter17. Daí até ao topo, veio maquinado para encaixe no buraco da bolacha do desenho "bolacha".\todo[talking point]{com a largura do carreto, a bolacha não entra totalmente no veio.}\\
+        20.23 & Topo do veio \diameter22 liso & Topo do veio \diameter22 com rosca M8 concêntrica.\\
+        20.23 & 120 & 115, medidos a partir do veio \diameter22. Ranhura para freio após a medida.\todo{confirmar}\\
+        bolacha & & Um dos topos do cilindro tapado, com um furo M8 concêntrico.\\
+        chapa corrente & 12 furos de 4 mm & 4 furos M10 próximos dos cantos da placa.\\
+        chapa motor & 12 furos de 4 mm & 4 furos M10 próximos dos cantos da placa, à mesma distância dos da errata do desenho "chapa corrente".\\
+        montagem & Veio do motor & Espaçador cilíndrico com furo concêntrico de 19 mm e cerca de 3 mm de largura, montado no veio, antes da engrenagem.\\
+    \end{tabular}
+\end{center}
