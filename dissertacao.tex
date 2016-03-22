@@ -1,0 +1,101 @@
+\documentclass[defaultstyle,10pt,master,Helvetica]{thesis}
+% Helvetica is a similar font to Arial, with small differences.
+
+%--------------------------------------------------------------
+%debug features - some may not be included in the final document
+%obter informacao de debug acerca de parêntesis mal fechados
+\tracinggroups=1
+%\usepackage{showframe}    %show page dimensions, to visually confirm page layout
+%\usepackage{showlabels}     %show labels in the printed pdf, for easy finding.
+\usepackage{todo} %keep track of things to do in the document
+%\usepackage[hide]{todo} %Use this option to remove all todos from the document
+%http://tex.stackexchange.com/questions/55618/visual-debugging-of-lengths-in-paragraphs-and-environments
+%\usepackage{layouts}  - it is producing a compilation warning
+%\usepackage{lua-visual-debug} only compatible with LuaTex
+%--------------------------------------------------------------
+
+
+%% Packages
+\input{definicoes.tex}
+%% Page formatting
+\input{layout.tex}
+
+% My environments
+%Automatically numerate and label table rows.
+%WARNING - must be used one counter per table
+\newcounter{rowno}  %counter for the numbering
+\newenvironment{row_labeled_longtable}[3] %two mandatory arguments - table name and disposition, as in the longtable environment
+{
+\begin{flushleft}   %align table to the left, because it is going to be wide
+    %refstepcounter steps the counter and uses it for the following reference
+    %start a longtable environment, supress left and right borders, and on the first column put "C(counter)" and the label (wich depends on the counter). Then format the columns according to the argument passed.
+    %Rows can only be appended to the table to maintain compatibility
+    \begin{longtable}{ @{} >{\refstepcounter{rowno}#3\therowno\label{#1:#3\therowno}} #2 @{} }
+}
+{
+\end{longtable}
+\end{flushleft}
+}
+
+\newcounter{rownos}  %counter for the numbering
+\newenvironment{row_labeled_tabular}[3] %two mandatory arguments - table name and disposition, as in the longtable environment
+{
+%\begin{flushleft}   %align table to the left, because it is going to be wide
+    %refstepcounter steps the counter and uses it for the following reference
+    %start a longtable environment, supress left and right borders, and on the first column put "C(counter)" and the label (wich depends on the counter). Then format the columns according to the argument passed.
+    %Rows can only be appended to the table to maintain compatibility
+    \begin{tabular}{ @{} >{\refstepcounter{rownos}#3\therownos\label{#1:#3\therownos}} #2 @{} }
+}
+{
+\end{tabular}
+%\end{flushleft}
+}
+
+%-----------------------------------------------------------
+%-----------------------------------------------------------
+\begin{document}
+\pagestyle{begin}
+\input{preambulo/capa.tex}
+\input{preambulo/agradecimentos.tex}
+\input{preambulo/abstract.tex}
+\input{preambulo/keywords.tex}
+\input{preambulo/resumo.tex}
+\input{preambulo/palavraschave.tex}
+\input{preambulo/tabelas.tex}
+\acresetall     %faz reset as extensoes de acronimos
+\input{preambulo/acronimos.tex}
+%\input{preambulo/simbolos.tex}
+% Pages number is starting now with arabic style... until now it was on roman mode
+\pagenumbering{arabic} \setcounter{page}{1}
+%\pagestyle{document}%Fancy head and foot with lines
+\pagestyle{documentsimple}      %Simple head
+\input{conteudo/main.tex}
+
+%this is just here temporarily, to have references for the biblio
+%\input{2.Chapter/main.tex}
+
+
+\cleardoublepage
+\phantomsection     %http://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
+\addcontentsline{toc}{chapter}{Bibliografia}    %Add bibliography to toc
+%http://tex.stackexchange.com/questions/17128/using-bibtex-to-make-a-list-of-references-without-having-citations-in-the-body-of
+\nocite{*}      %show bibliography even if there are no citations
+\bibliographystyle{IEEEtran}
+\bibliography{recursos/biblio}
+\todo{colocar bibliografia em portugues}
+\cleardoublepage
+
+
+\begin{appendices}
+	\begin{appendix}
+		\pagenumbering{bychapter}
+		\input{recursos/apendiceA.tex}   
+        \input{recursos/apendiceB.tex}
+        \input{recursos/apendiceC.tex}
+        \input{recursos/apendiceD.tex}
+		\cleardoublepage
+	\end{appendix}
+\end{appendices}
+
+\todos  %list of things to do - should be the last todo item on the document
+\end{document}

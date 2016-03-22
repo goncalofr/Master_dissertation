@@ -367,7 +367,7 @@
 
 \newenvironment{acknowledgments}{\vspace*{3cm}
     {\parindent \z@ \raggedright \normalfont
-        \hspace*{0\p@}\huge\bfseries Acknowledgments
+        \hspace*{0\p@}\huge\bfseries Agradecimentos
         \par\nobreak
         \vspace*{1cm}
     }

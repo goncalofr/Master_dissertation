@@ -14,6 +14,7 @@
 ## Other files of mine
 *.complog*
 latexdoc/*
+tmp/*
 
 ## Intermediate documents:
 *.dvi

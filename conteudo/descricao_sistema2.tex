@@ -1,0 +1,52 @@
+\chapter{Componentes do sistema}
+Descrever o resultado final, subsistema a subsistema (em cada secção é apresentado um subsistema que funciona individualmente, mas não está integrado com os restantes). Referir as opções de design feitas, o dimensionamento feito.
+\section{Chassis}
+Dizer que a primeira coisa que se fez foi comprar o chassis, e depois escolher e colocar os componentes. Dizer porque se comprou o chassis e o que vinha e não vinha (carretos da corrente, rodas, etc). Descrever brevemente o chasis (travão de tambor, direção ackermann, eixo traseiro com cremalheira já incorporada, coluna de direção, espaço entre a forquilha traseira e parte de cima ) Descrever as várias modificações, e o porquê. Dizer que foram usados parafusos onde possível. Entrar aqui com o layout dos componentes principais de forma ligeira.\\
+imagens e tabelas: fotos do chassis despido, modificações de cada subsistema (4 fotos).
+\section{baterias}
+Descrever as baterias, e a sua disposição na moto. Justificar a sua escolha. Dizer que só foi possível assim por causa do motor. Apresentar um valor esperado para a autonomia (com base nos cálculos do motor de lynch), mas dizer que se incluíram o máximo que se conseguiu no espaço que havia. Dizer que se optou por ir à campeão, sem sistema de gestão das baterias. Referir as limitações no isolamento dos circuitos e no facto de não estarem fixas à moto. Referir os carregadores.\\
+imagens e tabelas: vista expandida das baterias, com os espaçadores..
+\section{traçao}
+Dizer qual o motor que se escolheu, e porquê. Descrever o kit que se comprou. Apresentar cálculos básicos das necessidades de potência, mas dizer que a escolha não se regeu por isso, mas sim pelo kit facilitar a escolha e compra do resto. Dizer que se procuraram redutores, mas achámos ou muito caros, ou com pouca relação de redução, ou unidirecionais, o que não pode ser para aqui pq queremos andar com a moto desengatada.\\
+Dizer que se fez um redutor, e descrevê-lo. Apresentar os esquemas e a errata.\\
+Apresentar o controlador e as suas ligações (modo manual). Apresentar a sua configuração. Dizer que este está ligado a um sistema de segurança integrada, e apontar para a secção.\\
+Apresentar o sensor de velocidade: feito para feedback ao controlador e para o cérebro. Dizer pq se escolheu este tipo. Apresentar as suas limitações para velocidade baixa. Dizer que foi instalado ali por simplicidade, mas que deveria ter sido instalado no veio do motor, ou idealmente escolhida outra topologia. Referir apenas os problemas de leitura e o condicionamento de sinal na secçào do hw de controlo, pq só foram feitos por causa do uC (e não por causa do Sigmadrive)\\
+Apresentar os esquemas elétricos:sensor velocidade: ligaçoes controlador sem dispositivos de segurança.\\
+imagens e tabelas: motor + redutor instalados na moto. placa do sensor. Sensor final instalado, montagem do controlador + fusível + contactor.\\
+\section{travagem}
+Descrever o que foi feito para atuar o travão: parafuso e pivô no tambor, fdc para controlar a paragem do motor. Dizer o motor escolhido e o controlador. Explicar a filosofia de travão de emergência (tudo ou nada).
+Apresentar as ligações do motor do travão, com fdc, sem dispositivos de segurança. Referir que o sistema é comandado por um sistema de segurança integrada, que neste caso é também o controlador do motor e apontar para a secção.
+imagens e tabelas: motor + ligação ao parafuso. Ligação do parafuso ao tambor.
+\section{Circuitos de segurança}
+Explicar a filosofia de funcionamento dos circuitos: default off, ao estilo watchdog; atuação complementar do travão e dos outros motores; minimizar e tornar robusto hw travão (relés em vez de transistores; motor ligado diretamente à bateria).\\
+Explicar os vários botões de segurança. Referir o controlo por sw. Explicar o monoestável. Referir que este circuito só  afeta os motores, pois são o que pode causar originar colisões, e que tem total prioridade de controlo sobre eles, mas que não atua no computador (não o desliga).\\
+Referir os fdc como detetores de erros para a viragem, e como parte do sistema de controlo em cadeia aberta para o travão.
+Explicar os mecanismos de destravagem. Explicar que é o sistema está preparado para destravar para o sw, mas como o acionamento do travão é considerado um erro grave, que tem que se feito manualmente. No futuro pode ser alterado.
+Apontar nas imagens do tambor do travão e do potenciometro das secções anteriores os fdc. Apresentar esquema elétrico dos controlos de segurança (sem motores). Apontar para imagem da caixa da eletrónica e referir a placa dos relés.\\
+imagens e tabelas: disp. homem morto.
+\section{direção}
+Descrever como se ligou o atuador ao sistema manual de direção. Descrever o motor, redutor (e porque aqui dá jeito um redutor de pinhão e coroa) e engrenagens. Descrever que a correia tem um esticador para poder ser retirado para condução manual (virar com o guiador).
+Descrever o conversor e a sua ligação à bateria. Descrever o sistema de feedback, e como ele foi instalado na moto.
+Descrever o controlador e porquê se obtou por ele. Falar por alto que se usou um pic para implementar o algoritmo de controlo e servir de controlador geral do sistema. Indicar a secção onde ele está descrito.
+
+Apontar para a imagem da caixa de eletrónica e referir a placa com o contactor e o fusível.\\
+images e tabelas: motor + redutor + correia e engrenagens instalados na moto, potenciometro, fdc e roda dentada instalados na moto, esquema elétrico do sensor e da alimentação do motor.
+\section{Integração dos sistemas}
+Descrever a possibilidade de condução por manual e por computador. Dizer como isto foi feito: os sinais de controlo para o controlador da tração foram re-roteados por seletores do modo de condução, de forma a se poder injetar sinal do computador. O travão manteve o seu modo de funcionamento, só  foi adicionada uma forma de comando adicional por sw. O controlador da direção só está previsto funcionar por sw. Dizer que o sistema de segurança tem prioridade na atuação nos motores, mas que não interfere na atuação normal do controlador.\\
+Apresentar o uc. Referir as suas funções: monitorização do sistema (medição de sinais), interface com o módulo superior, controlo do conversor do travão e dos controladores da tração e travão.\\
+Apresentar os sinais que interagem com o uC, o seu condicionamento. Apresentar os interruptores e leds.
+ Apresentar a condução manual. Referir o que não pode ser controlado por computador: ligar/desligar e recuperar de erros graves (acionar o travão).\\
+Apresentar a condução por computador: comandada por sw (apontar para a secção), e só consegue desacelerar usando a travagem regenerativa. Às velocidades previstas para a moto não se prevêm dificuldades de controlo. O controlador da tração foi configurado para deixar deslizar a moto quando está em neutro, e para manter a posição quando está selecionada uma direção de movimento.
+imagens e tabelas: caixa da eletrónica; tabela de elementos de interface com o utilizador (inputs e outputs).
+\section{controlo da direção}
+Dizer que se planeou um pid originalmente. Identificar as caracteristicas de operação: terreno variado => grande variação do coeficiente  de atrito e possível força lateral de perturbação, quando se tenta virar em cima de pedras, que apesar do redutor usado, ainda consegue alterar a posição da direção ou aumentar muitoa resistência ao movimento => muitas e fortes perturabações no sistema de controlo. Para além disso, à medida que se chega aos fdc, a força necessária para virar aumenta, o que significa que este é um sistema não-linear.No fim da instalação do atuador foram introduzidos dois problemas adicionais difíceis de resolver: a zona morta na atuação da direção, e o salto da correia quando esta no chão de azulejo (baixo atrito - melhor cenário). Obtou-se por avançar com essas limitações em vez de as corrigir. Isso implica que a moto só possa virar quando está em movimento.\\
+Explicar o modelo do sistema criado.
+Referir que se optou por usar o mecanismo de controlo de motores em cadeia fechada do dalf, e dizer como funciona.\\
+Aproximou-se o sistema a um slit, e tentou-se modelar o sistema com recurso à identificação pelo método de ziegler nichols, mas os resultados não foram satisfatórios, pelo que se partiu para a afinação a olho dos parametros do PID, para o caso das rodas no ar.\\
+Apresentar o PID. Referir que este é um controlo de prova de conceito, mas com bastantes limitações. Mais testes de refinação poderiam produzir uma coisa melhor. Referir que se quisesse fazer um PID melhor com o que tenho, arranjava um PID para cada tipo de terreno e arranjava uma opção de seleção pelo utilizador.\\
+imagens e tabelas: diagrama de blocos do pid ideal: zona morta + pid diferente consoante o tipo de terreno + perturbação no sinal de comando devido ao saltar da correia + perturabação na variável controlada devido a irregularidades do terreno (ruído no sensor não é relevante); diagrama com a representação do ângulo da direção (0°, 45° bombordo estibordo).
+\section{Programa de controlo}
+Apresentar e explicar o diagrama de estados do programa. Explicar o estado de lockdown.
+Explicar a arquitetura do programa de controlo: escuta e execução de comandos, e daemons de controlo dos motores(direção usei o do dalf, e tração criei eu o pwm) e monitorização do sistema.
+Explicar a arquitetura do firmware dalf. Explicar como foi construído: o programa foi construído em cima do firmware dalf, de duas maneiras: adicões à funcionalidade da plataforma, que não são específicas para o rovim, e software destinado apenas ao rovim, de implementação do programa de controlo, mas que precisava de funcionalidades genéricas que a plataforma não tinha.
+imagens e tabelas: diagrama de estados. diagrama de threads.

@@ -33,12 +33,13 @@ sources"
 
 #--------------------------------------------------------------------------
 #default configuration
-input=manual #input filename prefix
-output=manual #output filename prefix
+input=dissertacao #input filename prefix
+output=dissertacao #output filename prefix
 format=pdf  #extension of the output filename to generate
 outputdir=tmp #directory where auxiliary files are saved to
 redirect=0 #write to stdout (by default there is no redirection)
-logfile=$input.complog #Cannot use .log extension because that file is already used by LaTeX
+initiallogfile=initialruns.log
+finallogfile=finalrun.log
 
 #--------------------------------------------------------------------------
 #functions
@@ -47,10 +48,19 @@ clean ()
 {
     rm -rf ./$outputdir
     rm -f ./$output.$format
-    rm -f ./$logfile
+    rm -f ./$initiallogfile
+    rm -f ./$finallogfile
     echo "temporary files cleaned"
     #re-create directory
     mkdir -p $outputdir
+}
+
+#highlight_err_info: highlight latex compilation errors and warning on log file
+highlight_err_info ()
+{
+echo "Errors and warnings found on" $1 ":"
+echo "For info on how to detect warning origin, see: http://tex.stackexchange.com/questions/235051/an-equivalent-of-file-line-error-for-warnings"
+cat $1 | grep -Ein --color "error|warning" || true
 }
 
 #Lat function: run latex
@@ -64,7 +74,9 @@ lat ()
     #run latex
     if ! pdflatex --shell-escape -file-line-error -halt-on-error -output-directory=$outputdir -output-format=$format $input; then #run latex
     #http://blog.sanctum.geek.nz/testing-exit-values-bash/
-        echo "An error has occurred while running latex. Return code $$."
+        echo "An error has occurred while running latex. Halting. Return code $$."
+        #ouput err info to stderr, because stdout is being redirected to file
+        >&2 highlight_err_info $logfile
         exit;
     fi
 }
@@ -81,7 +93,9 @@ bib ()
 
     if ! bibtex $outputdir/$input; then #run bibtex
     #http://blog.sanctum.geek.nz/testing-exit-values-bash/
-        echo "An error has occurred while running bibtex Return code $$."
+        echo "An error has occurred while running bibtex. Halting. Return code $$."
+        #ouput err info to stderr, because stdout is being redirected to file
+        >&2 highlight_err_info $logfile
         exit;
     fi
 }
@@ -122,10 +136,8 @@ case $key in
     -r|--redirect)
     #redirect output to file
     redirect=1
-    echo "redirect option does nothing. Exiting"
+    echo "redirect option does nothing. Exiting."
     exit
-    #echo "redirecting output to" $logfile
-    #echo "New job started at $(date)" >>$logfile
     shift # past argument
     ;;
     *)
@@ -140,10 +152,24 @@ done
 #main job
 #clean and compile
 clean
-lat
-bib
-lat
-lat
+
+#initial runs
+logfile=$initiallogfile
+echo "Starting latex. Appending log to" $logfile ".This should produce temporary warnings, that won't show in the last run"
+echo "New job started at $(date)" >>$logfile
+lat>>$logfile
+bib>>$logfile
+lat>>$logfile
+
+#final run
+logfile=$finallogfile
+echo "Starting last latex run. Separating log to" $logfile "to ease error detection"
+echo "New job started at $(date)" >>$logfile
+lat>$logfile
+
+#Warning highlighting
+highlight_err_info $logfile
+
 #copy output file
 cp ./$outputdir/$input.$format "$output".$format
 

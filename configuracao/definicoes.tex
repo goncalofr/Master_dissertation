@@ -25,6 +25,7 @@
 % The 'babel' package may correct some hyphenisation issues of latex. 
 % However in most situations it is not required.
 \usepackage[portuguese]{babel}
+%\usepackage[fixlanguage]{babelbib} - this does not support ieee bibtex style
 
 % PACKAGE fontenc:
 % -----------------
@@ -82,6 +83,7 @@
 \usepackage{pdflscape}
 %\usepackage{xtab}
 \usepackage{longtable}
+\usepackage{tabulary}
 %\usepackage{tablefootnote}
 
 % PACKAGE graphics, epsfig, subfigure, caption:
@@ -165,19 +167,21 @@
 %http://www.pa.op.dlr.de/~PatrickJoeckel/pdflatex/index.html
 \hypersetup{
              %pdftex,    %required for pdflatex
-             colorlinks=false, %color the links
-             citecolor=red, %colour of citation links
+             colorlinks   = true, %Colours links instead of ugly boxes
+             urlcolor     = blue, %Colour for external hyperlinks
+             linkcolor    = blue, %Colour of internal links
+             citecolor   = red, %Colour of citations
              breaklinks=true,   %allow links to break over lines
              %bookmarks=true,    %bookmarks for all entries in the TOC - already defined somewhere
              bookmarksnumbered=true, %put section numbers in bookmarks
              bookmarksopen=true, %open up bookmark three
              debug=true, %extra diagnostic messages on the log file
              % pdf metadata
-             pdftitle={Manual do utilizador do ROVIM T2D},
+             pdftitle={ROVIM T2D - Um veiculo autonomo de vigilancia de instalacoes militares},
              pdfauthor={Goncalo Andre},
-             pdfsubject={ROVIM T2D},
+             pdfsubject={Dissertação de Mestrado em Engenharia Eletrotecnica e de Computadores}
              %pdfcreator={Document Creator Name}, - pdflatex should fill this
-             pdfkeywords={Manual, Utilizador, ROVIM, T2D}}
+             pdfkeywords={Tese, Dissertacao, MEEC, IST, ROVIM, T2D, Veiculo Eletrico, Robo}}
 
 %Manage symbols the same way we manage acronyms
 %\usepackage[final]{listofsymbols}
@@ -196,6 +200,5 @@
 \newcommand{\textreg}{$\textsuperscript{\textregistered}$}
 
 %Specific macros used in this document to replace content, and not configurations:
-\newcommand{\manualversion}{v0.9}
 \newcommand{\swversion}{v1.0}
 \newcommand{\hwversion}{v1.0}
