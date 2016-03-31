@@ -1,0 +1,103 @@
+\documentclass{article}
+
+\begin{document}
+
+\chapter{Introdução}
+\textbf{Tamanho do capitulo: 2 páginas}
+\begin{description}        
+    \item[Objetivo] Resumo da tese para quem não a leu.
+    \item[Topicos de escrita]
+        \begin{itemize}
+            \item Apresentação do projeto
+            \item Descrição da estrutura do documento
+        \end{itemize}
+\end{description}
+\section{Requisitos iniciais}
+Manifesto inicial da tese. Identificar os objetivos iniciais.
+
+\chapter{Estado da arte}
+\textbf{Tamanho do capitulo: 6 páginas}
+\begin{description}        
+    \item[Objetivo] Apresentar a tecnologia atual
+    \item[Topicos de escrita]
+        \begin{itemize}
+            \item Apresentação do projeto
+            \item Descrição da estrutura do documento
+        \end{itemize}
+\end{description}
+\section{Veículos elétricos}
+
+\section{Baterias}
+chumbo vs litio
+\section{Motores}
+explicar as vantagens dos motores sem escovas de ímanes permanentes.
+\section{Acoplamento mecânico}
+Explicar que os redutores normais têm pouca redução, e que os de pinhão e coroa transmitem movimento unidirecionalmente.
+\section{sistemas de controlo de veículos elétricos}
+
+\chapter{Desenho do sistema - primeira iteração}
+Aqui foram definidos os motores a usar e os acoplamentos mecânicos (as necessidades de atuação tinham sido definidas pelos requisitos), as baterias, e as necessidades de sensores.
+\section{Projeto}
+\item 
+\section{Layout dos componentes principais}
+\section{Detalhes da implementação}
+
+\chapter{Desenho do sistema - segunda iteração}
+Aqui foram definidos os sistemas de segurança e a operação em modo manual.
+\section{Revisão dos requisitos}
+Após a instalação dos principais sensores e atuadores, foram introduzidos algumas limitações aos objectivos iniciais
+\item Zona morta e correia saltar dificultam bastante o controlo da direção
+\item Direção tem que virar em movimento
+\item As leituras de velocidade não vão ser exatas a velocidades muito baixas (mas próximas das velocidades de operação do veículo)
+\subsection{Requisitos de segurança}
+\section{Projeto do controlador}
+
+\chapter{Desenho do sistema - terceira iteração}
+Aqui foi definido o módulo de controlo e a sua integração no sistema.
+
+\chapter{Conclusão}
+\textbf{Tamanho do capitulo:2 páginas}
+\begin{description}        
+    \item[Objetivo] Resumo da tese para quem a leu.
+    \item[Topicos de escrita]
+        \begin{itemize}
+            \item especificações da plataforma
+            \item Limitações da plataforma
+            \item Comparar as especificações com os objetivos iniciais
+            \item Comparar as especificações com os objetivos finais
+        \end{itemize}
+    \item[Notas a escrever]
+    O objetivo principal, de produzir um protótipo funcional foi atingido, ainda que com algumas limitações, aceitáveis para esta fase do processo de prototipagem e produção.\\
+    Limitações de ordem logística e de equipamento (ferramenta disponível, experiência, material disponível para compra) tiveram muito mais impacto no desenvolvimento do projeto que limitações tecnológicas.
+    Para as baterias não sei como evitar que se mexam.\\
+    Para a zona morta, soldar a coluna da direção em vez de aparafusar.\\
+    Para o salto da correia, usar uma corrente (talvez de bicicleta), com alguma folga, e uma "chave" do estilo da usada para prender a engrenagem ao veio do motor, facilmente removível, para resolver o problema do salto.\\
+    O hardware parece bastante precário, especialmente ao nível das placas elétronicas, mas também das baterias, mas pode ser usado com confiança por utilizadores conhecedores da plataforma. Para isso foi produzido um manual do utilizador.
+\end{description}
+\section{Trabalhos futuros}
+\begin{description}
+Refinação do protótipo. Dois caminhos de melhoramento: refinação do hardware atual, e construção de um novo protótipo com as lições aprendidas.\\
+Refinação do hw atual:
+\item passo seguinte, por este veículo ainda ter um potencial de refinamento muito grande.
+\item Testes: desenhar um programa de testes de aceitação compreensivo, que premita aumentar o grau de confiança no veículo e caracterizar melhor as propriedades do veículo. Usar estes testes para identificar áreas de melhoria na construção de um novo veículo.
+\item Integrar os módulos superiores.
+Novo protótipo:
+\item corrigir erros.
+\item Integrar requisitos de elevada fiabilidade, autonomia, custo baixo, e reprodutibilidade (standardização de peças, definição de medidas).
+\item Poupar dinheiro, redimensionando componentes (motores, controlador de tração). Ponderar o estado de novas tecnologias de baterias para aumentar a capacidade.
+\end{description}
+
+\chapter{Apêndice A - Código}
+\textbf{~70 páginas}
+\chapter{Apêndice B - Esquemas elétricos}
+\textbf{4 páginas, se tudo condensado em duas folhas}, ou\\
+\textbf{15 páginas, se separado por funções}
+\chapter{Apêndice C - Lista de componentes}
+\textbf{5 páginas}
+\chapter{Apêndice D - Desenhos das partes mecânicas}
+\textbf{13 páginas}
+\chapter{Apêndice E - Configurações}
+\textbf{3 páginas}
+\chapter{Apêndice F - Fotografias adicionais}
+\textbf{2 páginas}
+\end{document}

@@ -79,12 +79,17 @@
 	%\renewcommand{\footrulewidth}{0pt}
 	\addtolength{\headheight}{2pt} % make space for the rule
 }
-%limit the section and toc depth to 5 levels
-\setcounter{secnumdepth} {5}
+%limit the section numbering depth to 3 levels - do not number from paragraph bellow
+\setcounter{secnumdepth} {3}
+%limit the toc depth to 5 levels
 \setcounter{tocdepth} {5}
 %Set a subsubsection number to include also the subsection number.
 % ex. subsection.subsubsection
 \renewcommand{\thesubsubsection}{\thesubsection.\Alph{subsubsection}}
+
+%have line breaks after paragraphs
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+%\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.5em}
 
 %{subfigure} package is now obsolete and was replace in this document by
 %the {subcaption} package. This change removed the following 4 commands.

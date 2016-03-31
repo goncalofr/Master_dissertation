@@ -39,7 +39,7 @@
 % http://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
 % allows the user to input accented characters directly form the keyboard
 \usepackage[latin1]{inputenc}
-%\usepackage{lmodern}
+\usepackage{lmodern}
 
 %package verbatim - needed for comment environment
 \usepackage{verbatim}
@@ -70,6 +70,12 @@
 % fonts and symbols; adds the \eqref command for citing equations. I prefer the style
 % "(x.xx)" for referering to an equation than to use "equation x.xx".
 \usepackage{amsmath, amsthm, amssymb, amsfonts, amsbsy}
+%used for the \vrectangleblack in serial terminal examples
+\usepackage{stix}
+
+%needed for tikz
+\usepackage{standalone} %needed because of floating tickz pictures
+\usepackage[usenames,dvipsnames]{xcolor}
 
 % PACKAGE multirow, colortbl, longtable:
 % ---------------------------------------
@@ -83,7 +89,9 @@
 \usepackage{pdflscape}
 %\usepackage{xtab}
 \usepackage{longtable}
+%\usepackage{afterpage} %needed to avoid longtable page breaks
 \usepackage{tabulary}
+\usepackage{threeparttable}
 %\usepackage{tablefootnote}
 
 % PACKAGE graphics, epsfig, subfigure, caption:
@@ -94,6 +102,7 @@
 % should be avoided to create an eps file with subfigures. That will mean that you won't be 
 % able to reference those subfigures. Instead create an EPS file (the only graphics format supported
 % by latex) for each of the subfigures and then use the command \subfigure (see below).
+\usepackage{adjustbox}
 \usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{epsfig}
@@ -109,7 +118,7 @@
 \usepackage[font=small,labelfont=bf,textfont=normalfont]{subcaption}
 %http://tex.stackexchange.com/questions/91566/syntax-similar-to-centering-for-right-and-left/91580#91580?newreg=ab93b1a4f79a4315b773d13d37d37678
 %easilly define horizontal orientation of images.
-\usepackage[export]{adjustbox}
+%\usepackage[export]{adjustbox} %causing conflicts - had to find a way around
 
 %include pdf pages in document
 \usepackage{pdfpages}
@@ -121,6 +130,9 @@
 % ------------------------------
 % This package is used to list source code
 \usepackage{listings}
+
+%this package is used for quotations
+\usepackage{dirtytalk}
 
 % PACKAGE algorithmic, algorithm
 % ------------------------------
@@ -179,14 +191,31 @@
              % pdf metadata
              pdftitle={ROVIM T2D - Um veiculo autonomo de vigilancia de instalacoes militares},
              pdfauthor={Goncalo Andre},
-             pdfsubject={Dissertação de Mestrado em Engenharia Eletrotecnica e de Computadores}
+             pdfsubject={Dissertacao de Mestrado em Engenharia Eletrotecnica e de Computadores}
              %pdfcreator={Document Creator Name}, - pdflatex should fill this
-             pdfkeywords={Tese, Dissertacao, MEEC, IST, ROVIM, T2D, Veiculo Eletrico, Robo}}
+             pdfkeywords={Tese, Dissertacao, MEEC, IST, ROVIM, T2D, Veiculo Eletrico, Robo}
+         }
+
+%Use flowcharts
+\usepackage{tikz} %tikz will probably only be used in standalone files, but still needs to be declared here
+\usetikzlibrary{shapes.geometric, arrows}
 
 %Manage symbols the same way we manage acronyms
 %\usepackage[final]{listofsymbols}
 \usepackage{wasysym} %latex symbols
 \usepackage{symlist}
+
+%typesett Si units with a package
+\usepackage{siunitx}
+\sisetup{
+    output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
+}
+
+%to have line breaks after \paragraph{} and subparagraph{}
+%\usepackage[raggedright]{titlesec}
+
+%control spacing between items in lists
+\usepackage{enumitem}
 
 % Set paragraph counter to alphanumeric mode
 \renewcommand{\theparagraph}{\Alph{paragraph}~--}

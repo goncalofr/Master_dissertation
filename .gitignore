@@ -15,6 +15,7 @@
 *.complog*
 latexdoc/*
 tmp/*
+mwe.tex
 
 ## Intermediate documents:
 *.dvi

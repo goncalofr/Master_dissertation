@@ -121,6 +121,34 @@
     \mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger%
     \or \ddagger\ddagger \else\textsuperscript{\expandafter\romannumeral#1}\fi}}}}
 
+%Goncalo Andre
+% My environments
+%Automatically numerate and label table rows.
+\newenvironment{row_labeled_longtable}[5] %5 mandatory arguments - table name; disposition, as in the longtable environment; identifier and label prefix; row counter name; row counter value macro.
+{
+    %the longtable environment has the advantage of allowing footnotes.
+\begin{flushleft}   %align table to the left, because it is going to be wide
+    %refstepcounter steps the counter and uses it for the following reference
+    %start a longtable environment, supress left and right borders, increase the counter passed as argument, and on the first column put "[arg#3][counter value]" (without parenthesis) and the label (which depends on the counter value), named "[arg#1]:[#arg3:][counter value]" (without parenthesis). Then format the columns according to the argument passed.
+    %Rows can only be appended to the table to maintain compatibility of references
+    \begin{longtable}{ @{} >{\refstepcounter{#4}#3#5\label{#1:#3#5}} #2 @{} }
+}
+{
+\end{longtable}
+\end{flushleft}
+}
+
+\newenvironment{row_labeled_tabular}[5] %5 mandatory arguments - table name; disposition, as in the tabular environment; identifier and label prefix; row counter name; row counter value macro.
+{
+    %leave the alignment to the user to decide
+    %refstepcounter steps the counter and uses it for the following reference
+    %start a tabular environment, supress left and right borders, increase the counter passed as argument, and on the first column put "[arg#3][counter value]" (without parenthesis) and the label (which depends on the counter value), named "[arg#1]:[#arg3:][counter value]" (without parenthesis). Then format the columns according to the argument passed.
+    %Rows can only be appended to the table to maintain compatibility of references
+    \begin{tabular}{ @{} >{\refstepcounter{#4}#3#5\label{#1:#3#5}} #2 @{} }
+}
+{
+\end{tabular}
+}
 
 
 

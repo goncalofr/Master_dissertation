@@ -4,14 +4,15 @@
 %\begin{table}
 %\begin{center}
 %\begin{longtable}{ @{} m{0.05\textwidth} m{0.18\textwidth} m{0.6\textwidth} m{0.1\textwidth} @{} }
-\begin{row_labeled_longtable}{Componentes}{ m{0.05\textwidth} m{0.05\textwidth} m{0.18\textwidth} m{0.6\textwidth} m{0.1\textwidth}} {C}
+\newcounter{compno}  %counter for the numbering
+\begin{row_labeled_longtable}{componentes}{ m{0.05\textwidth} m{0.05\textwidth} m{0.18\textwidth} m{0.6\textwidth} m{0.1\textwidth}} {C}{compno}{\thecompno}
     \toprule
     %the multicolum supresses the rule for the automatic component count of this environment. See: http://tex.stackexchange.com/questions/120648/changing-the-table-row-height-in-all-rows-except-the-first-row?rq=1
     %Bug: Idk how to supress left border space in the multicolumn - so it disaligns with the rest of column - bummer
     \multicolumn{1}{ l }{Id.\footnote{Identificação}} & Qt.\footnote{Quantidade} & Componente & Descrição & Subsistema\footnote{Peça a que o componente pertence, se aplicável}\\
     \midrule
     & 1 & \emph{Chassis} & \emph{Chassis}, rodas, eixo traseiro com carreto de transmissão e sistemas de travagem e viragem de moto-quatro & \emph{Chassis}\\
-    & Indef.\footnote{Quantidade indefinida} & Ferro sortido & Ferro usado nas estruturas de fixação de componentes\footnote{Que são: 1) Estrutura central de fixação das plataformas; 2) estrutura de suporte do redutor de direção; 3) estrutura de fixação do motor de tração; 4) estrutura de fixação do sensor de velocidade} e outras adaptações soldadas ao \emph{chassis} & \emph{Chassis}\\
+    & Indef.\footnote{Quantidade indefinida} & Ferro sortido & Ferro usado nas estruturas de fixação de componentes\footnote{Que são: 1) Estrutura central de fixação das plataformas; 2) estrutura de suporte do redutor de direção; 3) estrutura de fixação do motor de tração; 4) estrutura de fixação do sensor de velocidade} e outras adaptações soldadas ao \emph{Chassis} & \emph{Chassis}\\
     %In. & Parafusos & Parafusos de ferro de várias medidas, usados na fixação dos componentes ao \emph{chassis} & \emph{Chassis}\\
     %In. & Anilhas & Anilhas de ferro de várias medidas, usadas na fixação dos componentes ao \emph{chassis} & \emph{Chassis}\\
     %In. & Porcas & Porcas de ferro de várias medidas, usadas na fixação dos componentes ao \emph{chassis} & \emph{Chassis}\\

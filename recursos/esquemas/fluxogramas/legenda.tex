@@ -1,0 +1,25 @@
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+%http://tex.stackexchange.com/questions/249531/how-to-adjust-float-options-of-tikz-picture
+%fluxogrammin'
+\documentclass[tikz]{standalone}
+%this flowchart is too big for one vertical page, so it has to be slipt.
+
+\begin{document}
+%configure the tikz styles used for the flowchart
+%fyi: the figure never gets smaller than "text width" and "minimum height"
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum height=1cm,text centered, text width=2cm, draw=black, fill=red!30]
+\tikzstyle{process} = [rectangle, text centered, minimum height=1cm, text width=2cm, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum height=0.5cm, text badly centered, inner sep=1pt, text width=4em, draw=black, node distance=2cm, fill=green!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum height=1cm, text badly centered,trapezium stretches body, text width=2cm, draw=black, fill=blue!30]
+\tikzstyle{connector} = [circle, minimum height=0.5cm, text badly centered, text width=3.5em, inner sep=1pt, draw=black, fill=brown!30]
+    \begin{tikzpicture}[node distance=1.5cm]
+        %node description
+        %\node (connector) [connector] {conetor};
+        %\node (process) [process, below of=connector] {Processo};
+        \node (process) [process] {Processo};
+        \node (io) [io, below of=process] {Entrada/saída};
+        \node (decision) [decision, below of=io] {Decisão};
+        \node (startstop) [startstop, below of=decision, node distance=2cm] {Início/fim};
+        \draw [->, thick] (-1,-7) -- node[anchor=south]{sentido de execução}(1,-7);
+    \end{tikzpicture}
+\end{document}

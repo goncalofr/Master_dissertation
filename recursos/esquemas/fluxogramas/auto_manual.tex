@@ -1,0 +1,31 @@
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+%http://tex.stackexchange.com/questions/249531/how-to-adjust-float-options-of-tikz-picture
+%fluxogrammin'
+\documentclass[tikz]{standalone}
+%this flowchart is too big for one vertical page, so it has to be slipt.
+
+\begin{document}
+%configure the tikz styles used for the flowchart
+%fyi: the figure never gets smaller than "text width" and "minimum height"
+\input{recursos/configuracao_fluxogramas.tex}
+\begin{center}
+    %first part of the flowchart
+    \begin{tikzpicture}[node distance=2cm]
+    %node description
+        \node (inicio) [startstop] {Em modo autónomo};
+        \node (parar) [process, below of=inicio] {Parar a marcha};
+        \node (neutro) [process, below of=parar] {Selecionar Neutro em F/N/T};
+        \node (bloq) [process, below of=neutro] {Selecionar Bloq. em Ativar tração};
+        \node (correia) [process, below of=bloq] {Desacoplar correia};
+        \node (sel_auto) [process, below of=correia] {Selecionar Manual em M/A};
+        \node (pronto) [startstop, below of=sel_auto] {Em modo manual};
+    %edge description
+        \draw [arrow] (inicio) -- (parar);
+        \draw [arrow] (parar) -- (neutro);
+        \draw [arrow] (neutro) -- (bloq);
+        \draw [arrow] (bloq) -- (correia);
+        \draw [arrow] (correia) -- (sel_auto);
+        \draw [arrow] (sel_auto) -- (pronto);
+    \end{tikzpicture}
+\end{center}
+\end{document}

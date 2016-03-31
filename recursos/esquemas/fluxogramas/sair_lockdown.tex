@@ -1,0 +1,47 @@
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+%http://tex.stackexchange.com/questions/249531/how-to-adjust-float-options-of-tikz-picture
+%fluxogrammin'
+\documentclass[tikz]{standalone}
+%this flowchart is too big for one vertical page, so it has to be slipt.
+
+\begin{document}
+%configure the tikz styles used for the flowchart
+%fyi: the figure never gets smaller than "text width" and "minimum height"
+\input{recursos/configuracao_fluxogramas.tex}
+%http://tex.stackexchange.com/questions/106306/using-footnotemark-with-letters
+%So, footnotes in floats suck big time. There are two decent workarounds: threeparttable and minipage.
+\renewcommand*{\thefootnote}{\alph{footnote}}
+    \begin{minipage}[b]{\textwidth}
+    \begin{center}
+    \begin{tikzpicture}[node distance=2cm]
+    %node description
+        \node (inicio) [startstop] {Em \emph{lockdown}};
+    \node (comando) [process, below of=inicio] {Enviar comando};%\footnotemark};
+        \node (pronto?) [decision, below of=comando] {Erro detetado?};
+    \node (permissao_destravar) [io, below of=pronto?, node distance=3cm] {Programa confirma};%\footnotemark};
+        \node (corrigir) [process, right of=pronto?, node distance=4cm] {Corrigir};
+        \node (destravar) [process, below of=permissao_destravar] {Pressionar botão de destravar até acender Led\ref{leds:Led1}};
+        \node (travao_destrava) [io, below of=destravar] {Travão destrava};
+        \node (travou?) [decision, below of=travao_destrava] {Travão volta a travar?\footnotemark[1]};
+        \node (contactor_arma) [io, below of=travou?, node distance=3cm] {Contatores armam};
+        \node (pronto) [startstop, below of=contactor_arma] {Pronto};
+    %edge description
+        \draw [arrow] (inicio) -- (comando);
+        \draw [arrow] (comando) -- (pronto?);
+        \draw [arrow] (pronto?) -- node[anchor=east]{não} (permissao_destravar);
+        \draw [arrow] (pronto?) -- node[anchor=south]{sim} (corrigir);
+        \draw [arrow] (corrigir) |- (comando);
+        \draw [arrow] (permissao_destravar) -- (destravar);
+        \draw [arrow] (destravar) -- (travao_destrava);
+        \draw [arrow] (travao_destrava) -- (travou?);
+        \draw [arrow] (travou?) -- node[anchor=east]{não}(contactor_arma);
+        \draw [arrow] (travou?) -- node[anchor=south]{sim} ++ (-4,0) |-  (inicio);
+        %\path (pronto?)   --++  (4,0) node [inicio] {sim};
+        \draw [arrow] (contactor_arma) -- (pronto);
+    \end{tikzpicture}
+    %\footnotetext{Comando para sair de \emph{lockdown}. Na interface série este é o comando \texttt{G11}.}
+    %\footnotetext{Na interface série esta confirmação é uma mensagem a instruir  o utilizador para proceder à destravagem.}
+    \footnotetext[1]{O travão volta a travar após soltar o botão de destravagem se tiver passado o limite de 20s para a destravagem, ou se ocorrer outro erro durante a destravagem}
+\end{center}
+\end{minipage}
+\end{document}

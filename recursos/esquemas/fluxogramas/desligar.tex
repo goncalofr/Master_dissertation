@@ -1,0 +1,63 @@
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+%http://tex.stackexchange.com/questions/249531/how-to-adjust-float-options-of-tikz-picture
+%fluxogrammin'
+\documentclass[tikz]{standalone}
+%this flowchart is too big for one vertical page, so it has to be slipt.
+
+\begin{document}
+%configure the tikz styles used for the flowchart
+%fyi: the figure never gets smaller than "text width" and "minimum height"
+\input{recursos/configuracao_fluxogramas.tex}
+\begin{center}
+%\begin{minipage}[b]{0.47\textwidth}%setting  width to 0.5\textwidth wont work
+    %first part of the flowchart
+    \begin{tikzpicture}[node distance=2cm]
+    %node description
+        \node (inicio) [startstop] {Ligado};
+        \node (nivelar) [process, below of=inicio] {Colocar em plano nivelado};
+        \node (parar_marcha) [process, below of=nivelar] {Parar a marcha};
+        \node (parar_dir) [process, below of=parar_marcha] {Parar de virar};
+        \node (desligar_chave) [process, below of=parar_dir] {Desligar Chave};
+        \node (trava) [io, below of=desligar_chave] {Travão trava};
+        \node (retirar_chave) [process, below of=trava] {Retirar Chave};
+        \node (retirar_disphm) [process, below of=retirar_chave] {Retirar Dispositivo do homem morto};
+        \node (fim) [startstop, below of=retirar_disphm] {Desligado};
+        %edged
+        \draw [arrow] (inicio) -- (nivelar);
+        \draw [arrow] (nivelar) -- (parar_marcha);
+        \draw [arrow] (parar_marcha) -- (parar_dir);
+        \draw [arrow] (parar_dir) -- (desligar_chave);
+        \draw [arrow] (desligar_chave) -- (trava);
+        \draw [arrow] (trava) -- (retirar_chave);
+        \draw [arrow] (retirar_chave) -- (retirar_disphm);
+        \draw [arrow] (retirar_disphm) -- (fim);
+    \end{tikzpicture}
+%\end{minipage}
+%\qquad
+%\begin{minipage}[b]{0.47\textwidth}
+%    %second part of the flowchart
+%    \begin{tikzpicture}[node distance=2cm]
+%        %node description
+%        \node (A) [connector] {A};
+%        \node (destravar) [process, below of=A] {Pressionar botão destravar};
+%        \node (travao_destrava) [io, below of=destravar] {Travão destrava};
+%        \node (destravou?) [decision, below of=travao_destrava] {Led verde aceso?};
+%        \node (ligar_sigmad) [process, below of=destravou?, node distance=3cm] {Ligar interruptor tração};
+%        \node (manter_pressionado) [process, right of=destravou?, node distance=4cm] {Manter pressionado};
+%        \node (contactor_arma) [io, below of=ligar_sigmad] {Contatores armam};
+%        \node (desbloq_tracao) [process, below of=contactor_arma] {Ligar interruptor ativar tração};
+%        \node (fim) [startstop, below of=desbloq_tracao] {Ligado e preparado};
+%    %edge description
+%        \draw [arrow] (A) -- (destravar);
+%        \draw [arrow] (destravar) -- (travao_destrava);
+%        \draw [arrow] (travao_destrava) -- (destravou?);
+%        \draw [arrow] (destravou?) -- node[anchor=east]{sim} (ligar_sigmad);
+%        \draw [arrow] (destravou?) -- node[anchor=south]{não} (manter_pressionado);
+%        \draw [arrow] (manter_pressionado) |- (travao_destrava);
+%        \draw [arrow] (ligar_sigmad) -- (contactor_arma);
+%        \draw [arrow] (contactor_arma) -- (desbloq_tracao);
+%        \draw [arrow] (desbloq_tracao) -- (fim);
+%    \end{tikzpicture}
+%\end{minipage}
+\end{center}
+\end{document}

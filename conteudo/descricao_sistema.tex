@@ -1,27 +1,26 @@
-
-\section{Descrição do sistema}
-\label{sec:descricao_sistema}
-O veículo é composto por vários componentes, quer de hardware, quer de software. É importante conhecê-los, de modo a melhor entender o funcionamento da moto e a evitar acidentes.
-%Apresenta-se de seguida uma breve descrição dos mesmos, divididos entre \emph{hardware} e \epmh{software}.
-
+\chapter{Componentes do sistema}
+\label{ch:componentes_sistema}
 \subsection{\emph{Hardware}}
 \label{ssec:descricao_hardware}
 
 \subsubsection{\emph{Chassis}}
-É no \emph{chassis} do \ac{ROVIM} que todos os componentes embarcados do módulo \ac{T2D} são instalados. É uma adaptação do \emph{chassis} de uma moto-quatro com motor de combustão, de onde foram removidas todas as peças não essenciais. A figura \ref{fig:chassis_despido} mostra o \emph{chassis} antes das adaptações para esta aplicação.\todo{Dizer que foi feito o mais possível com parafusos em vez de soldas para manter a flexibilidade no desenho}\\
+O \emph{chassis} é o esqueleto do \ac{ROVIM}. É nele que todos os componentes embarcados do módulo \ac{T2D} são instalados.\\
+É uma adaptação do \emph{chassis} de uma moto-quatro com motor de combustão interna, de onde foram removidas todas as peças não essenciais (ver componente \ref{componentes:C1} da lista do apêndice \ref{ap:c}). A figura \ref{fig:chassis_despido} mostra o \emph{chassis} antes das adaptações para esta aplicação.\\
 \begin{figure}[h] %place around here
 	\centering
     \includegraphics[width=0.7\linewidth]{recursos/imagens/chassis_despido.jpg}
     \caption[\emph{chassis}]{Chassis de moto-quatro antes das adaptações para o \ac{ROVIM}.}
 	\label{fig:chassis_despido}\par %end \centering
 \end{figure}
-Foi construída na baía do antigo motor de combustão uma estrutura para duas plataformas de madeira \ac{MDF} empilhadas, para acomodar as baterias (que são o conjunto mais pesado do veículo) e não alterar significativamente o centro de gravidade projectado pelo construtor da moto. Na plataforma inferior foram instalados batentes para impedir as baterias de deslizar e ganchos para poder segurar as baterias com elásticos, enquanto que a superior serviu para instalar outros componentes e ligações.\todo{Mostar fotos da estrutura, plataformas e baía das baterias em anexo}\\
+Ao chassis foram soldadas as estruturas para fixação dos componentes: uma estrutura central de dois níveis de plataformas, uma estrutura para o. principais, às quais estes foram aparafusados. Estas são: uma estrutura central de plataformas, uma estrutura de fixação do motor de tração
+Foi construída na baía do antigo motor de combustão uma estrutura para duas plataformas de madeira \ac{MDF} empilhadas, para acomodar as baterias (que são o componente mais pesado do veículo) e não alterar significativamente o centro de gravidade projectado pelo construtor da moto. Na plataforma inferior foram instalados batentes para impedir as baterias de deslizar e ganchos para as poder segurar com elásticos. enquanto que a superior serviu para instalar outros componentes e ligações.\todo{Mostar fotos da estrutura, plataformas e baía das baterias em anexo}\\
 %estas plataformas sao de \ac{MDF}, madeira leve, resistente e não condutora. Apesar disso, o aro e os parafusos usados na plataforma são de ferro condutor, devido a limitações nos materiais disponíveis. Isso representa um risco adicional de curto-circuito nas baterias que deve ser tomado em conta durante a operação da moto. A solução desenhada para fixar as baterias no sitio consiste nos batentes de madeira colados e nos elásticos. É uma solução que serve para a prova do conceito do robô, mas que é frágil e impede a condução em terrenos acidentados ou inclinados. Está fora dos requisitos para esta fase proteções para a chuva.
 Na forquilha traseira foram criados apoios para o conjunto motor de tração + redutor, de modo ao carreto de saída do redutor assentar no mesmo plano que o carreto do eixo traseiro, assim como um esticador para a corrente.\todo{mostrar foto dos apoios do motor em anexo}. Foi também criado um suporte para fixar um sensor junto ao carreto de saída do redutor, projetado para maximizar as opções de fixação.
 %devido à curta dimensao da corrente, teve que se colocar um esticador, porque o passo dos elos tornava-a muito curta ou muito larga.
 %ficou não suspenso - sujeito a mais vibrações mas elimina o problema de variação da distancia entre carretos (acontecia caso fixasse o motor na mesma zona, mas à parte suspensa), libertando assim espaço para mais baterias na zona central. As vibrações não são problema para as condições projetadas de uso.
 Foi criada uma pequena plataforma para o motor do travão na forquilha traseira, assim como braçadeiras semi-rigidas para o fixar, e apoios de borracha, ambos desenhados para acomodar a variação do ângulo entre o eixo do pivô do travão e o veio deste motor que se dá durante o curso da travagem \todo{está percetível o problema?}.\todo{mostrar foto do pivô do travão em anexo, assim como da plataforma e braçadeiras. Mostrar que o pivo fica mais baixo quando se trava} O travão dianteiro foi mantido inalterado, uma vez que não interferia com as modificações necessárias e permite travar manualmente a moto.\\
 Foi criado um apoio para fixar o redutor do motor de direção na frente do \emph{chassis} e a coluna da direção foi cortada para lhe acoplar uma roda dentada concêntrica, situada no mesmo plano que a roda dentada acoplada na saída do redutor da direção. Infelizmente criou-se neste processo uma zona morta na união das duas partes da coluna: a parte superior da direção (acoplada ao guiador) tem que girar um determinado ângulo\todo{quanto?} até que a zona inferior (acoplada às rodas) comece a girar solidariamente.\todo{mostar em anexo foto do corte na coluna da direção}
+O resultado final a que de ora se chama \emph{chassis} do \ac{ROVIM} é composto pelos componentes \ref{componentes:C1}, \ref{componentes:C2}, \ref{componentes:C3} -- \ref{componentes:C9}.\\
 \subsubsection{Baterias}
 Existem 7 baterias \texttt{EnerSys Genesis NP55-12R}; 6 delas montadas em série na moto, e uma bateria suplente. A figura \ref{fig:baterias_cima_frente}, mostra a vista explodida da montagem das baterias fora da moto.\\
 \begin{figure}[h] %place around here

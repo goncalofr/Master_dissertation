@@ -1,0 +1,40 @@
+%https://www.sharelatex.com/blog/2013/08/29/tikz-series-pt3.html
+%http://tex.stackexchange.com/questions/249531/how-to-adjust-float-options-of-tikz-picture
+%fluxogrammin'
+\documentclass[tikz]{standalone}
+%this flowchart is too big for one vertical page, so it has to be slipt.
+
+\begin{document}
+%configure the tikz styles used for the flowchart
+%fyi: the figure never gets smaller than "text width" and "minimum height"
+\input{recursos/configuracao_fluxogramas.tex}
+\begin{center}
+    %first part of the flowchart
+    \begin{tikzpicture}[node distance=2cm]
+    %node description
+        \node (inicio) [startstop] {Desligado};
+        \node (verificacoes) [process, below of=inicio] {Percorrer verificações de segurança};%\footnotemark};
+        \node (pronto?) [decision, below of=verificacoes] {Passou verificações?};
+        \node (disphm) [process, below of=pronto?, node distance=3cm] {Colocar dispositivo do homem morto};
+        \node (corrigir_verificacoes) [process, right of=pronto?, node distance=4cm] {Corrigir problemas de segurança};
+    \node (configurar) [process, below of=disphm] {Configurar interruptores};%\footnotemark};
+        \node (inserir_chave) [process, below of=configurar] {Inserir chave};
+        \node (ligar_chave) [process, below of=inserir_chave] {Ligar chave};
+        \node (ligar_sigmad) [process, below of=ligar_chave] {Ligar interruptor tração};
+        \node (lockdown) [startstop, below of=ligar_sigmad] {Em \emph{lockdown}};
+    %edge description
+        \draw [arrow] (inicio) -- (verificacoes);
+        \draw [arrow] (verificacoes) -- (pronto?);
+        \draw [arrow] (pronto?) -- node[anchor=east]{sim} (disphm);
+        \draw [arrow] (pronto?) -- node[anchor=south]{não} (corrigir_verificacoes);
+        \draw [arrow] (corrigir_verificacoes) |- (disphm);
+        \draw [arrow] (disphm) -- (configurar);
+        \draw [arrow] (configurar) -- (inserir_chave);
+        \draw [arrow] (inserir_chave) -- (ligar_chave);
+        \draw [arrow] (ligar_chave) -- (ligar_sigmad);
+        \draw [arrow] (ligar_sigmad) -- (lockdown);
+    \end{tikzpicture}
+    %\footnotetext{Ver \ref{sssec:verificacoes_seguranca}}
+    %\footnotetext{ver \ref{sssec:configurar}}
+\end{center}
+\end{document}
