@@ -1,0 +1,82 @@
+Dalf ROVIM T2D Help.
+Usage: H
+Available help topics:
+    C                        Read ADC.
+    E                        Show encoder count.
+    G [cmd code] [args...]   Custom Commands. See below.
+    H                        Show this message.
+    I                        Reset software.
+    U                        Show motor status.
+    V                        Show motors velocity.
+    X2 [dir] [duty cycle]    Move direction motor in open loop.
+[dir] can be: '0' - move to port, or '1' - move to starboard.
+Custom commands:
+    G10                      Go to lockdown.
+    G11                      Release from lockdown, if the system is good to go.
+    G12 [mtr]                Stop motor [mtr]. If [mtr] is omitted, both motors are stopped.
+    G14 [PWM]                Set the decelerator (braking energy recovery) to [PWM]%%.
+    G15 [PWM]                Set the accelerator to [PWM]%%.
+    G16 [type] [speed]       Set the vehicle to move in direction [type] at speed [speed].
+Possible directions are:
+0 - Forward;
+1 - Reverse;
+2 - Neutral (coast);
+3 - Hill hold (maintain position).
+Speed is expressed in tenths of Km/h (km/10/h) and varies between 0 and 45.
+    G17 angle        turn direction to [angle].
+Do not forget that all inputs through this interface are in hexadecimal and all outputs of the standard commands are also in hexadecimal. All other messages and custom commands outputs are in decimal.
+Example usage:
+X2 00 30 - Moves the direction to port at 48% of full power
+G16 00 20 - Moves the vehicle forward at ~3.2 Km/h
+G17 1B - Turn the vehicle 16º to starboard.
+GPIO pin count on Dalf board J5 and J6 expanders:
+(male socket seen from above)
+------------------
+|1 3 5 ....... 15|
+|2 4 6 ....... 16|
+--------  --------
+GPIOs are:
+1, decelerator
+2, brake unclamp switch
+3, accelerator
+4, traction voltage sensor
+5, activate traction
+6, brake clamp switch
+7, brake unclamper
+8, direction error switch
+9, engage reverse
+10, brake unclamp command
+11, engage forward
+12, auto mode switch
+13, brake clamper
+14, emergency stop condition
+15, engage handbrake
+Direction angle representation (motorcycle seen from above):
+            43º
+   86º  \\---|---/ 0º
+         \\  |  /  
+          \\ | /   
+           \\|/
+        _ (FRONT) _
+       |_|---|---|_|
+          |     |
+  (PORT)  |     |  (STARBOARD)
+          |     |
+        _ |     | _
+       |_|-------|_|
+           (REAR)  
+The direction angle (the argument for command G17) starts at full starboard - 0º and goes until full port - 86º.
+Motor 1 is the traction motor and motor 2 is the direction motor. However, motor 1 must be controlled through the custom commands - motor 2 can also be controlled by the standard commands.
+Dalf board led blinking information:
+LED1 ON - traction motor is either moving or ready to move through auto mode.
+LED1 OFF - traction motor is not ready to move with auto mode.
+LED2 ON or blinking - direction motor is either moving or being powered.
+LED2 OFF - direction motor is not being powered.
+LED3 OFF - No errors.
+LED3 blinking - ROVIM is in lockdown mode.
+MTR1 ON green - traction motor is being accelerated on auto mode.
+MTR1 ON red - traction motor is being decelerated on auto mode.
+MTR2 ON green - direction is moving to port.
+MTR2 ON red - direction is moving to starboard.
+MTR1 and MTR2 intensity depends on the PWM duty cycle.
+For further reference please consult the users manual.

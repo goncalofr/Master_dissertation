@@ -131,7 +131,7 @@ When there is an error, the controller blinks the error code, then pauses for ab
 #define ROVIM_T2D_LOWER_SPEED_LIMIT 5
 //number of ticks per rev (not the #teeth of the gear where 
 //the encoder is mounted, but of the gear that revs at the same speed as the wheels)
-#define ROVIM_T2D_TRACTION_TPR 39
+#define ROVIM_T2D_TRACTION_TPR 36
 //Average perimeter of the real wheel (depends on tire tread, load and tire pressure), in cm*/
 #define ROVIM_T2D_WHEEL_PERIMETER 176
 //sincronize this period with VSP for traction encoder

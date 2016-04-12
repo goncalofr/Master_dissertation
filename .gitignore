@@ -15,6 +15,7 @@
 *.complog*
 latexdoc/*
 tmp/*
+swp/*
 mwe.tex
 
 ## Intermediate documents:

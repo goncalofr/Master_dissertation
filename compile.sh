@@ -128,7 +128,8 @@ case $key in
     -o|--once)
     #run latex once and exit
     echo "Running latex one time"
-    lat
+    logfile=$finallogfile
+    lat>>$logfile
     echo "Output file located at" "./$outputdir/$input.$format"
     exit
     shift # past argument

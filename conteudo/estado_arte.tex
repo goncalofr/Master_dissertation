@@ -1,14 +1,21 @@
 \chapter{Enquadramento}
+
 \section{Análise do caderno de encargos}
 \label{sec:requisitos}
-O objectivo deste projeto é a construção de um protótipo funcional de um veículo autónomo destinado à vigilância de instalações militares. A sua estrutura básica é definida no enquadramento do módulo \ac{T2D} e consiste em motores elétricos de tração, travagem e direção e seus controladores, baterias e sistema de monitorização, embarcados no \emph{chassis} de uma moto-quatro.\\
-Os requisitos funcionais da plataforma para este módulo são apresentados na tabela \ref{tab:requisitos}. Esta não pretende ser uma lista exaustiva, mas apenas balizar o desenho da plataforma. Estes foram definidos a partir do âmbito do projeto e de uma análise das necessidades e potenciais capacidades de uma plataforma deste género.\\
-Os requisitos funcionais são demasiado vagos para orientarem eficazmente o desenvolvimento do projeto. Mas não faz sentido criar demasiadas condicionantes numa prova de conceito e primeira iteração de um protótipo executado por alunos sem experiência prévia neste tipo de trabalho. Por isso foram definidos princípios de desenho, que pretendem emular requisitos subjacentes à ideia da plataforma. Este princípios permitem orientar o desenvolvimento do protótipo e eliminar a rigidez de uma longa lista de requisitos mensuráveis, muitos dos quais não são conhecidos à partida.\\
-É expectável nesta iteração do protótipo que algumas das soluções inicialmente projetadas se mostrem inviáveis e tenham que ser corrigidas. É também razoável esperar que o protótipo apresentado seja alvo de modificações em iterações futuras. Assim, é essencial que todas as soluções projetadas acomodem facilmente alterações futuras. Por isso, estas devem ser simples, flexíveis e sobredimensionadas. As optimizações devem ser relegadas para iterações futuras.\\
-O protótipo a desenhar deverá ser tão seguro quanto possível, quer ao nível da prevenção de curto-circuitos e choques elétricos, quer ao nível da prevenção de embates. As suas dimensões tornam-no capaz de infligir sérias lesões em caso de acidente.\\
-Parâmetros como a fiabilidade, a autonomia, o custo e a facilidade de utilização são importantes, mas não são prioritários num protótipo inicial. Por isso são considerados como princípios secundários.\\
-Em suma, a concepção da plataforma rege-se primariamente por critérios de segurança, flexibilidade e simplificação tecnológica e secundariamente por fiabilidade, autonomia, custo e facilidade de utilização.
-Teste ao requisito \ref{requisitos:R1}, R\ref{requisitos:R7}.
+
+O objectivo deste projeto é a construção de um protótipo funcional de um veículo autónomo destinado à vigilância de instalações militares. A sua estrutura básica é definida no enquadramento do módulo \ac{T2D} e consiste em motores elétricos de tração, travagem e direção e seus controladores, baterias e sistema de monitorização, embarcados no \emph{chassi} de uma moto-quatro.
+
+Uma lista não exaustiva dos requisitos funcionais da \ac{T2D} é apresentada na tabela \ref{tab:requisitos}.Este pretendem apenas balizar o desenho da plataforma e foram definidos a partir do âmbito do projeto e de uma análise das necessidades e potenciais capacidades de uma plataforma deste tipo.
+
+Os requisitos funcionais são demasiado vagos para orientarem eficazmente o desenvolvimento do projeto, mas não faz sentido criar demasiadas condicionantes numa prova de conceito e primeira iteração de um protótipo executado por alunos sem experiência prévia neste tipo de trabalho. Por isso foram definidos princípios de desenho que pretendem emular requisitos subjacentes à ideia da plataforma, orientar o desenvolvimento do protótipo e eliminar a rigidez de uma longa lista de requisitos mensuráveis, muitos dos quais não são conhecidos à partida.
+
+É expectável nesta iteração do protótipo que algumas das soluções inicialmente projetadas se mostrem inviáveis e tenham que ser corrigidas. É também razoável esperar que o protótipo apresentado seja alvo de modificações em iterações futuras. Assim, é essencial projetar soluções simples, flexíveis e sobredimensionadas, que acomodem facilmente alterações futuras, e relegar optimizações para iterações seguintes.
+%Assim, é essencial que todas as soluções projetadas acomodem facilmente alterações futuras. Por isso, estas devem ser simples, flexíveis e sobredimensionadas. As optimizações devem ser relegadas para iterações futuras.
+
+O protótipo a desenhar deverá ser tão seguro quanto possível, quer ao nível da prevenção de curto-circuitos e choques elétricos, como ao nível da prevenção de embates, pois as suas dimensões tornam-no capaz de infligir sérias lesões em caso de acidente.
+
+Parâmetros como a fiabilidade, a autonomia, o custo e a facilidade de utilização são importantes, mas não são prioritários num protótipo inicial, por isso são considerados como princípios secundários. Em suma, a concepção da plataforma rege-se primariamente por critérios de segurança, flexibilidade e simplificação tecnológica e secundariamente pela fiabilidade, autonomia, custo e facilidade de utilização.
+
 \newcounter{reqno}  %counter for the numbering
 \begin{table}[h]
     \begin{center}
@@ -31,6 +38,7 @@ Teste ao requisito \ref{requisitos:R1}, R\ref{requisitos:R7}.
 \label{tab:requisitos}
 \end{center}
 \end{table}
+
 \begin{comment}
 A Revisão da Literatura deve ser especifica e actual. Não deve ser apenas uma
 transcrição daquilo que outros autores dizem e pensam mas uma síntese comentada de
@@ -51,43 +59,75 @@ estrutura:
 --Concluir pelas opções válidas (PMDC e Brushed DC)
 
 \end{comment}
+
 \section{Abordagem}
-\todo[rever]{devo dizer os critérios de seleção tecnológica antes de descrever e avaliar as tecnologias? Isso já está +- feito na secção acima, mas o chan refere quais os desafios que a tecnologia tem que responder.}
-O objectivo deste projeto é a construção de um protótipo funcional de um veículo autónomo destinado à vigilância de instalações militares. Na seção \ref{sec:requisitos} foram definidos os seus requisitos funcionais, bem como os princípios a seguir no seu desenho.\\
-O protótipo a construir pode ser visto como três atuadores embarcados num \emph{chassis}, e respetivo \emph{hardware} e \emph{software} de suporte. A projeção de cada um será, exceto quando explicitamente mencionada, aproximada como independente, de modo a simplificar o dimensionamento dos componentes.\\
-%Na verdade os projetos dos três atuadores têm componentes de projeto em comum: a sua instalação no \emph{chassis}, o dimensionamento dos acumuladores de energia, o desenho dos sistemas de segurança e do controlo da condução do veículo são problemas em que é preciso ter uma visão holística da plataforma, mas que são preteridos pela simplificação do desenho conseguida desta forma.\\
-Analisando as especificidades dos atuadores, observa-se que o seu dimensionamento se assemelha a dois tipos de problemas distintos: a construção de um veículo elétrico e a construção de um robô.\\
-A literatura existente valida esta distinção. A literatura sobre veículos elétricos é vasta, mas trata maioritariamente sobre veículos com condutor. A propulsão e armazenamento de energia são amplamente discutidos, mas outros sistemas elétricos são ignorados. A direção do veículo é melhor endereçada na literatura de robótica, por se assemelhar a um problema de controlo.\\
-Assim, o projeto é dividido em duas áreas do saber: veículos elétricos, que compreende o \emph{chassis}, sistema de tração e baterias, e robótica, que compreende o desenho do sistema de viragem. O sistema de travagem não é tratado neste capítulo, pois a tecnologia usada já é endereçada para os outros dois sistemas.\\
+
+\done\todo[rever]{devo dizer os critérios de seleção tecnológica antes de descrever e avaliar as tecnologias? Isso já está +- feito na secção acima, mas o chan refere quais os desafios que a tecnologia tem que responder.}
+O objectivo deste projeto é a construção de um protótipo funcional de um veículo autónomo destinado à vigilância de instalações militares. Na seção \ref{sec:requisitos} foram definidos os seus requisitos funcionais, bem como os princípios a seguir no seu desenho.
+
+O protótipo a construir pode ser visto como três atuadores embarcados num \emph{chassi}, e respetivo \emph{hardware} e \emph{software} de suporte. A projeção de cada um será, exceto quando explicitamente mencionada, aproximada como independente, de modo a simplificar o dimensionamento dos componentes.
+
+%Na verdade os projetos dos três atuadores têm componentes de projeto em comum: a sua instalação no \emph{chassi}, o dimensionamento dos acumuladores de energia, o desenho dos sistemas de segurança e do controlo da condução do veículo são problemas em que é preciso ter uma visão holística da plataforma, mas que são preteridos pela simplificação do desenho conseguida desta forma.
+
+Analisando as especificidades dos atuadores, observa-se que o seu dimensionamento se assemelha a dois tipos de problemas distintos: a construção de um veículo elétrico e a construção de um robô.
+
+A literatura existente valida esta distinção. A literatura sobre veículos elétricos é vasta, mas trata maioritariamente sobre veículos com condutor. A propulsão e armazenamento de energia são amplamente discutidos, mas outros sistemas elétricos são ignorados. A direção do veículo é melhor endereçada na literatura de robótica, por se assemelhar a um problema de controlo.
+
+Assim, o projeto é dividido em duas áreas do saber: veículos elétricos, que compreende o \emph{chassi}, sistema de tração e baterias, e robótica, que compreende o desenho do sistema de viragem. O sistema de travagem não é tratado neste capítulo, pois a tecnologia usada já é endereçada para os outros dois sistemas.
+
 \begin{comment}
 Em \cite{Chan_overview} é apresentada uma visão geral sobre o estado da tecnologia relevante nos veículos elétricos, do ponto de vista das diferenças em relação aos veículos rodoviários com motor de combustão interna.
 O autor foca-se em aspetos relevantes para a comercialização de soluções de propulsão elétrica, tais como a infraestrutura de apoio à operação de veículos elétricos e o aumento da autonomia, pouco relevantes para este projeto, mas também apresenta e analisa as principais tenologias diferenciadoras dos veículos elétricos, nomeadamente a propulsão e o armazenamento de energia, que constituem dois dos problemas fulcrais a resolver na plataforma \ac{ROVIM}. Esta análise será tomada como base da análise ao estado da arte destas duas tecnologias.
 \end{comment}
+
 \section{Revisão da literatura}
 \label{sec:revisao_literatura}
+
 \subsection{Propulsão}
-O veículo a motor é hoje em dia um componente fundamental da sociedade, e a base da plataforma \ac{ROVIM}. Existem dois tipos principais de motores usados na propulsão de veículos: o motor de combustão interna e o motor elétrico.\\
-O motor de combustão interna é uma tecnologia fiável e refinada ao longo de mais de um século. No entanto, é maioritariamente usada em veículos conduzidos por humanos. Adaptar um veículo com motor de combustão interna para condução autónoma exige um conjunto de alterações ao nível do seu funcionamento interno (no caso de motores mais antigos sem controlo eletrónico), da sua gestão e do acoplamento mecânico demasiado complicadas e dispendiosas em relação à adoção de motores elétricos. Estes permitem, através dos controladores eletrónicos disponíveis atualmente, controlar com exatidão a potência produzida e a direção do movimento.\\%No entanto, a propulsão de veículos elétricos requer o uso de baterias para armazenamento de energia elétrica, que têm menor densidade energética e são mais caras que os equivalentes fósseis \cite{Rajashekara_desvantagens_baterias}, e limitam a autonomia. Para resolver este problema é possível combinar o motor de combustão com o motor elétrico, num veículo hibrido.\\
-A propulsão puramente elétrica é principalmente adequada para veículos pequenos, de baixa velocidade e curta autonomia \cite{Chan_overview}, pelo que se adequa perfeitamente para o \ac{ROVIM}. O sistema de propulsão é a parte fundamental de um veículo elétrico \cite{Chan_overview}. É composto pelo motor e o seu controlador, o acoplamento mecânico e as rodas.\\% Por possuir estas características, e porque a propulsão puramente elétrica simplifica o controlo do sistema, foi escolhido um motor elétrico para a tração do \ac{ROVIM}.\\
+
+O veículo a motor é hoje em dia um componente fundamental da sociedade, e a base da plataforma \ac{ROVIM}. Existem dois tipos principais de motores usados na propulsão de veículos: o motor de combustão interna e o motor elétrico.
+
+O motor de combustão interna é uma tecnologia fiável e refinada ao longo de mais de um século. No entanto, é maioritariamente usada em veículos conduzidos por humanos. Adaptar um veículo com motor de combustão interna para condução autónoma exige um conjunto de alterações ao nível do seu funcionamento interno (no caso de motores mais antigos sem controlo eletrónico), da sua gestão e do acoplamento mecânico demasiado complicadas e dispendiosas em relação à adoção de motores elétricos. Estes permitem, através dos controladores eletrónicos disponíveis atualmente, controlar com exatidão a potência produzida e a direção do movimento.\\%No entanto, a propulsão de veículos elétricos requer o uso de baterias para armazenamento de energia elétrica, que têm menor densidade energética e são mais caras que os equivalentes fósseis \cite{Rajashekara_desvantagens_baterias}, e limitam a autonomia. Para resolver este problema é possível combinar o motor de combustão com o motor elétrico, num veículo hibrido.
+
+A propulsão puramente elétrica é principalmente adequada para veículos pequenos, de baixa velocidade e curta autonomia \cite{Chan_overview}, pelo que se adequa perfeitamente para o \ac{ROVIM}. O sistema de propulsão é a parte fundamental de um veículo elétrico \cite{Chan_overview}. É composto pelo motor e o seu controlador, o acoplamento mecânico e as rodas.\\% Por possuir estas características, e porque a propulsão puramente elétrica simplifica o controlo do sistema, foi escolhido um motor elétrico para a tração do \ac{ROVIM}.
+
 \subsection{Acoplamento mecânico e rodas}
-As rodas dos veículos elétricos são idênticas às dos veículos com motor de combustão, à excepção de algumas aplicações demasiado complexas para os objetivos deste projeto.\\
-O acoplador mecânico transmite a potência do motor para as rodas. É dimensionado em conjunto com o motor, tendo em conta as necessidades de locomoção e a disposição dos componentes no veículo. Pode ser apenas um ligação solidária entre os veios do motor e o eixo das rodas, mas tipicamente consiste num conjunto de engrenagens que desmultiplica a  rotação do motor, de modo a aumentar o binário disponível nas rodas. A esta peça dá-se o nome de redutor, quando a razão de desmultiplicação é fixa, e caixa de velocidades, quando é variável. Devido à maior disponibilidade de binário dos motores elétricos, um redutor é suficiente para aplicações tipicas, o que simplifica o controlo do sistema.\\
-Há três características técnicas a ter em conta na escolha de redutores para este projeto: as dimensões, o alinhamento dos eixos e a direção da transmissão. As dimensões e o alinhamento dos eixos são importantes no planeamento da disposição dos componentes no veículo. A direção da transmissão consiste no definição do veio de entrada (onde é aplicado o binário) e de saída do redutor. Há topologias de redutores, como o parafuso sem-fim e coroa, que não permitem facilmente reverter a direção da transmissão \cite{Engrenagens_intro}.\\
+
+As rodas dos veículos elétricos são idênticas às dos veículos com motor de combustão, à excepção de algumas aplicações demasiado complexas para os objetivos deste projeto.
+
+O acoplador mecânico transmite a potência do motor para as rodas. É dimensionado em conjunto com o motor, tendo em conta as necessidades de locomoção e a disposição dos componentes no veículo. Pode ser apenas um ligação solidária entre os veios do motor e o eixo das rodas, mas tipicamente consiste num conjunto de engrenagens que desmultiplica a  rotação do motor, de modo a aumentar o binário disponível nas rodas. A esta peça dá-se o nome de redutor, quando a razão de desmultiplicação é fixa, e caixa de velocidades, quando é variável. Devido à maior disponibilidade de binário dos motores elétricos, um redutor é suficiente para aplicações tipicas, o que simplifica o controlo do sistema.
+
+Há três características técnicas a ter em conta na escolha de redutores para este projeto: as dimensões, o alinhamento dos eixos e a direção da transmissão. As dimensões e o alinhamento dos eixos são importantes no planeamento da disposição dos componentes no veículo. A direção da transmissão consiste no definição do veio de entrada (onde é aplicado o binário) e de saída do redutor. Há topologias de redutores, como o parafuso sem-fim e coroa, que não permitem facilmente reverter a direção da transmissão \cite{Engrenagens_intro}.
+
 O redutor do motor de tração deverá transmitir binário bidirecionalmente, para permitir que o veículo possa movimentar-se em ponto morto.
+
 \subsection{Controlo}
-O controlo do sistema de propulsão de um veículo elétrico consiste dum conversor de potência e um controlador eletrónico. O conversor converte e regula a energia fornecida pelas baterias ao motor. O controlador atua sobre o conversor, implementando o algoritmo de controlo.\\
+
+O controlo do sistema de propulsão de um veículo elétrico consiste dum conversor de potência e um controlador eletrónico. O conversor converte e regula a energia fornecida pelas baterias ao motor. O controlador atua sobre o conversor, implementando o algoritmo de controlo.
+
 Existem varias topologias destes componentes, mas a sua escolha depende diretamente do motor a controlar, pelo que se torna secundária em relação à escolha do motor.
+
 \subsection{Motor}
-Existem vários tipos de motor elétrico com potencial técnico para uso na locomoção de veículos: o motor \ac{DC} com escovas, o motor \ac{AC} de indução, o motor síncrono de ímanes permanentes, o motor síncrono de escovas, o motor de relutância variável e o motor de Lynch.% Em \cite{Santiago_overview} é apresentada uma analise detalhada destas topologias e uma comparação das vantagens e desvantagens para este tipo de aplicações.\\
-\done\todo{É dada especial relevância à escolha de um propulsor usado em veículos comerciais desta dimensão (desde que cumpra os requisitos desta aplicação). Isto aumenta o grau de confiança na validade da configuração usada e faz com que haja mais documentação acerca da sua implementação prática em projetos anteriores.}\\
-O motor de relutância variável consiste num rotor com pólos salientes de material magnético. Os rotor gira consoante o campo magnético produzido no estator, de modo a minimizar a relutância do circuito magnético. Estes são baratos, simples e com boas características de binário e velocidade para uso em veículos elétricos, mas não são conhecidas aplicações comerciais desta tecnologia \cite{Santiago_overview}.\\
+
+Existem vários tipos de motor elétrico com potencial técnico para uso na locomoção de veículos: o motor \ac{DC} com escovas, o motor \ac{AC} de indução, o motor síncrono de ímanes permanentes, o motor síncrono de escovas, o motor de relutância variável e o motor de Lynch.% Em \cite{Santiago_overview} é apresentada uma analise detalhada destas topologias e uma comparação das vantagens e desvantagens para este tipo de aplicações.
+
+\done\todo{É dada especial relevância à escolha de um propulsor usado em veículos comerciais desta dimensão (desde que cumpra os requisitos desta aplicação). Isto aumenta o grau de confiança na validade da configuração usada e faz com que haja mais documentação acerca da sua implementação prática em projetos anteriores.}
+
+O motor de relutância variável consiste num rotor com pólos salientes de material magnético. Os rotor gira consoante o campo magnético produzido no estator, de modo a minimizar a relutância do circuito magnético. Estes são baratos, simples e com boas características de binário e velocidade para uso em veículos elétricos, mas não são conhecidas aplicações comerciais desta tecnologia \cite{Santiago_overview}.
+
 O motor de indução é um motor muito simples, robusto e tecnologicamente maduro. Consiste num rotor bobinado, em que a corrente é induzida pelo campo magnético gerado nos enrolamentos do estator. Esta por sua vez gera um campo magnético que tende a seguir o do estator, gerando movimento. É especialmente indicado para aplicações estáticas, mas pode ser adaptado para aplicações de veículos elétricos, com recurso a técnicas avançadas de controlo.
-O motor síncrono de ímanes permanentes é um motor que gera um campo magnético constante no rotor, com recurso a ímanes permanentes. Este gira sincronamente com o campo do gerado nos enrolamentos do estator. Os motores síncronos de ímanes permanentes são alimentados por corrente \ac{AC}, com recurso a controladores específicos. Este tipo de motores é muitas vezes equipado com inversores que permitem que sejam alimentados por corrente \ac{DC}. Nesse caso tomam a designação de motores \ac{DC} sem escovas. Devido ao uso de ímanes permanentes, estes motores conseguem atingir uma elevada eficiência e adquirir formas não convencionais.\\
-Os ímanes permanentes nos motores síncronos podem ser substituídos por enrolamentos no rotor, alimentados por corrente \ac{DC}, com recurso a escovas e anéis coletores. Estes motores têm um controlo mais simples e mais adaptável que os motores de ímanes permanentes, mas pior rendimento.\\
-O motor \ac{DC} com escovas consiste num rotor com vários enrolamentos, alimentados por um sistema de comutação com escovas, e um estator que gera um campo estático. O estator pode ser bobinado, ou de ímanes permanentes. Estes são motores fiáveis, tecnologicamente maduros, baratos e fáceis de controlar. Para além disso é possível controlar o fluxo magnético e o binário independentemente. As suas principais desvantagens são o baixo rendimento e densidade de potência, e as necessidades de manutenção e contra-indicação para uso em ambientes inflamáveis, devido às faíscas e ao desgaste produzidos na comutação das escovas.\\
-Uma configuração particular do motor \ac{DC} com escovas de ímanes permanentes é o motor de Lynch. Em \cite{Lynch_paper} é apresentada uma descrição da estrutura do motor e da sua performance. Este é um motor de fluxo magnético axial, ao contrário das restantes tecnologias apresentadas (de fluxo radial). O rotor consiste em enrolamentos laminares de cobre, com "dentes"~de ferro compactados entre os enrolamentos, que ajudam a conduzir o fluxo. O estator é formado por dois discos de ímanes permanentes que o ladeiam. Este motor apresenta algumas das vantagens dos motores \ac{DC} de ímanes permanentes, nomeadamente rendimento e densidade de potência elevados, mas é a sua compactidade a principal vantagem em aplicações de pequenos veículos elétricos, pois permite maior flexibilidade no desenho de soluções de propulsão. Além disso, é atualmente usado em aplicações de pequenos barcos, motas e veículos elétricos de porte semelhante ao da plataforma \ac{ROVIM}.\\
-Em \cite{Chan_overview}, \cite{Santiago_overview} e \cite{Hashemnia_motores} são apresentadas comparações semelhantes dos méritos destas topologias de motores (à excepção do motor de Lynch) para soluções comerciais de veículos rodoviários. Nos três casos conclui-se que os motores síncronos de ímanes permanentes e os motores de indução são os mais indicados. Esta comparação é um excelente ponto de partida no processo de escolha do motor de propulsão da plataforma. No entanto, estas aplicações têm diferentes requisitos dos da plataforma \ac{ROVIM}, pelo que se impõe uma análise critica destes resultados.\\
+O motor síncrono de ímanes permanentes é um motor que gera um campo magnético constante no rotor, com recurso a ímanes permanentes. Este gira sincronamente com o campo do gerado nos enrolamentos do estator. Os motores síncronos de ímanes permanentes são alimentados por corrente \ac{AC}, com recurso a controladores específicos. Este tipo de motores é muitas vezes equipado com inversores que permitem que sejam alimentados por corrente \ac{DC}. Nesse caso tomam a designação de motores \ac{DC} sem escovas. Devido ao uso de ímanes permanentes, estes motores conseguem atingir uma elevada eficiência e adquirir formas não convencionais.
+
+Os ímanes permanentes nos motores síncronos podem ser substituídos por enrolamentos no rotor, alimentados por corrente \ac{DC}, com recurso a escovas e anéis coletores. Estes motores têm um controlo mais simples e mais adaptável que os motores de ímanes permanentes, mas pior rendimento.
+
+O motor \ac{DC} com escovas consiste num rotor com vários enrolamentos, alimentados por um sistema de comutação com escovas, e um estator que gera um campo estático. O estator pode ser bobinado, ou de ímanes permanentes. Estes são motores fiáveis, tecnologicamente maduros, baratos e fáceis de controlar. Para além disso é possível controlar o fluxo magnético e o binário independentemente. As suas principais desvantagens são o baixo rendimento e densidade de potência, e as necessidades de manutenção e contra-indicação para uso em ambientes inflamáveis, devido às faíscas e ao desgaste produzidos na comutação das escovas.
+
+Uma configuração particular do motor \ac{DC} com escovas de ímanes permanentes é o motor de Lynch. Em \cite{Lynch_paper} é apresentada uma descrição da estrutura do motor e da sua performance. Este é um motor de fluxo magnético axial, ao contrário das restantes tecnologias apresentadas (de fluxo radial). O rotor consiste em enrolamentos laminares de cobre, com "dentes"~de ferro compactados entre os enrolamentos, que ajudam a conduzir o fluxo. O estator é formado por dois discos de ímanes permanentes que o ladeiam. Este motor apresenta algumas das vantagens dos motores \ac{DC} de ímanes permanentes, nomeadamente rendimento e densidade de potência elevados, mas é a sua compactidade a principal vantagem em aplicações de pequenos veículos elétricos, pois permite maior flexibilidade no desenho de soluções de propulsão. Além disso, é atualmente usado em aplicações de pequenos barcos, motas e veículos elétricos de porte semelhante ao da plataforma \ac{ROVIM}.
+
+Em \cite{Chan_overview}, \cite{Santiago_overview} e \cite{Hashemnia_motores} são apresentadas comparações semelhantes dos méritos destas topologias de motores (à excepção do motor de Lynch) para soluções comerciais de veículos rodoviários. Nos três casos conclui-se que os motores síncronos de ímanes permanentes e os motores de indução são os mais indicados. Esta comparação é um excelente ponto de partida no processo de escolha do motor de propulsão da plataforma. No entanto, estas aplicações têm diferentes requisitos dos da plataforma \ac{ROVIM}, pelo que se impõe uma análise critica destes resultados.
+
 Em \cite{Hashemnia_motores} é apresentada uma tabela (tabela II) com a avaliação dos diferentes sistemas de tração para veículos elétricos. Os critérios de avaliação (de igual ponderação) usados são: densidade de potência, eficiência, controlabilidade, fiabilidade, maturidade e custo. Tendo em conta os critérios de desenho e os requisitos da plataforma \ac{ROVIM}, estes critérios foram ponderados da seguinte forma: densidade de potência, controlabilidade, fiabilidade, e maturidade valem o dobro na classificação final, enquanto que a eficiência e o custo valem o seu valor apenas.
+
 \begin{comment}
 \begin{description}
     \item[Densidade de potência] 20 \%;
@@ -98,7 +138,9 @@ Em \cite{Hashemnia_motores} é apresentada uma tabela (tabela II) com a avaliação
     \item[Custo] 10 \%;
 \end{description}
 \end{comment}
+
 Para poder comparar o motor de Lynch com as outras topologias, este foi avaliado de forma idêntica (à luz dos requisitos desta aplicação). Foi-lhe atribuída a seguinte classificação (de 0 a 5):
+
 \begin{description}
     \item[Densidade de potência] 5: apresenta dimensões reduzidas (especialmente o comprimento axial) que facilitam a instalação em veículos pequenos e elevada densidade de potência \cite{Lynch_paper};
     \item[Eficiência] 3,5: cerca de 93 \% de eficiência máxima \cite{Agni_B95R_performance} (idêntica à do motor de relutância \cite{Hashemnia_motores});
@@ -107,8 +149,11 @@ Para poder comparar o motor de Lynch com as outras topologias, este foi avaliado
     \item[Maturidade] 4,5: patenteado em 1986. Desenvolvido para aplicações semelhantes ao \ac{ROVIM};
     \item[Custo] 3: Custo idêntico ao de um motor síncrono de ímanes permanentes;
 \end{description}
-O motor Lynch é também usado num dos protótipo do Projeto FST Novabase, o que permite potenciais trocas de experiências e impressões entre as equipas de concepção e acesso mais fácil a peças suplentes. Para além disso, este motor possui uma gama de controladores recomendados pela marca, o que simplifica o seu processo de escolha e aumenta o grau de confiança na solução projetada. Por isso, foram atribuídos a este motor 4 pontos adicionais à classificação final.\\
+
+O motor Lynch é também usado num dos protótipo do Projeto FST Novabase, o que permite potenciais trocas de experiências e impressões entre as equipas de concepção e acesso mais fácil a peças suplentes. Para além disso, este motor possui uma gama de controladores recomendados pela marca, o que simplifica o seu processo de escolha e aumenta o grau de confiança na solução projetada. Por isso, foram atribuídos a este motor 4 pontos adicionais à classificação final.
+
 A tabela \ref{tab:avaliacao_motores} apresenta a classificação das topologias apresentadas, revista de acordo com os requisitos deste projeto.
+
 \begin{table}[h]
 \begin{center}
     \begin{tabulary}{\textwidth}{L L @{\qquad} L L L L L}
@@ -134,17 +179,29 @@ A tabela \ref{tab:avaliacao_motores} apresenta a classificação das topologias ap
     \label{tab:avaliacao_motores}
 \end{center}
 \end{table}
-Dos resultados expressos na tabela \ref{tab:avaliacao_motores} se concluí que o motor de indução, de ímanes permanentes e o motor de Lynch são os mais adequados para satisfazer os requisitos desta aplicação, não havendo um vencedor definido. Isto significa que a escolha do motor não recai nos méritos das várias tecnologias, mas em outros aspetos práticos de implementação.\\
+
+Dos resultados expressos na tabela \ref{tab:avaliacao_motores} se concluí que o motor de indução, de ímanes permanentes e o motor de Lynch são os mais adequados para satisfazer os requisitos desta aplicação, não havendo um vencedor definido. Isto significa que a escolha do motor não recai nos méritos das várias tecnologias, mas em outros aspetos práticos de implementação.
+
 \subsection{Armazenamento de energia}
-A fonte de energia dos veículos puramente elétricos é o principal entrave à sua massificação \cite{Chan_overview}. As principais tecnologias usadas atualmente para acumular energia em veículos puramente elétricos são: super condensadores, baterias elétricas e células de combustível.\\
-A célula de combustível é um dispositivo eletroquímico que usa uma reação química para gerar energia elétrica. Esta reação não é reversível na célula. Esta tecnologia não é ainda considerada comercialmente viável \cite{Chan_overview}.\\
-Os super condensadores são condensadores de capacidade muito elevada. Têm uma densidade de energia (kWh/Kg) extremamente baixa \cite{Chan_overview}, mas uma densidade de potência (kW/kg) bastante elevada. Por isso podem ser usados como fonte auxiliar de energia para picos de potência. Em combinação com baterias tradicionais, permitem aumentar a autonomia e reduzir o desgaste das baterias. No entanto, esta combinação introduz complexidade adicional à gestão da baterias.\\
-As baterias elétricas são atualmente a principal fonte de energia dos veículos puramente elétricos \cite{Chan_overview}. Estas transformam energia química acumulada em energia elétrica. Nas baterias usadas em veículos elétricos a reação química que produz a energia elétrica é reversível, o que permite recarregá-las e reutilizá-las.\\
-Em \cite{Yiu_baterias} são apresentadas as tecnologias de baterias mais comuns para uso em veículos elétricos. Estas dividem-se em três famílias principais: ácido-chumbo, à base de lítio e à base de níquel. Destas três famílias, três tecnologias merecem especial destaque pela sua adequação ao uso em veículos elétricos: \ac{VRLA}, \ac{NiMH} e \ac{Li-Ion}.\\
-As baterias de iões de lítio possuem a melhor densidade de energia e excelente densidade de potência. São usadas maioritariamente em aplicações de baixa potência, mas estão em constante evolução tecnológica e a sua adopção tem aumentado gradualmente. No entanto são mais instáveis, caras, e são suscetíveis a incendiar-se em caso de sobrecarga.\\ 
-As baterias de \ac{NiMH} são a tecnologia mais usada em veículos elétricos \cite{Yiu_baterias}. Possuem elevada densidade de potência e são bastante seguras de operar.\\
-As baterias de \ac{VRLA} são baterias de ácido e chumbo, uma tecnologia extremamente robusta e disseminada, mas seladas e com regulação por válvula, que as tornam mais seguras e tolerantes a sobrecarga. Possuem uma boa densidade de potência e são baratas, mas têm fraca densidade de energia, o que as torna pouco adequadas para aplicações de baixo peso e/ou elevada autonomia. No entanto, devido à sua simplicidade e robustez, são válidas para uso em protótipos; em particular para uso nesta fase do projeto \ac{ROVIM}, que requer baixa velocidade e curta autonomia.\\
-Aplicações com várias baterias ligadas em série, como é o caso das aplicações em veículos elétricos requererem uma unidade de monitorização e balanceamento de cargas e temperatura. Isto é especialmente verdade para as baterias de \ac{NiMH} e \ac{Li-Ion}. As baterias de \ac{VRLA} suportam melhor temperaturas adversas.\\
+
+A fonte de energia dos veículos puramente elétricos é o principal entrave à sua massificação \cite{Chan_overview}. As principais tecnologias usadas atualmente para acumular energia em veículos puramente elétricos são: super condensadores, baterias elétricas e células de combustível.
+
+A célula de combustível é um dispositivo eletroquímico que usa uma reação química para gerar energia elétrica. Esta reação não é reversível na célula. Esta tecnologia não é ainda considerada comercialmente viável \cite{Chan_overview}.
+
+Os super condensadores são condensadores de capacidade muito elevada. Têm uma densidade de energia (kWh/Kg) extremamente baixa \cite{Chan_overview}, mas uma densidade de potência (kW/kg) bastante elevada. Por isso podem ser usados como fonte auxiliar de energia para picos de potência. Em combinação com baterias tradicionais, permitem aumentar a autonomia e reduzir o desgaste das baterias. No entanto, esta combinação introduz complexidade adicional à gestão da baterias.
+
+As baterias elétricas são atualmente a principal fonte de energia dos veículos puramente elétricos \cite{Chan_overview}. Estas transformam energia química acumulada em energia elétrica. Nas baterias usadas em veículos elétricos a reação química que produz a energia elétrica é reversível, o que permite recarregá-las e reutilizá-las.
+
+Em \cite{Yiu_baterias} são apresentadas as tecnologias de baterias mais comuns para uso em veículos elétricos. Estas dividem-se em três famílias principais: ácido-chumbo, à base de lítio e à base de níquel. Destas três famílias, três tecnologias merecem especial destaque pela sua adequação ao uso em veículos elétricos: \ac{VRLA}, \ac{NiMH} e \ac{Li-Ion}.
+
+As baterias de iões de lítio possuem a melhor densidade de energia e excelente densidade de potência. São usadas maioritariamente em aplicações de baixa potência, mas estão em constante evolução tecnológica e a sua adopção tem aumentado gradualmente. No entanto são mais instáveis, caras, e são suscetíveis a incendiar-se em caso de sobrecarga.
+
+As baterias de \ac{NiMH} são a tecnologia mais usada em veículos elétricos \cite{Yiu_baterias}. Possuem elevada densidade de potência e são bastante seguras de operar.
+
+As baterias de \ac{VRLA} são baterias de ácido e chumbo, uma tecnologia extremamente robusta e disseminada, mas seladas e com regulação por válvula, que as tornam mais seguras e tolerantes a sobrecarga. Possuem uma boa densidade de potência e são baratas, mas têm fraca densidade de energia, o que as torna pouco adequadas para aplicações de baixo peso e/ou elevada autonomia. No entanto, devido à sua simplicidade e robustez, são válidas para uso em protótipos; em particular para uso nesta fase do projeto \ac{ROVIM}, que requer baixa velocidade e curta autonomia.
+
+Aplicações com várias baterias ligadas em série, como é o caso das aplicações em veículos elétricos requererem uma unidade de monitorização e balanceamento de cargas e temperatura. Isto é especialmente verdade para as baterias de \ac{NiMH} e \ac{Li-Ion}. As baterias de \ac{VRLA} suportam melhor temperaturas adversas.
+
 \begin{comment}
 As formas mais comuns de armazenar energia para uso na propulsão de um veículo são:
 \begin{itemize}
@@ -154,40 +211,61 @@ As formas mais comuns de armazenar energia para uso na propulsão de um veículo s
 \item[Combustível eletroquímico] armazena energia química, usada para gerar energia elétrica por uma célula de combustível.
     O armazenamento de energia é a principal barreira à massificação dos automóveis elétrico \cite{Chan_overview}. Por isso, as baterias são muitas vezes combinadas com outras formas de armazenamento de energia. Os exemplos mais relevantes são os veículos híbridos, em que um motor de combustão interna é combinado com motores e baterias elétricos, e a combinação de células de combustível com baterias que permite armazenar energia em excesso (por exemplo durante a travagem). Estas soluções permitem aumentar a autonomia dos veículos.
     
-ou uma bateria elétrica combinada com uma bateria de super-condensadore \cite{Chan_overview}.\todo{devo referir as vantagens e desvantagens de cada um?}\\
+ou uma bateria elétrica combinada com uma bateria de super-condensadore \cite{Chan_overview}.\todo{devo referir as vantagens e desvantagens de cada um?}
+
 For example, diesel fuel has an energy density of 46 MJ/kg which is nearly 64 times the energy density of the leading lithium ion battery at 0.72 MJ/k \cite{Batteries: Higher energy density than gasoline}
 %modos hibridos, em que o fossil é usado ou complementado por baterias.
 %combustível fossil não permite o nível de controlo necessário, nem energia para os outros motores. Reduzir complexidade. Faz também parte dos requisitos
 \end{itemize}
 \end{comment}
+
 \subsection{Direção}
+
 \todo[rever]{o que dizer aqui? Apresentar o ziegler nichols? Mas ele só foi usado depois de ter falhado a modulação e identificação...}
 \todo[rever]{como enquadrar esta secção no capítulo: isto não é propriamente uma revisão da literatura, é mais uma análise de alto nível do problema}
-O sistema de direção do \ac{ROVIM} deve permitir controlar o ângulo de viragem do veículo por computador.\\
-A direcção de uma moto-quatro é tipicamente um sistema de Ackermann atuado através de um guiador. Esta é uma geometria de viragem coordenada de duas rodas paralelas, que permite mantê-las num movimento de rotação pura (sem derrapagem) durante uma viragem em que estas seguem trajetórias de raios diferentes.\\
-Este sistema pode ser controlado por um controlador \ac{PID} simples. O controlador é composto pelos componentes: o atuador (o motor e o acoplador mecânico), o dispositivo de retroalimentação (um sensor de posição) e um controlador que execute o algoritmo de controlo.\todo{referir aqui os motores e acopladores a usar e controladores? e o sensor?}\todo{referir que não espero grande impacto na autonomia deste módulo?}\\
-Para projetar um controlador para o sistema, este precisa de ser traduzido por um modelo matemático. Existem duas abordagens para o fazer: deduzir as equações do movimento do sistema, ou estimá-las usando um método de identificação.\\
+O sistema de direção do \ac{ROVIM} deve permitir controlar o ângulo de viragem do veículo por computador.
+
+A direcção de uma moto-quatro é tipicamente um sistema de Ackermann atuado através de um guiador. Esta é uma geometria de viragem coordenada de duas rodas paralelas, que permite mantê-las num movimento de rotação pura (sem derrapagem) durante uma viragem em que estas seguem trajetórias de raios diferentes.
+
+Este sistema pode ser controlado por um controlador \ac{PID} simples. O controlador é composto pelos componentes: o atuador (o motor e o acoplador mecânico), o dispositivo de retroalimentação (um sensor de posição) e um controlador que execute o algoritmo de controlo.\todo{referir aqui os motores e acopladores a usar e controladores? e o sensor?}\todo{referir que não espero grande impacto na autonomia deste módulo?}
+
+Para projetar um controlador para o sistema, este precisa de ser traduzido por um modelo matemático. Existem duas abordagens para o fazer: deduzir as equações do movimento do sistema, ou estimá-las usando um método de identificação.
+
 \todo{o que dizer aqui mais? Incorporar as irregularidades do terreno?}
+
 \section{Planeamento}
+
 \begin{comment}
-Este projeto foi abordado numa perspetiva modular, como descrito em \ref{sec:revisao_literatura}. Cada subsistema foi projetado e dimensionado, duma forma grosseira, de modo a capturar as suas características fundamentais, mas sem entrar em pormenores avançados de implementação. Estes seriam resolvidos numa fase posterior, com melhor visão sobre o desenrolar do projeto.\\
-Foi também projetada a disposição dos componentes na plataforma, numa abordagem holística, de modo a evitar conflitos espaciais.\\
-Foi definido um objetivo intermédio, de condução do veículo com condutor, para validação da abordagem, por corresponder a uma funcionalidade útil para o veículo, e requerer poucas modificações em relação ao objetivo final do veículo autónomo.\\
+Este projeto foi abordado numa perspetiva modular, como descrito em \ref{sec:revisao_literatura}. Cada subsistema foi projetado e dimensionado, duma forma grosseira, de modo a capturar as suas características fundamentais, mas sem entrar em pormenores avançados de implementação. Estes seriam resolvidos numa fase posterior, com melhor visão sobre o desenrolar do projeto.
+
+Foi também projetada a disposição dos componentes na plataforma, numa abordagem holística, de modo a evitar conflitos espaciais.
+
+Foi definido um objetivo intermédio, de condução do veículo com condutor, para validação da abordagem, por corresponder a uma funcionalidade útil para o veículo, e requerer poucas modificações em relação ao objetivo final do veículo autónomo.
+
 De seguida foram adquirido os vários componentes e instaladas as funcionalidades de tração e travagem, e os sistemas de segurança, de modo a atingir um objetivo intermédio do projeto: conduzir o veículo com condutor.
 Partiu-se depois para o objetivo final de condução autónoma, que consiste no controlo da direção e integração das várias funcionalidades e o seu comando por computador.
 Ao longo da instalação dos componentes e implementação do programa de controlo por computador, foram surgindo vários problemas técnicos na instalação dos componentes e alguns erros de projeto. Estes foram aceites desde o início com naturalidade, sendo lidados à medida que foram detetados. Era expectável antes da fase de construção que estes ocorressem, devido à falta de experiência prévia neste tipo de projetos.
 %\begin{comment}
-Obteve-se um \emph{chassis}, foi projetado o funcionamento e dimensionamento de cada subsistema e a sua disposição e instalação no \emph{chassis}, duma perspetiva holística.\\
+Obteve-se um \emph{chassi}, foi projetado o funcionamento e dimensionamento de cada subsistema e a sua disposição e instalação no \emph{chassi}, duma perspetiva holística.
+
 Partiu-se de seguida para a modificação do
 
-dizer que primeiro se comprou o chassis, e se observou o que poderia ser embarcado nele. Depois projetou-se o funcionamento de cada sistema e fez-se uma seleção dos componentes (atuadores, acopladores, baterias controladores e sensores) com base nos requisitos funcionais e nos principios de design e a sua instalação. Depois pôs-se a moto a trabalhar com condutor e fez-se um versão premilinar do sistema de segurança (pôs-se a tração e a travagem a fucionar).\\
+dizer que primeiro se comprou o \emph{chassi}, e se observou o que poderia ser embarcado nele. Depois projetou-se o funcionamento de cada sistema e fez-se uma seleção dos componentes (atuadores, acopladores, baterias controladores e sensores) com base nos requisitos funcionais e nos principios de design e a sua instalação. Depois pôs-se a moto a trabalhar com condutor e fez-se um versão premilinar do sistema de segurança (pôs-se a tração e a travagem a fucionar).
+
 Depois montou-se o sistema de direção e projetou-se um controlador.
-Depois integraram-se os vários sistemas, desenvolveu-se o sw de controlo e fizeram-se testes simples de prova de conceito com as rodas no ar e refinação do software e hardware (ferramentas de debug, traces melhores, alterações à eletrónica).\\
+Depois integraram-se os vários sistemas, desenvolveu-se o sw de controlo e fizeram-se testes simples de prova de conceito com as rodas no ar e refinação do software e hardware (ferramentas de debug, traces melhores, alterações à eletrónica).
+
 \end{comment}
-A execução do projeto foi planeada numa sequência natural de planeamento, construção e validação, de modo a minimizar o custo de alterações futuras. Para validar a execução foi definido um objetivo preliminar de instalação dos componentes principais no veículo e um objetivo intermédio: a implementação das funcionalidades de condução manual.\\
-Após instalar os componentes principais (os acumuladores de energia, atuadores e acoplamentos mecânicos) no veículo, as necessidades logísticas e de recursos difíceis de obter num laboratório de eletrónica diminuem.\\
-A funcionalidade de condução manual do veículo é um objetivo mais simples que o objetivo final e permite validar a execução do projeto numa etapa intermédia, e continuar de seguida em direção ao objetivo final sem necessidade de executar modificações relevantes no veículo.\\
-Assim, inicialmente cada subsistema foi projetado e dimensionado com o detalhe que a visão inicial sobre o projeto permitiu. Foi possível compreender as suas características fundamentais, mas pormenores avançados de implementação foram capturados e resolvidos nas fases de construção e validação.\\
-De seguida foram adquiridos e acomodados no \emph{chassis} os componentes principais, de modo a validar o planeamento da sua disposição e atingir o objetivo preliminar.\\
-A terceira fase consistiu na instalação das funcionalidades de tração e travagem e dos sistemas de segurança, de modo a atingir o objetivo intermédio do projeto.\\
+A execução do projeto foi planeada numa sequência natural de planeamento, construção e validação, de modo a minimizar o custo de alterações futuras. Para validar a execução foi definido um objetivo preliminar de instalação dos componentes principais no veículo e um objetivo intermédio: a implementação das funcionalidades de condução manual.
+
+Após instalar os componentes principais (os acumuladores de energia, atuadores e acoplamentos mecânicos) no veículo, as necessidades logísticas e de recursos difíceis de obter num laboratório de eletrónica diminuem.
+
+A funcionalidade de condução manual do veículo é um objetivo mais simples que o objetivo final e permite validar a execução do projeto numa etapa intermédia, e continuar de seguida em direção ao objetivo final sem necessidade de executar modificações relevantes no veículo.
+
+Assim, inicialmente cada subsistema foi projetado e dimensionado com o detalhe que a visão inicial sobre o projeto permitiu. Foi possível compreender as suas características fundamentais, mas pormenores avançados de implementação foram capturados e resolvidos nas fases de construção e validação.
+
+De seguida foram adquiridos e acomodados no \emph{chassi} os componentes principais, de modo a validar o planeamento da sua disposição e atingir o objetivo preliminar.
+
+A terceira fase consistiu na instalação das funcionalidades de tração e travagem e dos sistemas de segurança, de modo a atingir o objetivo intermédio do projeto.
+
 Por fim partiu-se para o objetivo final, que a este ponto consistia no controlo da direção e integração das várias funcionalidades e o seu comando por computador.

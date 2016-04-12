@@ -14,7 +14,41 @@
     Para a zona morta, soldar a coluna da direção em vez de aparafusar.\\
     Para o salto da correia, usar uma corrente (talvez de bicicleta), com alguma folga, e uma "chave" do estilo da usada para prender a engrenagem ao veio do motor, facilmente removível, para resolver o problema do salto.\\
     O hardware parece bastante precário, especialmente ao nível das placas elétronicas, mas também das baterias, mas pode ser usado com confiança por utilizadores conhecedores da plataforma. Para isso foi produzido um manual do utilizador.
+    \todo{sacar autonomia, binário de viragem}
 \end{description}
+\begin{table}[ht]
+    \begin{center}
+        \begin{tabular}{@{} m{0.2\textwidth} m{0.05\textwidth} m{0.15\textwidth} m{0.3\textwidth} @{}}
+            \toprule
+            Parâmetro & Valor & Unidades & Observações\\
+            \midrule
+            Peso & \todo{apresentar peso}& \si{Kg} & Tara\\
+            Capacidade das baterias & \num{4.05} & \si{KWh} & Baterias novas\\
+            Tensão de fim de vida das baterias & \num{71.6} & \si{V} & Não aceitam mais carga\\
+            Tensão de descarga das baterias & \num{72} & \si{V} & \\
+            Raio rodas traseiras & \num{0.28} & \si{m} & Pneus no ar, com rasto novo\\
+            Relação redução tração & \num{19.(63)} & &\\
+            Velocidade máxima teórica & \num{32.252} & \si{Km/h} &\\
+            Velocidade máxima & \num{4.5} & \si{Km/h} & Limitada por \emph{software}\\
+            Velocidade mínima & \num{0.5} & \si{Km/h} & Limitada por \emph{software}\\
+            Brecagem máxima teórica & \num{90} & \si{\degree} & \\
+            Brecagem & \num{86} & \si{\degree} & Limitada por \emph{software}\\
+            Limite de tempo para destravagem & \num{20} & \si{\second} &\\
+            Tempo de espera após a travagem & \num{6} & \si{\second} &\\
+            Identificador do motor de tração & \num{1} & &\\
+            Identificador do motor de direção & \num{2} & &\\
+            Código de marcha frente & \num{0} & &\\
+            Código de marcha trás & \num{1} & &\\
+            Código de ponto morto & \num{2} & &\\
+            Código de imobilização & \num{3} & &\\
+            Taxa de símbolos da ligação série & \num{57.6} & \si{\kilo{}baud/\second} &\\
+            \bottomrule
+        \end{tabular}
+        \caption{Parâmetros do \acs{ROVIM}}
+        \label{tab:parametros}
+    \end{center}
+\end{table}
+
 \section{Trabalhos futuros}
 Refinação do protótipo. Dois caminhos de melhoramento: refinação do hardware atual, e construção de um novo protótipo com as lições aprendidas.\\
 Refinação do hw atual:\\

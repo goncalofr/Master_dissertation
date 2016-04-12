@@ -20,7 +20,7 @@
         \node (pronto?) [decision, below of=comando] {Erro detetado?};
     \node (permissao_destravar) [io, below of=pronto?, node distance=3cm] {Programa confirma};%\footnotemark};
         \node (corrigir) [process, right of=pronto?, node distance=4cm] {Corrigir};
-        \node (destravar) [process, below of=permissao_destravar] {Pressionar botão de destravar até acender Led\ref{leds:Led1}};
+        \node (destravar) [process, below of=permissao_destravar] {Pressionar botão de destravar até acender indicador D2};
         \node (travao_destrava) [io, below of=destravar] {Travão destrava};
         \node (travou?) [decision, below of=travao_destrava] {Travão volta a travar?\footnotemark[1]};
         \node (contactor_arma) [io, below of=travou?, node distance=3cm] {Contatores armam};

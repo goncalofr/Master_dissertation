@@ -1,6 +1,37 @@
-
-\fancychapter{Apêndice B - Esquemas elétricos e \emph{layout} das placas eletrónicas}
+\fancychapter{Apêndice B - Esquemas elétricos}
 \label{ap:b}
 
+Este apêndice inclui os esquemas elétricos dos componentes da \ac{T2D}, que estão organizados em dois conjuntos: o sensor de velocidade e os restantes circuitos.
+
+Os circuitos (à exceção do sensor de velocidade, que é uma peça única e independente) estão divididos em partes lógicas de acordo com a sua função no veículo, da seguinte forma:
+
+\begin{description}
+    \item[1 - Alimentações] Baterias e outras fontes de alimentação, e sua divisão nas diferentes alimentações dos circuitos;
+    \item[2 - Tração] Ligações do controlador da tração;
+    \item[3 - Instrumentação] Indicadores e comandos discretos;
+    \item[4 - Travão] Ligações de controlo do travão;
+    \item[5 - Segurança] Circuitos de controlo do corte da alimentação dos controladores dos motores;
+    \item[6 - Direção] Ligaçõs do controlador da direção;
+    \item[7 - Comutação manual/autónomo] Circuitos de seleção do modo de condução;
+    \item[8 - Microcontrolador] Ligações de e para o controlador da \ac{T2D};
+    \item[9 - Ligações placas artesanais] Ligações entre as placas dos circuitos desenvolvidos para a \ac{T2D}.
+\end{description}
+
+Cada nó e componente de cada conjunto de circuitos tem um identificador único, mas estes podem aparecer repetidos em mais que um esquema, de modo a facilitar a interpretação das funções desenhadas.
+
+%O circuito do sensor de velocidade foi montado numa placa de circuito impresso, gravada a partir do seu decalque espelhado, apresentado na última página deste apêndice.
+
+
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/1-alimentacoes.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/2-tracao.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/3-instrumentacao.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/4-travao.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/5-seguranca.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/6-direcao.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/7-manualauto.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/8-microcontrolador.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/9-ligacoes_artesanais.pdf}
+\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/encoder.pdf}
+%\includepdf[landscape=true]{recursos/esquemas/esquemas_eletricos/encoder_etching_blueprint.pdf}
 
 \cleardoublepage
