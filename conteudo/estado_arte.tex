@@ -1,4 +1,5 @@
 \chapter{Enquadramento}
+\label{ch:estado_arte}
 
 \section{Análise do caderno de encargos}
 \label{sec:requisitos}
@@ -24,7 +25,7 @@ Parâmetros como a fiabilidade, a autonomia, o custo e a facilidade de utilização
     \multicolumn{1}{ l }{Id.} & Requisito & Quantificação\\
     %\multicolumn{1}{ l }{Id.\footnote{Identificação}} & Requisito & Quantificação\\
     \midrule
-    & Autonomia & > 2 h\\
+    & Autonomia & > 20 h\\
     & Velocidade máxima & > 10 km/h\\
     & Velocidade mínima & < 1 km/h\\
     & Condução autónoma & Acelera, desacelera e vira por comandos de um computador sem ligações exteriores à plataforma\\
@@ -87,46 +88,57 @@ O autor foca-se em aspetos relevantes para a comercialização de soluções de prop
 
 O veículo a motor é hoje em dia um componente fundamental da sociedade, e a base da plataforma \ac{ROVIM}. Existem dois tipos principais de motores usados na propulsão de veículos: o motor de combustão interna e o motor elétrico.
 
-O motor de combustão interna é uma tecnologia fiável e refinada ao longo de mais de um século. No entanto, é maioritariamente usada em veículos conduzidos por humanos. Adaptar um veículo com motor de combustão interna para condução autónoma exige um conjunto de alterações ao nível do seu funcionamento interno (no caso de motores mais antigos sem controlo eletrónico), da sua gestão e do acoplamento mecânico demasiado complicadas e dispendiosas em relação à adoção de motores elétricos. Estes permitem, através dos controladores eletrónicos disponíveis atualmente, controlar com exatidão a potência produzida e a direção do movimento.\\%No entanto, a propulsão de veículos elétricos requer o uso de baterias para armazenamento de energia elétrica, que têm menor densidade energética e são mais caras que os equivalentes fósseis \cite{Rajashekara_desvantagens_baterias}, e limitam a autonomia. Para resolver este problema é possível combinar o motor de combustão com o motor elétrico, num veículo hibrido.
+O motor de combustão interna é uma tecnologia fiável e refinada ao longo de mais de um século, no entanto, é maioritariamente usada em veículos conduzidos por humanos. Adaptar um veículo com motor de combustão interna para condução autónoma exige um conjunto de alterações ao nível do seu funcionamento interno (no caso de motores mais antigos sem controlo eletrónico), da sua gestão e do acoplamento mecânico que são complicadas e dispendiosas, mas o principal entrave à sua utilização em veículos autónomos é a ligação do motor sem intervenção humana. Os veículos elétricos não apresentam dificuldades no arranque e permitem, através dos controladores eletrónicos disponíveis atualmente, controlar com exatidão a potência produzida e a direção do movimento.%No entanto, a propulsão de veículos elétricos requer o uso de baterias para armazenamento de energia elétrica, que têm menor densidade energética e são mais caras que os equivalentes fósseis \cite{Rajashekara_desvantagens_baterias}, e limitam a autonomia. Para resolver este problema é possível combinar o motor de combustão com o motor elétrico, num veículo hibrido.
 
-A propulsão puramente elétrica é principalmente adequada para veículos pequenos, de baixa velocidade e curta autonomia \cite{Chan_overview}, pelo que se adequa perfeitamente para o \ac{ROVIM}. O sistema de propulsão é a parte fundamental de um veículo elétrico \cite{Chan_overview}. É composto pelo motor e o seu controlador, o acoplamento mecânico e as rodas.\\% Por possuir estas características, e porque a propulsão puramente elétrica simplifica o controlo do sistema, foi escolhido um motor elétrico para a tração do \ac{ROVIM}.
+A propulsão puramente elétrica é principalmente adequada para veículos pequenos, de baixa velocidade e curta autonomia \cite{Chan_overview}, pelo que se adequa perfeitamente para o \ac{ROVIM}. O sistema de propulsão é a parte fundamental de um veículo elétrico \cite{Chan_overview}, sendo composto pelo motor e o seu controlador, o acoplamento mecânico e as rodas.% Por possuir estas características, e porque a propulsão puramente elétrica simplifica o controlo do sistema, foi escolhido um motor elétrico para a tração do \ac{ROVIM}.
 
-\subsection{Acoplamento mecânico e rodas}
+\subsection{Rodas e acoplamento mecânico}
 
-As rodas dos veículos elétricos são idênticas às dos veículos com motor de combustão, à excepção de algumas aplicações demasiado complexas para os objetivos deste projeto.
+As rodas dos veículos elétricos são idênticas às dos veículos com motor de combustão, à exceção de algumas aplicações demasiado complexas para os objetivos deste projeto.
 
-O acoplador mecânico transmite a potência do motor para as rodas. É dimensionado em conjunto com o motor, tendo em conta as necessidades de locomoção e a disposição dos componentes no veículo. Pode ser apenas um ligação solidária entre os veios do motor e o eixo das rodas, mas tipicamente consiste num conjunto de engrenagens que desmultiplica a  rotação do motor, de modo a aumentar o binário disponível nas rodas. A esta peça dá-se o nome de redutor, quando a razão de desmultiplicação é fixa, e caixa de velocidades, quando é variável. Devido à maior disponibilidade de binário dos motores elétricos, um redutor é suficiente para aplicações tipicas, o que simplifica o controlo do sistema.
+O acoplador mecânico transmite a potência do motor para as rodas e é dimensionado em conjunto, tendo em conta as necessidades de locomoção e a disposição dos componentes no veículo. Pode ser apenas um ligação solidária entre os veios do motor e o eixo das rodas, mas tipicamente consiste num conjunto de engrenagens que desmultiplica a  rotação do motor, de modo a aumentar o binário disponível nas rodas. A esta peça dá-se o nome de redutor, quando a razão de desmultiplicação é fixa, e caixa de velocidades, quando é variável. Devido à maior disponibilidade de binário dos motores elétricos, um redutor é suficiente para aplicações tipicas, o que simplifica o controlo do sistema.
 
 Há três características técnicas a ter em conta na escolha de redutores para este projeto: as dimensões, o alinhamento dos eixos e a direção da transmissão. As dimensões e o alinhamento dos eixos são importantes no planeamento da disposição dos componentes no veículo. A direção da transmissão consiste no definição do veio de entrada (onde é aplicado o binário) e de saída do redutor. Há topologias de redutores, como o parafuso sem-fim e coroa, que não permitem facilmente reverter a direção da transmissão \cite{Engrenagens_intro}.
 
 O redutor do motor de tração deverá transmitir binário bidirecionalmente, para permitir que o veículo possa movimentar-se em ponto morto.
 
-\subsection{Controlo}
-
-O controlo do sistema de propulsão de um veículo elétrico consiste dum conversor de potência e um controlador eletrónico. O conversor converte e regula a energia fornecida pelas baterias ao motor. O controlador atua sobre o conversor, implementando o algoritmo de controlo.
-
-Existem varias topologias destes componentes, mas a sua escolha depende diretamente do motor a controlar, pelo que se torna secundária em relação à escolha do motor.
-
 \subsection{Motor}
 
-Existem vários tipos de motor elétrico com potencial técnico para uso na locomoção de veículos: o motor \ac{DC} com escovas, o motor \ac{AC} de indução, o motor síncrono de ímanes permanentes, o motor síncrono de escovas, o motor de relutância variável e o motor de Lynch.% Em \cite{Santiago_overview} é apresentada uma analise detalhada destas topologias e uma comparação das vantagens e desvantagens para este tipo de aplicações.
+Existem vários tipos de motor elétrico com potencial técnico para uso na locomoção de veículos: o motor de relutância variável, o motor \ac{AC} de indução, os motores síncronos de ímanes permanentes e de escovas, o motor \ac{DC} com escovas e o motor de Lynch. Na figura \ref{fig:topologias} são apresentadas as topologias citadas.% Em \cite{Santiago_overview} é apresentada uma analise detalhada destas topologias e uma comparação das vantagens e desvantagens para este tipo de aplicações.
 
+\begin{figure}[!htbp]
+    \centering
+    \begin{subfigure}[b]{0.45\linewidth}
+        \subcaptionbox{Topologias de motores usados convencionalmente em veículos elétricos \cite{Hashemnia_motores}. Legenda: a) motor DC; b) motor de indução; c) motor de ímanes permanentes sem escovas; d) motor de relutância variável.}{
+        \includegraphics[width=\linewidth]{recursos/imagens/topologias_motores.jpg} }
+\end{subfigure}
+\qquad
+    \begin{subfigure}[b]{0.45\linewidth}
+        \subcaptionbox{Fotografia da armadura de um motor de Lynch \cite{Lynch_paper}.}{
+        \includegraphics[width=\linewidth]{recursos/imagens/topologia_lynch.jpg} }
+\end{subfigure}
+\caption{Topologias dos motores citados.}
+\label{fig:topologias}
+\end{figure}
+
+\begin{itemize}
 \done\todo{É dada especial relevância à escolha de um propulsor usado em veículos comerciais desta dimensão (desde que cumpra os requisitos desta aplicação). Isto aumenta o grau de confiança na validade da configuração usada e faz com que haja mais documentação acerca da sua implementação prática em projetos anteriores.}
 
-O motor de relutância variável consiste num rotor com pólos salientes de material magnético. Os rotor gira consoante o campo magnético produzido no estator, de modo a minimizar a relutância do circuito magnético. Estes são baratos, simples e com boas características de binário e velocidade para uso em veículos elétricos, mas não são conhecidas aplicações comerciais desta tecnologia \cite{Santiago_overview}.
+\item O motor de relutância variável consiste num rotor com pólos salientes de material magnético, que gira consoante o campo magnético produzido no estator, de modo a minimizar a relutância do circuito magnético. Este tipo de motores é baratos, simples e com boas características de binário e velocidade para uso em veículos elétricos, mas não são conhecidas aplicações comerciais desta tecnologia \cite{Santiago_overview}.
 
-O motor de indução é um motor muito simples, robusto e tecnologicamente maduro. Consiste num rotor bobinado, em que a corrente é induzida pelo campo magnético gerado nos enrolamentos do estator. Esta por sua vez gera um campo magnético que tende a seguir o do estator, gerando movimento. É especialmente indicado para aplicações estáticas, mas pode ser adaptado para aplicações de veículos elétricos, com recurso a técnicas avançadas de controlo.
-O motor síncrono de ímanes permanentes é um motor que gera um campo magnético constante no rotor, com recurso a ímanes permanentes. Este gira sincronamente com o campo do gerado nos enrolamentos do estator. Os motores síncronos de ímanes permanentes são alimentados por corrente \ac{AC}, com recurso a controladores específicos. Este tipo de motores é muitas vezes equipado com inversores que permitem que sejam alimentados por corrente \ac{DC}. Nesse caso tomam a designação de motores \ac{DC} sem escovas. Devido ao uso de ímanes permanentes, estes motores conseguem atingir uma elevada eficiência e adquirir formas não convencionais.
+\item O motor de indução é um motor muito simples, robusto e tecnologicamente maduro. Consiste num rotor bobinado cuja corrente é induzida pelo campo magnético gerado nos enrolamentos do estator e, por sua vez, gera um campo magnético que tende a seguir o do estator, gerando movimento. É especialmente indicado para aplicações estáticas, mas pode ser adaptado para aplicações de veículos elétricos, com recurso a técnicas avançadas de controlo.
 
-Os ímanes permanentes nos motores síncronos podem ser substituídos por enrolamentos no rotor, alimentados por corrente \ac{DC}, com recurso a escovas e anéis coletores. Estes motores têm um controlo mais simples e mais adaptável que os motores de ímanes permanentes, mas pior rendimento.
+\item O motor síncrono de ímanes permanentes é um motor que gera um campo magnético constante no rotor, com recurso a ímanes permanentes, que gira sincronamente com o campo gerado nos enrolamentos do estator. O motor síncrono de ímanes permanentes é alimentado por corrente \ac{AC}, com recurso a controladores específicos. Este tipo de motores é muitas vezes equipado com inversores que permitem que sejam alimentados por corrente \ac{DC}, tomando nesse caso a designação de motores \ac{DC} sem escovas. Devido ao uso de ímanes permanentes estes motores conseguem atingir uma elevada eficiência e adquirir formas não convencionais. Os ímanes permanentes nos motores síncronos podem ser substituídos por enrolamentos no rotor, alimentados por corrente \ac{DC} com recurso a escovas e anéis coletores. Estes motores têm um controlo mais simples e mais adaptável que os motores de ímanes permanentes, mas pior rendimento.
 
-O motor \ac{DC} com escovas consiste num rotor com vários enrolamentos, alimentados por um sistema de comutação com escovas, e um estator que gera um campo estático. O estator pode ser bobinado, ou de ímanes permanentes. Estes são motores fiáveis, tecnologicamente maduros, baratos e fáceis de controlar. Para além disso é possível controlar o fluxo magnético e o binário independentemente. As suas principais desvantagens são o baixo rendimento e densidade de potência, e as necessidades de manutenção e contra-indicação para uso em ambientes inflamáveis, devido às faíscas e ao desgaste produzidos na comutação das escovas.
+\item O motor \ac{DC} com escovas consiste num rotor com vários enrolamentos alimentados por um sistema de comutação com escovas, e num estator que gera um campo estático. O estator pode ser bobinado ou de ímanes permanentes. Estes são motores fiáveis, tecnologicamente maduros, baratos e fáceis de controlar. Para além disso é possível controlar o fluxo magnético e o binário independentemente. As suas principais desvantagens são o baixo rendimento e densidade de potência, as necessidades de manutenção e a contra-indicação para uso em ambientes inflamáveis, devido às faíscas e ao desgaste produzidos na comutação das escovas.
 
-Uma configuração particular do motor \ac{DC} com escovas de ímanes permanentes é o motor de Lynch. Em \cite{Lynch_paper} é apresentada uma descrição da estrutura do motor e da sua performance. Este é um motor de fluxo magnético axial, ao contrário das restantes tecnologias apresentadas (de fluxo radial). O rotor consiste em enrolamentos laminares de cobre, com "dentes"~de ferro compactados entre os enrolamentos, que ajudam a conduzir o fluxo. O estator é formado por dois discos de ímanes permanentes que o ladeiam. Este motor apresenta algumas das vantagens dos motores \ac{DC} de ímanes permanentes, nomeadamente rendimento e densidade de potência elevados, mas é a sua compactidade a principal vantagem em aplicações de pequenos veículos elétricos, pois permite maior flexibilidade no desenho de soluções de propulsão. Além disso, é atualmente usado em aplicações de pequenos barcos, motas e veículos elétricos de porte semelhante ao da plataforma \ac{ROVIM}.
+\item Uma configuração particular do motor \ac{DC} com escovas de ímanes permanentes é o motor de Lynch. Em \cite{Lynch_paper} é apresentada uma descrição da estrutura do motor e da sua performance. Este é um motor de fluxo magnético axial, ao contrário das restantes tecnologias apresentadas (de fluxo radial). O rotor é constituído por enrolamentos laminares de cobre, com "dentes"~de ferro compactados entre os enrolamentos, que ajudam a conduzir o fluxo. O estator é formado por dois discos de ímanes permanentes que o ladeiam. Este motor apresenta algumas das vantagens dos motores \ac{DC} de ímanes permanentes, nomeadamente rendimento e densidade de potência elevados, mas é a sua compactidade a principal vantagem em aplicações de pequenos veículos elétricos, pois permite maior flexibilidade no desenho de soluções de propulsão. Além disso, é atualmente usado em aplicações de pequenos barcos, motas e veículos elétricos de porte semelhante ao da plataforma \ac{ROVIM}.
 
-Em \cite{Chan_overview}, \cite{Santiago_overview} e \cite{Hashemnia_motores} são apresentadas comparações semelhantes dos méritos destas topologias de motores (à excepção do motor de Lynch) para soluções comerciais de veículos rodoviários. Nos três casos conclui-se que os motores síncronos de ímanes permanentes e os motores de indução são os mais indicados. Esta comparação é um excelente ponto de partida no processo de escolha do motor de propulsão da plataforma. No entanto, estas aplicações têm diferentes requisitos dos da plataforma \ac{ROVIM}, pelo que se impõe uma análise critica destes resultados.
+\end{itemize}
 
-Em \cite{Hashemnia_motores} é apresentada uma tabela (tabela II) com a avaliação dos diferentes sistemas de tração para veículos elétricos. Os critérios de avaliação (de igual ponderação) usados são: densidade de potência, eficiência, controlabilidade, fiabilidade, maturidade e custo. Tendo em conta os critérios de desenho e os requisitos da plataforma \ac{ROVIM}, estes critérios foram ponderados da seguinte forma: densidade de potência, controlabilidade, fiabilidade, e maturidade valem o dobro na classificação final, enquanto que a eficiência e o custo valem o seu valor apenas.
+Em \cite{Chan_overview}, \cite{Santiago_overview} e \cite{Hashemnia_motores} são apresentadas comparações semelhantes dos méritos destas topologias de motores (à exceção do motor de Lynch) para soluções comerciais de veículos rodoviários. Nos três casos conclui-se que os motores síncronos de ímanes permanentes e os motores de indução são os mais indicados. Esta comparação é um excelente ponto de partida no processo de escolha do motor de propulsão da plataforma, no entanto, estas aplicações têm diferentes requisitos dos do \ac{ROVIM}, pelo que se impõe uma análise critica destes resultados.
+
+Em \cite{Hashemnia_motores} é apresentada uma tabela (tabela II) com a avaliação dos diferentes sistemas de tração para veículos elétricos. Os critérios de avaliação (de igual ponderação) usados são: densidade de potência, eficiência, controlabilidade, fiabilidade, maturidade e custo. Tendo em conta os critérios de desenho e os requisitos da plataforma \ac{ROVIM}, estes critérios foram ponderados da seguinte forma: densidade de potência, controlabilidade, fiabilidade e maturidade contam a dobrar para a classificação final, enquanto que a eficiência e o custo mantêm o seu peso.
 
 \begin{comment}
 \begin{description}
@@ -175,32 +187,38 @@ A tabela \ref{tab:avaliacao_motores} apresenta a classificação das topologias ap
         Total & & 37,5 & 45,5 & 44 & 38,5 & 45,5\\
         \bottomrule
     \end{tabulary}
-    \caption{Avaliação das várias topologias de motores elétricos segundo os requisitos do \acs{ROVIM}.}
+    \caption{Avaliação das várias topologias de motores elétricos \cite{Hashemnia_motores}, modificada segundo os requisitos do \acs{ROVIM}.}
     \label{tab:avaliacao_motores}
 \end{center}
 \end{table}
 
-Dos resultados expressos na tabela \ref{tab:avaliacao_motores} se concluí que o motor de indução, de ímanes permanentes e o motor de Lynch são os mais adequados para satisfazer os requisitos desta aplicação, não havendo um vencedor definido. Isto significa que a escolha do motor não recai nos méritos das várias tecnologias, mas em outros aspetos práticos de implementação.
+Dos resultados expressos na tabela \ref{tab:avaliacao_motores} conclui-se que o motor de indução, de ímanes permanentes e o motor de Lynch são os mais adequados para satisfazer os requisitos desta aplicação, não havendo um vencedor definido. Isto significa que a escolha do motor não recai nos méritos das várias tecnologias, mas noutros aspetos práticos de implementação.
 
-\subsection{Armazenamento de energia}
+\subsection{Controlo}
+
+O controlo do sistema de propulsão de um veículo elétrico consiste num conversor de potência e um controlador eletrónico. O conversor converte e regula a energia fornecida pelas baterias ao motor e é comandado pelo controlador, de forma a implementar um algoritmo de controlo. Existem varias topologias destes componentes, mas a sua escolha depende diretamente do motor a controlar, pelo que se torna secundária em relação à escolha do motor.
+
+\subsection{Armazenamento de energia elétrica}
 
 A fonte de energia dos veículos puramente elétricos é o principal entrave à sua massificação \cite{Chan_overview}. As principais tecnologias usadas atualmente para acumular energia em veículos puramente elétricos são: super condensadores, baterias elétricas e células de combustível.
 
-A célula de combustível é um dispositivo eletroquímico que usa uma reação química para gerar energia elétrica. Esta reação não é reversível na célula. Esta tecnologia não é ainda considerada comercialmente viável \cite{Chan_overview}.
+A célula de combustível é um dispositivo eletroquímico que usa uma reação química para gerar energia elétrica de forma não reversível. Esta tecnologia não é ainda considerada comercialmente viável \cite{Chan_overview}.
 
-Os super condensadores são condensadores de capacidade muito elevada. Têm uma densidade de energia (kWh/Kg) extremamente baixa \cite{Chan_overview}, mas uma densidade de potência (kW/kg) bastante elevada. Por isso podem ser usados como fonte auxiliar de energia para picos de potência. Em combinação com baterias tradicionais, permitem aumentar a autonomia e reduzir o desgaste das baterias. No entanto, esta combinação introduz complexidade adicional à gestão da baterias.
+Os super condensadores são condensadores de capacidade muito elevada. Têm uma densidade de energia (kWh/Kg) extremamente baixa \cite{Chan_overview}, mas uma densidade de potência (kW/kg) bastante elevada. Por isso podem ser usados como fonte auxiliar de energia para picos de potência. Em combinação com baterias tradicionais permitem aumentar a autonomia e reduzir o desgaste das baterias, no entanto esta combinação introduz complexidade adicional à gestão da baterias.
 
 As baterias elétricas são atualmente a principal fonte de energia dos veículos puramente elétricos \cite{Chan_overview}. Estas transformam energia química acumulada em energia elétrica. Nas baterias usadas em veículos elétricos a reação química que produz a energia elétrica é reversível, o que permite recarregá-las e reutilizá-las.
 
-Em \cite{Yiu_baterias} são apresentadas as tecnologias de baterias mais comuns para uso em veículos elétricos. Estas dividem-se em três famílias principais: ácido-chumbo, à base de lítio e à base de níquel. Destas três famílias, três tecnologias merecem especial destaque pela sua adequação ao uso em veículos elétricos: \ac{VRLA}, \ac{NiMH} e \ac{Li-Ion}.
+Em \cite{Yiu_baterias} são apresentadas as tecnologias de baterias mais comuns para uso em veículos elétricos, que se dividem em três famílias principais: ácido-chumbo, à base de lítio e à base de níquel. Destas três famílias, três tecnologias merecem especial destaque pela sua adequação ao uso em veículos elétricos: \ac{Li-Ion}, \ac{NiMH} e\ac{VRLA}.
 
-As baterias de iões de lítio possuem a melhor densidade de energia e excelente densidade de potência. São usadas maioritariamente em aplicações de baixa potência, mas estão em constante evolução tecnológica e a sua adopção tem aumentado gradualmente. No entanto são mais instáveis, caras, e são suscetíveis a incendiar-se em caso de sobrecarga.
+\begin{itemize}
+    \item As baterias de iões de lítio possuem a melhor densidade de energia e excelente densidade de potência. São usadas maioritariamente em aplicações de baixa potência, mas estão em constante evolução tecnológica e a sua adopção tem aumentado gradualmente. No entanto são mais instáveis, caras, e são suscetíveis a incendiar-se em caso de sobrecarga.
 
-As baterias de \ac{NiMH} são a tecnologia mais usada em veículos elétricos \cite{Yiu_baterias}. Possuem elevada densidade de potência e são bastante seguras de operar.
+    \item As baterias de \ac{NiMH} são a tecnologia mais usada em veículos elétricos \cite{Yiu_baterias}. Possuem elevada densidade de potência e são bastante seguras de operar.
 
-As baterias de \ac{VRLA} são baterias de ácido e chumbo, uma tecnologia extremamente robusta e disseminada, mas seladas e com regulação por válvula, que as tornam mais seguras e tolerantes a sobrecarga. Possuem uma boa densidade de potência e são baratas, mas têm fraca densidade de energia, o que as torna pouco adequadas para aplicações de baixo peso e/ou elevada autonomia. No entanto, devido à sua simplicidade e robustez, são válidas para uso em protótipos; em particular para uso nesta fase do projeto \ac{ROVIM}, que requer baixa velocidade e curta autonomia.
+    \item As baterias de \ac{VRLA} são baterias de ácido e chumbo, uma tecnologia extremamente robusta e disseminada, mas seladas e com regulação por válvula, que as tornam mais seguras e tolerantes a sobrecarga. Possuem uma boa densidade de potência e são baratas, mas têm fraca densidade de energia, o que as torna pouco adequadas para aplicações de baixo peso e/ou elevada autonomia. No entanto devido à sua simplicidade e robustez são válidas para uso em protótipos, em particular para uso nesta fase do projeto \ac{ROVIM}, que requer baixa velocidade e curta autonomia.
+\end{itemize}
 
-Aplicações com várias baterias ligadas em série, como é o caso das aplicações em veículos elétricos requererem uma unidade de monitorização e balanceamento de cargas e temperatura. Isto é especialmente verdade para as baterias de \ac{NiMH} e \ac{Li-Ion}. As baterias de \ac{VRLA} suportam melhor temperaturas adversas.
+Quando são ligadas várias baterias em série, como é o caso das aplicações em veículos elétricos, requererem uma unidade de monitorização e balanceamento de cargas e temperatura. Isto é especialmente verdade para as baterias de \ac{NiMH} e \ac{Li-Ion}. As baterias de \ac{VRLA} suportam melhor temperaturas adversas.
 
 \begin{comment}
 As formas mais comuns de armazenar energia para uso na propulsão de um veículo são:
@@ -225,9 +243,9 @@ For example, diesel fuel has an energy density of 46 MJ/kg which is nearly 64 ti
 \todo[rever]{como enquadrar esta secção no capítulo: isto não é propriamente uma revisão da literatura, é mais uma análise de alto nível do problema}
 O sistema de direção do \ac{ROVIM} deve permitir controlar o ângulo de viragem do veículo por computador.
 
-A direcção de uma moto-quatro é tipicamente um sistema de Ackermann atuado através de um guiador. Esta é uma geometria de viragem coordenada de duas rodas paralelas, que permite mantê-las num movimento de rotação pura (sem derrapagem) durante uma viragem em que estas seguem trajetórias de raios diferentes.
+A direcção de uma moto-quatro é tipicamente um sistema de Ackermann \cite{Shamah_2001_3872} atuado através de um guiador. Esta é uma geometria de viragem coordenada de duas rodas paralelas, que permite mantê-las num movimento de rotação pura (sem derrapagem) durante uma viragem em que estas seguem trajetórias de raios diferentes.
 
-Este sistema pode ser controlado por um controlador \ac{PID} simples. O controlador é composto pelos componentes: o atuador (o motor e o acoplador mecânico), o dispositivo de retroalimentação (um sensor de posição) e um controlador que execute o algoritmo de controlo.\todo{referir aqui os motores e acopladores a usar e controladores? e o sensor?}\todo{referir que não espero grande impacto na autonomia deste módulo?}
+Este sistema pode ser controlado por um controlador \ac{PID} simples. O controlador é composto pelos componentes: o atuador (o motor e o acoplador mecânico), o dispositivo de retroalimentação (um sensor de posição angular) e um controlador que execute o algoritmo de controlo.\todo{referir aqui os motores e acopladores a usar e controladores? e o sensor?}\todo{referir que não espero grande impacto na autonomia deste módulo?}
 
 Para projetar um controlador para o sistema, este precisa de ser traduzido por um modelo matemático. Existem duas abordagens para o fazer: deduzir as equações do movimento do sistema, ou estimá-las usando um método de identificação.
 
@@ -258,14 +276,8 @@ Depois integraram-se os vários sistemas, desenvolveu-se o sw de controlo e fizer
 \end{comment}
 A execução do projeto foi planeada numa sequência natural de planeamento, construção e validação, de modo a minimizar o custo de alterações futuras. Para validar a execução foi definido um objetivo preliminar de instalação dos componentes principais no veículo e um objetivo intermédio: a implementação das funcionalidades de condução manual.
 
-Após instalar os componentes principais (os acumuladores de energia, atuadores e acoplamentos mecânicos) no veículo, as necessidades logísticas e de recursos difíceis de obter num laboratório de eletrónica diminuem.
+Após instalar os componentes principais no veículo (os acumuladores de energia, atuadores e acoplamentos mecânicos), as necessidades logísticas e de recursos difíceis de obter num laboratório de eletrónica diminuem.
 
 A funcionalidade de condução manual do veículo é um objetivo mais simples que o objetivo final e permite validar a execução do projeto numa etapa intermédia, e continuar de seguida em direção ao objetivo final sem necessidade de executar modificações relevantes no veículo.
 
-Assim, inicialmente cada subsistema foi projetado e dimensionado com o detalhe que a visão inicial sobre o projeto permitiu. Foi possível compreender as suas características fundamentais, mas pormenores avançados de implementação foram capturados e resolvidos nas fases de construção e validação.
-
-De seguida foram adquiridos e acomodados no \emph{chassi} os componentes principais, de modo a validar o planeamento da sua disposição e atingir o objetivo preliminar.
-
-A terceira fase consistiu na instalação das funcionalidades de tração e travagem e dos sistemas de segurança, de modo a atingir o objetivo intermédio do projeto.
-
-Por fim partiu-se para o objetivo final, que a este ponto consistia no controlo da direção e integração das várias funcionalidades e o seu comando por computador.
+Assim, inicialmente cada subsistema foi projetado e dimensionado com o detalhe que a visão inicial sobre o projeto permitiu. Foi possível compreender as suas características fundamentais, mas pormenores avançados de implementação foram capturados e resolvidos nas fases de construção e validação. De seguida foram adquiridos e acomodados no \emph{chassi} os componentes principais, de modo a validar o planeamento da sua disposição e atingir o objetivo preliminar. A terceira fase consistiu na instalação das funcionalidades de tração e travagem e dos sistemas de segurança, de modo a atingir o objetivo intermédio do projeto. Por fim partiu-se para o objetivo final, que a este ponto implicava controlar a direção e integrar as várias funcionalidades e o seu comando por computador.

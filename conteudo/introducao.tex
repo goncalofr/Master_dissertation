@@ -1,43 +1,57 @@
 \chapter{Introdução}
-Resumo da dissertação para quem não a leu.
-\begin{itemize}
-    \item introduzir o projeto: retirar do enquadramento da tese;
-    \item porquê é que se está a fazer este projeto.
-    \item Descrever a plataforma ROVIM
-    \item descrever o T2D
-    \item descrever com os outros módulos interagem com o T2D. Qual o papel do T2D na plataforma completa.
-    \item Apresentar claramente o objetivo deste projeto;
-    \item descrever sucintamente o que foi feito: abordar o problema, planear e construir, e observar os resultados;
-    \item resumir os capitulos.
-    \item sem imagens ou tabelas.
-\end{itemize}
+%\begin{itemize}
+%    \item introduzir o projeto: retirar do enquadramento da tese;
+%    \item porquê é que se está a fazer este projeto.
+%    \item Descrever a plataforma ROVIM
+%    \item descrever o T2D
+%    \item descrever com os outros módulos interagem com o T2D. Qual o papel do T2D na plataforma completa.
+%    \item Apresentar claramente o objetivo deste projeto;
+%    \item descrever sucintamente o que foi feito: abordar o problema, planear e construir, e observar os resultados;
+%    \item resumir os capitulos.
+%    \item sem imagens ou tabelas.
+%\end{itemize}
+%
+%\begin{comment}
+    Este trabalho visa a construção de um dos módulos do protótipo de um veículo autónomo de vigilância de instalações militares, a \ac{T2D} do \ac{ROVIM}.
 
-\begin{comment}
-http://writingcenter.unc.edu/handouts/introductions/
-Este texto foi retirado do word sem qualquer tipo de leitura ou adaptação ao latex
-A Academia Militar, com o objectivo de envolver os seus alunos do mestrado em Engenharia Eletrotécnica Militar no desenvolvimento de projectos  com utilidade para a instituição, decidiu lançar o projeto para um grupo de robots de vigilância de Instalações militares (ROVIM).
-Cada ROVIM consiste num veículo eléctrico baseado num quadriciclo, controlado remotamente, e com capacidades de vigilância de perímetros de instalações militares e de comunicação com uma estação de controlo (e com os outros ROVIMs?). Pretende-se usar os veículos em operações de vigilância não tripuladas, remotamente controladas, através do seguimento de rotas pré-definidas, possibilitando o seu uso nos dois campi  da Academia Militar. 
-Numa primeira fase do projeto ROVIM, definiu-se como objectivo a construção de apenas um robot, que numa fase posterior será replicado.
-A primeira fase do projeto ROVIM, de acordo com o que foi definido pelos professores responsáveis, é dividido em módulos, cada um correspondente a um trabalho de projecto. São 3 os módulos: um de tração, travagem e direção (T2D), que consiste nos sistemas que permitem a movimentação do veículo; um módulo de sensores e navegação (SeN), responsável pela orientação do veículo no terreno, pelo seguimento de rotas e desvio de obstáculos, e pela realização das operações de vigilância, e um módulo de comunicações e posto de controlo (CPC), que trata das operações no posto de comando de operações (PCO) , nomeadamente a interface com o utilizador, e  comunicação segura com o móvel. Os módulos comunicam entre si segundo um modelo em camadas, semelhante ao modelo Open Systems Interconnection (OSI), sendo o módulo T2D o da camada mais baixa, o CPC o da camada mas alta e o módulo SeN intermédio.  Os módulos T2D e SeN irão funcionar embarcados nos veículos, ficando o módulo SeN instalado na estrutura física disponibilizada pelo módulo T2D, enquanto que o módulo CPC será implementado no posto de comando de operações . A comunicação entre o veículo (módulo SeN) e o posto de comando (módulo CPC) far-se-à via rádio .
-Em parceria com o Instituto Superior Técnico (IST), o módulo T2D foi disponibilizado como uma proposta de trabalho de projecto, co-orientada externamente pelos professores da Academia Militar responsáveis.
-Este relatório  trata então do trabalho de projeto correspondente à projeção e construção de um protótipo funcional do módulo T2D.
-O módulo T2D compreende toda a parte mecânica de preparação do chassis que serve de base ao robot, de modo a acolher os restantes sistemas do módulo e os sistemas do SeN. Os restantes sistemas serão instalados nesta base, de modo a criar um protótipo funcional do módulo. Para além das alterações de chassis, o T2D divide-se em mais 5 sub-módulos: energia e proteções, tração, travagem, direção e comunicação.
-A parte de energia e proteções compreende a instalação no veículo de fontes de energia e proteções de segurança no seu fornecimento, e da alimentação dos componentes elétricos do veículo.
-As partes de tração, travagem e direção consistem na montagem dos atuadores elétricos e respectivos acoplamentos mecânicos e sistemas de controlo que permitirão ao veículo andar, travar e virar, respectivamente.
-O sub-módulo de comunicação trata da troca e de mensagens com o SeN, e execução dos comandos recebidos, assim como coordenação dos estados dos restantes módulos.
-Como todos os sub-módulos serão desenvolvidos de raíz, para cada um deles é necessário desenvolver todo o trabalho de planeamento, projecto, desenvolvimento e implementação no chassis, assim como a coordenação da projeção dos vários módulos, de modo a garantir a coerência do T2D.
+    Os avanços tecnológicos da última década permitiram um crescimento nas aplicações militares de veículos autónomos. Com o objetivo de explorar o seu potencial na vigilância de instalações militares, a Academia Militar encomendou o desenvolvimento e construção de um protótipo funcional de um veículo autónomo, o \ac{ROVIM}.
 
+O \ac{ROVIM} é uma plataforma móvel, baseada num \emph{chassi} de moto-quatro equipado de motores eléctricos para tracção, travagem e de direcção. Esta plataforma está equipada com sensores diversos e com módulos de comunicação via rádio com uma estação de controlo. O \ac{ROVIM} é consistindo por 3 subsistemas ou módulos: \ac{T2D}, \ac{SeN} e \ac{CPC}, cujas funcionalidades se complementam e conjugam de acordo com um modelo em camadas, semelhante ao modelo \ac{OSI}.
 
+O módulo \ac{T2D} corresponde à camada de mais baixo nível, e consiste dos motores e seus controladores, baterias e sistemas de monitorização e controlo embarcados no \emph{chassi} do veículo. É o módulo \ac{T2D} que permite a movimentação da plataforma, através de comandos recebidos do módulo \ac{SeN}. O \ac{T2D} foi concebido para também poder ser operado de forma manual, controlado localmente por um utilizador humano.
 
-, a instalação dos atuadores de tração, travagem e direção, respectivos acoplamentos mecânicos e sistemas de controlo, e a instalação dos fontes de energia e de toda a electrónica auxiliar e de comunicação com o módulo de sensores e navegação.
-Para além do sistema físico, é necessário desenvolver todo o software necessário ao funcionamento dos sistemas e à comunicacão com o módulo de sensores e navegaão.
-Em paralelo à realização deste trabalho de projecto decorre a construção do protótipo FST04e, do projecto Fórmula Student Técnico (FST).  Este é um veículo eléctrico desenhado com o único intuito de competir na Fórmula Student Electric. O facto de estarem a ser desenvolvidos em simultâneo dois protótipos de características semelhantes permite a troca de experiências, o que traz uma motivação adicional ao projecto.
-Actualmente o desenvolvimento de veículos eléctricos está na ordem do dia, devido à pressão ambiental e à possibilidade de alisar a carga na REE. O facto de o módulo a implementar ser eléctrico, reforça a actualidade da tecnologia a desenvolver e a  pertinência desta solução. Para além disso o desenvolvimento de um veículo não tripulado propelido com um motor de combustão interna, como a moto 4 em que se baseia o veículo, torna mais difícil o controlo da velocidade . 
+Esta dissertação trata do projeto e construção de um protótipo do módulo \ac{T2D} do \ac{ROVIM}. Em \ref{ch:estado_arte}, com base no caderno de encargos inicial, são definidos critérios de avaliação da solução a projetar, e planeada uma abordagem de ataque ao problema e de validação do progresso realizado. Posteriormente, a literatura sobre a matéria é revista e apreciada à luz dos critérios de avaliação.
 
+Em \ref{ch:componentes_sistema} é apresentada a solução desenhada e construída, e justificadas as escolhas feitas ao longo do projeto. Em \ref{ch:utilizacao} é de novo apresentado o veículo, mas do ponto de vista do utilizador, com foco nas funcionalidades e procedimentos. Por fim, são reunidas em \ref{ch:conclusao} as conclusões retiradas do projeto, e a avaliação feita do resultado final. São também propostas correções e melhorias ao projeto e proposto um caminho de desenvolvimento futuro.
 
-O robot de vigilância de instalacões militares (ROVIM) é um projecto cujo objectivo é criar um grpo de veículos eléctricos remotamente controlados, para o fim principal de vigilância de instalaões militares.
-O promotor do projeto é a Academia Militar, a quem pertence o resultado final do projeto. O Instituto Superior Técnico está associado ao projecto, promovendo a realizaão dos módulos que o constituem em teses de mestrado.
-São três os módulos que constituem o projeto: traão, travagem e direão (T2D), sensores e navegaão (SeN) e posto de controlo (PC).
-O módulo T2D consiste no projeto e construão de um protótipo de um veículo eléctrico remotamente comandado, assente no chassis de um quadriciclo, vulgarmente designado por moto 4. O módulo compreende toda a parte mecânica de alteraão do chassis, a instalaão de actuadores para traão, travagem e direão, e respectivos acoplamentos mecânicos, assim como a implementaão de sistemas para o seu controlo e a instalaão dos acumuladores de energia e de toda a electrónica auxiliar e de comunicaão com o módulo de sensore e navegaão.
-Para além do sistema físico, é necessário desenvolver todo o software necessário ao funcionamento dos sistemas e à comunicacão com o módulo de sensores e navegaão.
-\end{comment}
+    
+    
+%G   . Nesta dissertação os sistemas de tração, travagem e direção desse protótipo são abordados. A literatura atual foca-se em aplicações comerciais de veículos rodoviários, onde a autonomia é o principal problema. No entanto, equipas não profissionais lidam antes disso com dificuldades em capturar uma visão clara do projecto e fracos procedimentos de segurança.
+%
+%    Neste trabalho
+%A Academia Militar, com o objectivo de envolver os seus alunos do mestrado em Engenharia Eletrotécnica Militar no desenvolvimento de projectos  com utilidade para a instituição, decidiu lançar o projeto para um grupo de robots de vigilância de Instalações militares (ROVIM).
+%Cada ROVIM consiste num veículo eléctrico baseado num quadriciclo, controlado remotamente, e com capacidades de vigilância de perímetros de instalações militares e de comunicação com uma estação de controlo (e com os outros ROVIMs?). Pretende-se usar os veículos em operações de vigilância não tripuladas, remotamente controladas, através do seguimento de rotas pré-definidas, possibilitando o seu uso nos dois campi  da Academia Militar. 
+%Numa primeira fase do projeto ROVIM, definiu-se como objectivo a construção de apenas um robot, que numa fase posterior será replicado.
+%A primeira fase do projeto ROVIM, de acordo com o que foi definido pelos professores responsáveis, é dividido em módulos, cada um correspondente a um trabalho de projecto. São 3 os módulos: um de tração, travagem e direção (T2D), que consiste nos sistemas que permitem a movimentação do veículo; um módulo de sensores e navegação (SeN), responsável pela orientação do veículo no terreno, pelo seguimento de rotas e desvio de obstáculos, e pela realização das operações de vigilância, e um módulo de comunicações e posto de controlo (CPC), que trata das operações no posto de comando de operações (PCO) , nomeadamente a interface com o utilizador, e  comunicação segura com o móvel. Os módulos comunicam entre si segundo um modelo em camadas, semelhante ao modelo Open Systems Interconnection (OSI), sendo o módulo T2D o da camada mais baixa, o CPC o da camada mas alta e o módulo SeN intermédio.  Os módulos T2D e SeN irão funcionar embarcados nos veículos, ficando o módulo SeN instalado na estrutura física disponibilizada pelo módulo T2D, enquanto que o módulo CPC será implementado no posto de comando de operações . A comunicação entre o veículo (módulo SeN) e o posto de comando (módulo CPC) far-se-à via rádio .
+%Em parceria com o Instituto Superior Técnico (IST), o módulo T2D foi disponibilizado como uma proposta de trabalho de projecto, co-orientada externamente pelos professores da Academia Militar responsáveis.
+%Este relatório  trata então do trabalho de projeto correspondente à projeção e construção de um protótipo funcional do módulo T2D.
+%O módulo T2D compreende toda a parte mecânica de preparação do chassis que serve de base ao robot, de modo a acolher os restantes sistemas do módulo e os sistemas do SeN. Os restantes sistemas serão instalados nesta base, de modo a criar um protótipo funcional do módulo. Para além das alterações de chassis, o T2D divide-se em mais 5 sub-módulos: energia e proteções, tração, travagem, direção e comunicação.
+%A parte de energia e proteções compreende a instalação no veículo de fontes de energia e proteções de segurança no seu fornecimento, e da alimentação dos componentes elétricos do veículo.
+%As partes de tração, travagem e direção consistem na montagem dos atuadores elétricos e respectivos acoplamentos mecânicos e sistemas de controlo que permitirão ao veículo andar, travar e virar, respectivamente.
+%O sub-módulo de comunicação trata da troca e de mensagens com o SeN, e execução dos comandos recebidos, assim como coordenação dos estados dos restantes módulos.
+%Como todos os sub-módulos serão desenvolvidos de raíz, para cada um deles é necessário desenvolver todo o trabalho de planeamento, projecto, desenvolvimento e implementação no chassis, assim como a coordenação da projeção dos vários módulos, de modo a garantir a coerência do T2D.
+%
+%
+%
+%, a instalação dos atuadores de tração, travagem e direção, respectivos acoplamentos mecânicos e sistemas de controlo, e a instalação dos fontes de energia e de toda a electrónica auxiliar e de comunicação com o módulo de sensores e navegação.
+%Para além do sistema físico, é necessário desenvolver todo o software necessário ao funcionamento dos sistemas e à comunicacão com o módulo de sensores e navegaão.
+%Em paralelo à realização deste trabalho de projecto decorre a construção do protótipo FST04e, do projecto Fórmula Student Técnico (FST).  Este é um veículo eléctrico desenhado com o único intuito de competir na Fórmula Student Electric. O facto de estarem a ser desenvolvidos em simultâneo dois protótipos de características semelhantes permite a troca de experiências, o que traz uma motivação adicional ao projecto.
+%Actualmente o desenvolvimento de veículos eléctricos está na ordem do dia, devido à pressão ambiental e à possibilidade de alisar a carga na REE. O facto de o módulo a implementar ser eléctrico, reforça a actualidade da tecnologia a desenvolver e a  pertinência desta solução. Para além disso o desenvolvimento de um veículo não tripulado propelido com um motor de combustão interna, como a moto 4 em que se baseia o veículo, torna mais difícil o controlo da velocidade . 
+%
+%
+%O robot de vigilância de instalacões militares (ROVIM) é um projecto cujo objectivo é criar um grpo de veículos eléctricos remotamente controlados, para o fim principal de vigilância de instalaões militares.
+%O promotor do projeto é a Academia Militar, a quem pertence o resultado final do projeto. O Instituto Superior Técnico está associado ao projecto, promovendo a realizaão dos módulos que o constituem em teses de mestrado.
+%São três os módulos que constituem o projeto: traão, travagem e direão (T2D), sensores e navegaão (SeN) e posto de controlo (PC).
+%O módulo T2D consiste no projeto e construão de um protótipo de um veículo eléctrico remotamente comandado, assente no chassis de um quadriciclo, vulgarmente designado por moto 4. O módulo compreende toda a parte mecânica de alteraão do chassis, a instalaão de actuadores para traão, travagem e direão, e respectivos acoplamentos mecânicos, assim como a implementaão de sistemas para o seu controlo e a instalaão dos acumuladores de energia e de toda a electrónica auxiliar e de comunicaão com o módulo de sensore e navegaão.
+%Para além do sistema físico, é necessário desenvolver todo o software necessário ao funcionamento dos sistemas e à comunicacão com o módulo de sensores e navegaão.
+%\end{comment}

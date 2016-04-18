@@ -211,7 +211,7 @@
 %typesett Si units with a package
 \usepackage{siunitx}
 \sisetup{
-    %output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
+    output-decimal-marker={,}% just uncomment if you want to use comma as the decimal marker!
 }
 
 %to have line breaks after \paragraph{} and subparagraph{}
@@ -237,3 +237,43 @@
 %Specific macros used in this document to replace content, and not configurations:
 \newcommand{\swversion}{v1.0}
 \newcommand{\hwversion}{v1.0}
+
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\renewcommand\Re{\operatorname{Re}}
+
+\renewcommand\Im{\operatorname{Im}}
+
+\DeclareMathOperator{\sen}{\text{sen}}
+
+%\DeclareMathOperator{\tg}{\text{tg}}
+%
+%\DeclareMathOperator{\sinc}{\text{sinc}}
+%
+%\DeclareMathOperator{\TF}{\text{TF}}
+%
+%\DeclareMathOperator{\sign}{\text{sign}}
+%
+%\DeclareMathOperator{\fc}{\textit{f}_{c}}
+%
+%\DeclareMathOperator{\BT}{\textit{B}_{T}}
+%
+%\DeclareMathOperator{\Ta}{\textit{T}_{a}}
+%
+%\DeclareMathOperator{\dB}{\text{dB}}
+%
+%\DeclareMathOperator{\fD}{\textit{f}_{\Delta}}
+%
+%\DeclareMathOperator{\SNR}{\text{SNR}}
+%
+%\DeclareMathOperator{\AC}{\textit{A}_{C}}
+%
+%\DeclareMathOperator{\Corr}{\textit{Corr}}
+%
+%\DeclareMathOperator{\Cov}{\textit{Cov}}
+%
+%\DeclareMathOperator{\Var}{\textit{Var}}
+%
+%\DeclareMathOperator{\XDC}{\textit{X}_{DC}}
+%

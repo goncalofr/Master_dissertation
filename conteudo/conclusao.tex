@@ -1,63 +1,114 @@
 \chapter{Conclusão}
-\begin{description}        
-    \item[Objetivo] Resumo da tese para quem a leu.
-    \item[Topicos de escrita]
-        \begin{itemize}
-            \item especificações da plataforma
-            \item Limitações da plataforma
-            \item Comparar as especificações com os objetivos iniciais
-        \end{itemize}
-    \item[Notas a escrever]
-    O objetivo principal, de produzir um protótipo funcional foi atingido, ainda que com algumas limitações, aceitáveis para esta fase do processo de prototipagem e produção.\\
-    Limitações de ordem logística e de equipamento (ferramenta disponível, experiência, material disponível para compra) tiveram impacto considerável no desenvolvimento do projeto. Conlui-se daqui que num projeto prático deste tipo as considerações tecnológicas representam apenas parte dos constrangimentos.
-    Para as baterias não sei como evitar que se mexam.\\
-    Para a zona morta, soldar a coluna da direção em vez de aparafusar.\\
-    Para o salto da correia, usar uma corrente (talvez de bicicleta), com alguma folga, e uma "chave" do estilo da usada para prender a engrenagem ao veio do motor, facilmente removível, para resolver o problema do salto.\\
-    O hardware parece bastante precário, especialmente ao nível das placas elétronicas, mas também das baterias, mas pode ser usado com confiança por utilizadores conhecedores da plataforma. Para isso foi produzido um manual do utilizador.
-    \todo{sacar autonomia, binário de viragem}
-\end{description}
+\label{ch:conclusao}
+
+O objectivo principal deste projeto, a construção de  um protótipo funcional de um veículo autónomo, foi atingido. Este apresenta limitações relevantes, mas aceitáveis para primeira uma iteração, que estão identificadas e com propostas de melhoria.
+
+Deficiências no domínio \emph{à priori} de conhecimento e intuição técnica apropriados originaram algumas soluções pouco refinadas, nomeadamente no dimensionamento do acoplador mecânico da direção, mas foram os constrangimentos práticos sentidos na fase de construção a principal dificuldade do projecto, que impediu correções eficazes das deficiências de planeamento. A nível logístico, a dificuldade de mover o veículo entre laboratórios e oficinas forçou à realização em avanço de todas as modificações do \emph{chassi}, e impediu uma correção da zona morta da direção, por exemplo. A nível de material, limitações no acesso aos componentes disponíveis impediram pontualmente a seleção de componentes idealizados em dimensionamento, como por exemplo na escolha da resistência de pré-carga do contactor da direção. Deram-se também limitações nos métodos de fabrico disponíveis, que impediram por exemplo uma fixação mais sólida das baterias e um melhor isolamento dos seus contactos. Daqui se conclui que projetos com uma forte vertente prática e fora da área de especialização da instituição que os acolhe (nomeadamente o trabalho mecânico deste projeto) colocam restrições tão ou mais relevantes que as considerações tecnológicas.
+
+O \emph{chassi} usado revelou-se perfeitamente adequado às necessidades do projeto, e permitiu acomodar uma distribuição bastante inteligente dos componentes. Nomeadamente, a planificação da localização das baterias, e dos atuadores da tração e da travagem permitiu:
+\begin{itemize}
+    \item agrupar dois motores num espaço compacto;
+    \item libertar toda a area central para as baterias;
+    \item proteger de forma elegante as baterias de interferência acidental;
+    \item manter aproximadamente o centro de gravidade original da moto;
+\end{itemize}
+
+A tecnologia escolhida para as baterias revelou-se fiável, tendo um exemplar sido sujeito acidentalmente a uma situação de sobrecarga sem falhar catastroficamente. No entanto não foi possível fixar devidamente as baterias ao \emph{chassi}, o que limita as possibilidades de condução a terrenos pouco acidentados e inclinados. Embora esta limitação não seja aceitável num veículo para utilizações militares, justifica-se aqui à luz das limitações de métodos de fabrico e da iteração inicial do protótipo.
+
+O atuador da tração demonstrou até ora robustez na sua atuação, não tendo sido detetado até esta data nenhum erro imprevisto durante o seu funcionamento. O motor (e consequentemente o controlador) da tração está exageradamente sobredimensionado, mesmo para uma versão inicial de um protótipo. Já o sensor de velocidade, apesar de apresentar um bom desempenho (a necessidade de corrigir a sua forma de onda deve-se à introdução, incorretamente, de um filtro passa--baixo no circuito de condicionamento de sinal), não apresenta resolução suficiente para uma aplicação com uma velocidade pretendida tão reduzida. Dado que se desenvolveu o redutor da tração, a montagem de um sensor óptico a uma das suas engrenagens deveria ter sido contemplada.\todo{o que dizer do redutor}
+
+A combinação dos vários sistemas de travagem permite disponibilizar para qualquer situação de condução um dispositivo redundante de redução da velocidade. Através de um relé e dois interruptores de fim de curso é (embora na solução usada tenho sido incluídos componentes adicionais) possível controlar o funcionamento de um sistema de vital importância para a segurança do sistema, o que permite ao mesmo tempo uma implementação mais simples e mais fiável.
+
+A direção é o subsistema com o resultado final menos satisfatório apresentado, devido principalmente à limitação da correia. Esta deve-se em parte a uma falha de conhecimento técnico para projetar um acoplamento mais adequado, mas também à dificuldade em esticá-la suficientemente com o esticador usado. A montagem dos sensores deveria também ser fixada de forma mais sólida para evitar o risco de os descalibrar.
+
+A eletrónica realizada apresenta um aspecto bastante precário, mas permitiu um desenvolvimento mais rápido e simples dos circuitos do que seria possível recorrendo a placas não configuráveis e, uma vez fixada e isolada de interferência externa, cumpre bem o seu papel. As ligações elétricas concentradas na placa de eletrónica estão bastante confusas, devido às várias vezes em que foram modificadas.
+%as localização das baterias e do motor, que permite obter um centro de gravidade idêntico ao da moto original, maximizar o número de baterias embarcadas e o seu isolamento de interferências acidentais.
+%\begin{description}        
+%        %\begin{itemize}
+%        %    \item especificações da plataforma
+%        %    \item Limitações da plataforma
+%        %    \item Comparar as especificações com os objetivos iniciais
+%        %\end{itemize}
+%    \item[Notas a escrever]
+%    O objetivo principal, de produzir um protótipo funcional foi atingido, ainda que com algumas limitações, aceitáveis para esta fase do processo de prototipagem e produção.\\
+%    Limitações de ordem logística e de equipamento (ferramenta disponível, experiência, material disponível para compra) tiveram impacto considerável no desenvolvimento do projeto. Conlui-se daqui que num projeto prático deste tipo as considerações tecnológicas representam apenas parte dos constrangimentos.
+%    Para as baterias não sei como evitar que se mexam.\\
+%    Para a zona morta, soldar a coluna da direção em vez de aparafusar.\\
+%    Para o salto da correia, usar uma corrente (talvez de bicicleta), com alguma folga, e uma "chave" do estilo da usada para prender a engrenagem ao veio do motor, facilmente removível, para resolver o problema do salto.\\
+%    O hardware parece bastante precário, especialmente ao nível das placas elétronicas, mas também das baterias, mas pode ser usado com confiança por utilizadores conhecedores da plataforma. Para isso foi produzido um manual do utilizador.
+%    \todo{sacar autonomia, binário de viragem}
+%\end{description}
+
+Em suma, o resultado final cumpre de forma bastante satisfatória os requisitos e critérios de desenho definidos à partida em relação à viragem e à tração, ficando a direção aquém do resultado esperado. Na tabela \ref{tab:parametros} são apresentados em forma de resumo as especificações técnicas do veículo.
+
 \begin{table}[ht]
     \begin{center}
-        \begin{tabular}{@{} m{0.2\textwidth} m{0.05\textwidth} m{0.15\textwidth} m{0.3\textwidth} @{}}
+        \begin{tabular}{@{} m{0.35\textwidth} m{0.05\textwidth} m{0.8\textwidth} m{0.25\textwidth} @{}}
             \toprule
+            \multicolumn{4}{c}{Especificações elétricas}\\
             Parâmetro & Valor & Unidades & Observações\\
             \midrule
-            Peso & \todo{apresentar peso}& \si{Kg} & Tara\\
-            Capacidade das baterias & \num{4.05} & \si{KWh} & Baterias novas\\
-            Tensão de fim de vida das baterias & \num{71.6} & \si{V} & Não aceitam mais carga\\
+            %Capacidade das baterias & \num{4.05} & \si{KWh} & Baterias novas\\
+            Tensão das baterias em início de vida & \num{81} & \si{V} & Medida após a caga\\
+            Tensão das baterias em fim de vida & \num{71.6} & \si{V} & Medida após a caga\\
             Tensão de descarga das baterias & \num{72} & \si{V} & \\
-            Raio rodas traseiras & \num{0.28} & \si{m} & Pneus no ar, com rasto novo\\
-            Relação redução tração & \num{19.(63)} & &\\
-            Velocidade máxima teórica & \num{32.252} & \si{Km/h} &\\
+            Corrente máxima nas baterias & \num{250} & \si{\ampere} & limitada por fusível\\
+            \midrule\\
+            \multicolumn{4}{c}{Especificações mecânicas}\\
+            Parâmetro & Valor & Unidades & Observações\\
+            \midrule
+            Velocidade máxima teórica & \num{32.2} & \si{Km/h} &\\
             Velocidade máxima & \num{4.5} & \si{Km/h} & Limitada por \emph{software}\\
             Velocidade mínima & \num{0.5} & \si{Km/h} & Limitada por \emph{software}\\
-            Brecagem máxima teórica & \num{90} & \si{\degree} & \\
+            Binário máximo de tração & \num{1080} & \si{\newton\meter} & \\
+            Binário máximo de viragem teórico & \num{133.3} & \si{\newton\meter} & Sem a limitação da correia\\
+            Binário máximo de viragem & <\num{10.25} & \si{\newton\meter} & Com a limitação da correia\\
+
+            Peso & \num{250} & \si{Kg} & Tara\\
+            Brecagem máxima teórica & \num{88.8} & \si{\degree} & \\
+            \midrule\\
+            \multicolumn{4}{c}{Especificações de \emph{software}}\\
+            Parâmetro & Valor & Unidades & Observações\\
+            \midrule
             Brecagem & \num{86} & \si{\degree} & Limitada por \emph{software}\\
             Limite de tempo para destravagem & \num{20} & \si{\second} &\\
-            Tempo de espera após a travagem & \num{6} & \si{\second} &\\
-            Identificador do motor de tração & \num{1} & &\\
-            Identificador do motor de direção & \num{2} & &\\
-            Código de marcha frente & \num{0} & &\\
-            Código de marcha trás & \num{1} & &\\
-            Código de ponto morto & \num{2} & &\\
-            Código de imobilização & \num{3} & &\\
-            Taxa de símbolos da ligação série & \num{57.6} & \si{\kilo{}baud/\second} &\\
+            Tempo de espera após a travagem & \num{6} & \si{\second} & Tempo de espera antes de poder voltar a destravar\\
+            Tempo de reinicialização & <\num{100} & \si{\milli\second} &\\
+            Período do \emph{watchdog} & \num{2048} & \si{\milli\second} &\\
+            %Tempo do caminho crítico de execução & <\num{250} & \si{\milli\second} & Medido com verbosidade (VERBOSITY_LEVEL_ERROR $\|\|$ VERBOSITY_LEVEL_WARNING)\\
+            %Identificador do motor de tração & \num{1} & &\\
+            %Identificador do motor de direção & \num{2} & &\\
+            %Código de marcha frente & \num{0} & &\\
+            %Código de marcha trás & \num{1} & &\\
+            %Código de ponto morto & \num{2} & &\\
+            %Código de imobilização & \num{3} & &\\
+            Taxa máxima de símbolos da ligação série & \num{57.6} & \si{\kilo{}baud/\second} &\\
             \bottomrule
         \end{tabular}
-        \caption{Parâmetros do \acs{ROVIM}}
+        \caption{Especificações técnicas do \acs{ROVIM}.}
         \label{tab:parametros}
     \end{center}
 \end{table}
 
+
 \section{Trabalhos futuros}
-Refinação do protótipo. Dois caminhos de melhoramento: refinação do hardware atual, e construção de um novo protótipo com as lições aprendidas.\\
-Refinação do hw atual:\\
-\begin{description}
-\item passo seguinte, por este veículo ainda ter um potencial de refinamento muito grande.
-\item Testes: desenhar um programa de testes de aceitação compreensivo, que premita aumentar o grau de confiança no veículo e caracterizar melhor as propriedades do veículo. Usar estes testes para identificar áreas de melhoria na construção de um novo veículo.
-\item Integrar os módulos superiores.
-Novo protótipo:
-\item corrigir erros.
-\item Integrar requisitos de elevada fiabilidade, autonomia, custo baixo, e reprodutibilidade (standardização de peças, definição de medidas).
-\item Poupar dinheiro, redimensionando componentes (motores, controlador de tração). Ponderar o estado de novas tecnologias de baterias para aumentar a capacidade.
-\end{description}
+
+O protótipo construído e aqui apresentado apresenta largo potencial de melhoramento e permite tirar muitas lições a aplicar em iterações futuras.
+
+No protótipo atual, três problemas principais impedem que se explore todo o potencial do veículo: o acoplamento na direção, a fixação das baterias e isolamento dos contactos expostos. O primeiro problema limita as capacidades de condução, enquanto que os dois últimos apresentam riscos de segurança. Dado que a transmissão mais maleável por correia se revelou ineficaz, a sua substituição por outro tipo de acoplamento não maleável, como por exemplo uma corrente e carretos de bicicleta, resolve o problema atual. O esticador atual pode ser reaproveitado para manter esticada (devido aos dentes mais pronunciados deste tipo de carretos, o esticador não precisa de fazer um esforço tão grande) uma corrente suficientemente larga para se poder soltar caso se pretenda virar através do guiador. A fixação das baterias representa um problema mais difícil de resolver, mas passará por uma montagem fixadora que envolva as baterias, como usado nos veículos comerciais. Aqui provavelmente será necessário procurar um fornecedor especializado para conseguir obter uma solução satisfatória. Isolar os contactos expostos passa por refazer as placas protótipo com ferramentas industriais (agora que os circuitos estão validados, faz sentido passar para uma construção mais robusta) e isolar os bornes e outros pontos elétricos ao ar livre. Com estes três problemas resolvidos, o grau de confiança no protótipo aumenta significativamente, o que permite explorar melhor as suas capacidades.
+
+Outros aspetos de melhoria no protótipo atual são refinações, nomeadamente um programa de testes estruturado e compreensivo, e adição de funcionalidades interessantes, como interface \ac{I2C} e/ou por rádio controlo, e aumento do grau de autonomia da condução (como a adição da destravagem por \emph{software}).
+
+Numa iteração posterior do protótipo, é possível reduzir significativamente os custos na escolha de componentes mais adequados. Pode também ser ponderado o uso de tecnologias mais recentes, nomeadamente ao nível das baterias, mas dado o potencial de evolução do protótipo atual, este caminho deve ser relegado para segundo plano.
+
+%Refinação do protótipo. Dois caminhos de melhoramento: refinação do hardware atual, e construção de um novo protótipo com as lições aprendidas.\\
+%Refinação do hw atual:\\
+%\begin{description}
+%\item passo seguinte, por este veículo ainda ter um potencial de refinamento muito grande.
+%\item Testes: desenhar um programa de testes de aceitação compreensivo, que premita aumentar o grau de confiança no veículo e caracterizar melhor as propriedades do veículo. Usar estes testes para identificar áreas de melhoria na construção de um novo veículo.
+%\item Integrar os módulos superiores.
+%Novo protótipo:
+%\item corrigir erros.
+%\item Integrar requisitos de elevada fiabilidade, autonomia, custo baixo, e reprodutibilidade (standardização de peças, definição de medidas).
+%\item redução de custos, redimensionando componentes (motores, controlador de tração). Ponderar o estado de novas tecnologias de baterias para aumentar a capacidade.
+%\end{description}

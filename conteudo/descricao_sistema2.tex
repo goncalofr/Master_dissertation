@@ -1,13 +1,15 @@
 \chapter{Descrição da T2D}
 \label{ch:componentes_sistema}
 
-Neste capítulo apresentam-se os constituintes do módulo \ac{T2D}, do ponto de vista da sua concepção e instalação no veículo. No dim deste capítulo o leitor deve conseguir identificar os em detalhe os vários órgãos do veículo e entender o como e o porquê da sua concepção e implementação.
+Neste capítulo apresentam-se os constituintes do módulo \ac{T2D}, do ponto de vista da sua concepção e instalação. No dim deste capítulo o leitor deve conseguir identificar em detalhe os vários órgãos do veículo e entender como foram concebidos e implementados e porquê.
 
 \section{Visão geral do módulo}
 
-O módulo \ac{T2D} do \ac{ROVIM} é fundamentalmente constituído por atuadores eletromecânicos para as funções de tração, travagem e direção de um veículo, por dois mecanismos distintos de condução (manual e por computador) e por um programa de controlo do estado do veículo. Todos os componentes do módulo foram projetados e instalados à volta destas funcionalidades.
+O módulo \ac{T2D} do \ac{ROVIM} é fundamentalmente constituído por atuadores eletromecânicos para as funções de tração, travagem e direção de um veículo, por dois mecanismos distintos de condução (manual e por computador) e por um programa de monitorização e controlo do estado do veículo. Todos os componentes do módulo foram projetados e instalados à volta destas funcionalidades.
 
 A figura \ref{fig:diagrama_blocos} ilustra um esquema de alto nível dos componentes embarcados no veículo e das suas interligações. Os atuadores integram controladores/conversores de potência responsáveis por mover o respetivo motor a partir da alimentação das baterias, de acordo com as ordens dos mecanismos de condução, e sensores que permitem ao microcontrolador monitorizar constantemente o estado do sistema.
+
+O microcontrolador recolhe informação sobre o estado dos atuadores e implementa uma interface de condução que pode ser usada por outro computador, tornando assim o veículo verdadeiramente autónomo. O veículo incorpora ainda instrumentos de \emph{hardware} que permitem a condução \emph{in loco}. Existe também um mecanismo de segurança que, em caso de emergência, corta a alimentação aos motores da tração e direção e trava o motor do travão.
 
 \begin{figure}[!ht] %place around here
 	\centering
@@ -15,8 +17,6 @@ A figura \ref{fig:diagrama_blocos} ilustra um esquema de alto nível dos componen
     \caption[Diagram de blocos.]{Diagrama de blocos do sistema.\\As ligações a carregado representam barramentos de sinais.}
     \label{fig:diagrama_blocos}
 \end{figure}
-
-O microcontrolador recolhe informação sobre o estado dos atuadores e implementa uma interface de condução que pode ser usada por outro computador, tornando assim o veículo verdadeiramente autónomo. O veículo incorpora ainda instrumentos de \emph{hardware} que permitem a condução \emph{in loco}. Existe também um mecanismo de segurança que, em caso de emergência corta a alimentação aos motores da tração e direção e trava o motor do travão.
 
 %A alimentação dos motores de tração e direção pode ser cortada por um módulo de segurança,
 
@@ -29,7 +29,7 @@ A condução consiste no controlo dos atuadores de tração e direção e é comandada 
 
 O \emph{chassi} é o esqueleto do \ac{ROVIM}, onde todos os componentes embarcados do módulo \ac{T2D} são instalados. É uma adaptação do \emph{chassi} de uma moto-quatro com motor de combustão interna, de onde foram removidas todas as peças não essenciais e soldadas estruturas em ferro para fixação dos componentes. Com o objetivo de facilitar eventuais alterações futuras, todos os componentes foram fixados ao \emph{chassi} de forma não permanente (aparafusados em vez de soldados).
 
-O \emph{chassi} selecionado foi o de uma \texttt{Suzuki quadsport lt-160}, por ser barato e ter espaço suficiente para acomodar os componentes. O conjunto comprado é ilustrado na figura \ref{fig:chassi_despido} e, para além do \emph{chassi}, é constituído pelas seguintes peças: rodas, sistema de direção, sistema de travagem dianteira, carreto do motor, corrente e eixo traseiro com respetivo carreto, travão e forquilha. Este apresenta um geometria de direção de Ackerman, acionada através do guiador, passando por uma coluna quase vertical.
+O \emph{chassi} selecionado foi o de uma \texttt{Suzuki quadsport lt-160}, por ser económico e ter espaço suficiente para acomodar os componentes. O conjunto comprado é ilustrado na figura \ref{fig:chassi_despido} e, para além do \emph{chassi}, é constituído pelas seguintes peças: rodas, sistema de direção, sistema de travagem dianteira, carreto do motor, corrente e eixo traseiro com respetivo carreto, travão e forquilha. Este apresenta um geometria de direção de Ackerman, acionada através do guiador, passando por uma coluna quase vertical.
 
 \begin{figure}[!ht] %place around here
 	\centering
@@ -43,7 +43,7 @@ Antes de iniciar as modificações no \emph{chassi} foram projetados e comprados o
 
 O \emph{chassi} foi alterado para construir na baía do antigo motor de combustão uma estrutura para duas plataformas de madeira \ac{MDF} empilhadas, de fácil acesso, onde embarcam as baterias (plataforma inferior) e a maior parte dos componentes de menor dimensão (plataforma superior).
 
-A plataforma inferior foi projetada para acomodar as baterias (que são o componente mais pesado do veículo) e assim não alterar significativamente o centro de gravidade projectado pelo construtor da moto. Estas são instaladas pela lateral da plataforma e são acondicionadas com recurso a tábuas frontais (dispostas em toda a altura das baterias), batentes rasos nas traseiras e laterais, colados na plataforma, e elásticos que as prendem aos limites da estrutura\todo{Mostrar a foto com as baterias presas}. O método de fixação usado apresenta limitações em terrenos acidentados ou durante acelerações bruscas, em que as baterias se podem deslocar e originar curto-circuitos\todo[trabalhos futuros]{fixação das baterias}. Esta limitação foi assumida nesta iteração do protótipo devido a limitações dos métodos de fabrico e porque não impede a prova do conceito. Na eventualidade de esta limitação não se ter verificado, ter-se-ia optado por fixadores em plástico ao estilo dos usados nas baterias dos automóveis\todo{referir que há ferro exposto na baía das baterias, os seus perigos (combinados com a deficiente fixação das baterias) e que os utilizadores precisam de ter a noção}.
+A plataforma inferior foi projetada para acomodar as baterias (que são o componente mais pesado do veículo) e assim não alterar significativamente o centro de gravidade projectado pelo construtor da moto. Estas são instaladas pela lateral da plataforma e são acondicionadas com recurso a tábuas frontais (dispostas em toda a altura das baterias), batentes rasos nas traseiras e laterais (colados na plataforma) e elásticos que as prendem aos limites da estrutura\todo{Mostrar a foto com as baterias presas}. O método de fixação usado apresenta limitações em terrenos acidentados ou durante acelerações bruscas, em que as baterias se podem deslocar e originar curto-circuitos\todo[trabalhos futuros]{fixação das baterias}. Esta restrição foi assumida nesta iteração do protótipo devido a limitações dos métodos de fabrico e porque não impede a prova do conceito. Na eventualidade desta não se ter verificado, ter-se-ia optado por fixadores em plástico ao estilo dos usados nas baterias dos automóveis\todo{referir que há ferro exposto na baía das baterias, os seus perigos (combinados com a deficiente fixação das baterias) e que os utilizadores precisam de ter a noção}.
 
 %. é suficiente para manter as baterias no sítio durante a deslocação em terrenos planos e pouco acidentados, mas 
 
@@ -51,26 +51,24 @@ A plataforma inferior foi projetada para acomodar as baterias (que são o compone
 
 %estas plataformas sao de \ac{MDF}, madeira leve, resistente e não condutora. Apesar disso, o aro e os parafusos usados na plataforma são de ferro condutor, devido a limitações nos materiais disponíveis. Isso representa um risco adicional de curto-circuito nas baterias que deve ser tomado em conta durante a operação da moto. A solução desenhada para fixar as baterias no sitio consiste nos batentes de madeira colados e nos elásticos. É uma solução que serve para a prova do conceito do robô, mas que é frágil e impede a condução em terrenos acidentados ou inclinados. Está fora dos requisitos para esta fase proteções para a chuva.
 
-Na forquilha traseira foram criados apoios para fixar o conjunto motor de tração + redutor, de modo ao carreto de saída do redutor assentar no mesmo plano que o carreto do eixo traseiro, assim como um esticador para a corrente.\todo{mostrar foto dos apoios do motor em anexo}. Foi também criado um suporte para fixar um sensor junto ao carreto de saída do redutor, projetado para maximizar as opções de fixação.
+Na forquilha traseira foram criados apoios para fixar o conjunto motor de tração e redutor, de modo a que o carreto de saída do redutor assente no mesmo plano que o do eixo traseiro, assim como um esticador para a corrente\todo{mostrar foto dos apoios do motor em anexo}. Foi também criado um suporte para fixar um sensor junto ao carreto de saída do redutor, projetado para maximizar as opções de fixação.
 
 %devido à curta dimensao da corrente, teve que se colocar um esticador, porque o passo dos elos tornava-a muito curta ou muito larga.
 %ficou não suspenso - sujeito a mais vibrações mas elimina o problema de variação da distancia entre carretos (acontecia caso fixasse o motor na mesma zona, mas à parte suspensa), libertando assim espaço para mais baterias na zona central. As vibrações não são problema para as condições projetadas de uso.
 Foi criada uma pequena plataforma na forquilha traseira onde fixa o motor do travão, assente em anilhas de borracha, assim como braçadeiras semi-rígidas para fixar o motor. O travão dianteiro não foi alterado, uma vez que se pretende usá-lo no modo de condução manual.
 %, e apoios de borracha, ambos desenhados para acomodar a variação do ângulo entre o eixo do pivô do travão e o veio deste motor que se dá durante o curso da travagem.\todo{mostrar foto do pivô do travão em anexo, assim como da plataforma e braçadeiras. Mostrar que o pivo fica mais baixo quando se trava} O travão dianteiro não foi alterado, uma vez que não interferiu com as modificações necessárias e permite travar manualmente a moto.
 
-Para a direção foram criados na frente do \emph{chassi} apoios para fixar o redutor do motor da direção, um esticador para uma correia e um apoio para um sensor de posição.
+Criaram-se para a direção, na frente do \emph{chassi}, apoios para fixar o redutor do motor da direção, um esticador para uma correia e um apoio para um sensor de posição. A coluna da direção foi cortada para lhe acoplar uma roda dentada concêntrica, complanar com a roda dentada acoplada na saída do redutor da direção. Esta assenta e fixa em cima de um ferro quadrado solidário com a coluna, disposto radialmente. Ao quebrar a coluna da direção, criou-se uma zona morta, discutida em mais detalhe em \ref{sec:direcao}.%: a parte superior da direção (acoplada ao guiador) tem que girar um determinado ângulo\todo{quanto?} até que a zona inferior (acoplada às rodas) comece a girar solidariamente. Esta zona morta cria dificuldades adicionais no controlo da posição, discutidas com mais detalhe em \label{sec:direcao}.
 
-A coluna da direção foi cortada para lhe acoplar uma roda dentada concêntrica, complanar com a roda dentada acoplada na saída do redutor da direção. Esta assenta e fixa em cima de um ferro quadrado solidário com a coluna, disposto radialmente. Ao quebrar a coluna da direção, criou-se uma zona morta, discutida em mais detalhe em \ref{sec:direcao}.%: a parte superior da direção (acoplada ao guiador) tem que girar um determinado ângulo\todo{quanto?} até que a zona inferior (acoplada às rodas) comece a girar solidariamente. Esta zona morta cria dificuldades adicionais no controlo da posição, discutidas com mais detalhe em \label{sec:direcao}.
+O resultado final a que de ora se chama \emph{chassi} é composto pelos componentes C\ref{componentes:C1} -- C\ref{componentes:C9} (ver apêndice \ref{ap:c}). O raio das rodas traseiras é de \SI{28}{cm}, o das rodas dianteiras é de \SI{23}{\centi\meter}\done\todo{qto} e a tara do veículo de cerca de \SI{250}{Kg} (o veículo não tem lugar para condutor).
 
-O resultado final a que de ora se chama \emph{chassi} é composto pelos componentes C\ref{componentes:C1} -- C\ref{componentes:C9} (ver apêndice \ref{ap:c}). O raio das rodas traseiras é de \SI{28}{cm}, o das rodas dianteiras é de \todo{qto} e a tara do veículo de cerca de \SI{300}{Kg} (o veículo não tem lugar para condutor).
-
-\section{Baterias}
+\section{Sistema de baterias embarcado}
 
 As baterias são a fonte de energia do \ac{ROVIM}. São um dos componentes com maior potencial para causar acidentes sérios, nomeadamente curto-circuitos e explosões. Tendo em conta os critérios de desenho da plataforma, foi escolhida a tecnologia de baterias \ac{VRLA}, devido à sua robustez, maturidade e fiabilidade. As desvantagens desta família de baterias (densidade de energia) têm pouca relevância para os requisitos do \ac{ROVIM} em relação aos seus benefícios. A validade da escolha foi demonstrada durante o processo de construção, num evento em que uma bateria sobrecarregada libertou gases, mas não explodiu\todo{mostrar foto em anexo}.
 
 Optou-se por dispensar o uso de um sistema de monitorização nesta iteração do protótipo, apesar das suas vantagens para a segurança do sistema (mesmo em baterias \ac{VRLA}) e prolongamento da vida útil das baterias, para reduzir a complexidade do sistema e porque o regime de utilização previsto para o veículo é lento e progressivo, colocando pouca exigência no sistema de armazenamento de energia\todo[trabalhos futuros]{sistema de gestão, após resultados experimentais}.
 
-Existem 7 baterias \texttt{EnerSys Genesis NP55-12R}: 6 montadas em série na moto e uma bateria suplente. A figura \ref{fig:baterias_cima_frente}, mostra a vista explodida da montagem das baterias fora da moto. Cada bateria pesa \SI{17.7}{\kilogram} e tem uma corrente nominal de descarga de \SI{150}{A}, conseguindo atingir picos de \SI{500}{A}. A um ritmo constante de descarga de \SI{10}{A}, a carga de uma bateria dura cerca de \SI{5}{\hour}.
+Existem 7 baterias \texttt{EnerSys Genesis NP55-12R}: 6 montadas em série na moto e uma bateria suplente. A figura \ref{fig:baterias_cima_frente}, mostra a vista explodida da montagem das baterias fora da moto. Cada bateria pesa \SI{17.7}{\kilogram} e tem uma corrente nominal de descarga de \SI{150}{A}, conseguindo atingir picos de \SI{500}{A}.%A um ritmo constante de descarga de \SI{10}{A}, a carga de uma bateria dura cerca de \SI{5}{\hour}.
 
 \begin{figure}[h] %place around here
     \centering %preferable to \begin{center}, because it doesn't add vspace
@@ -80,13 +78,13 @@ Existem 7 baterias \texttt{EnerSys Genesis NP55-12R}: 6 montadas em série na mot
 \end{figure}
 
 %Instalação:
-Foram instaladas 6 baterias porque a sua disposição era acomodável no \emph{chassi} sem grandes dificuldades, porque são suficientes para atingir a autonomia desejada (ver \ref{sec:tracao}) e porque a tensão do conjunto corresponde à tensão nominal do motor de tração. Para melhorar a estabilidade térmica do conjunto foram usados espaçadores em madeira não condutora entre as baterias, que melhoram a circulação de ar. As baterias são acomodadas com recurso a batentes de madeira e elásticos, como descrito em \ref{sec:chassi}\todo{mostrar em anexo foto das baterias montadas}
-As baterias estão ligadas por cabos multifilares de elevado calibre\todo{qto} com as ligações expostas, o que aumenta o risco de choques elétricos e exige dos utilizadores cuidado adicional\todo[trabalhos futuros]{isolar ligações}. \todo[conclusão]{Como apreciação global, o sistema das baterias funciona bem de forma estática e sem interferência, mas não cumpre satisfatoriamente os critérios de segurança.}
+Foram instaladas 6 baterias, uma vez que a sua disposição era acomodável no \emph{chassi} sem grandes dificuldades e porque assim permitem atingir a autonomia desejada (ver \ref{sec:tracao}) e fornecer a tensão nominal ao motor de tração. Para melhorar a estabilidade térmica do conjunto foram inseridos espaçadores em madeira não condutora entre as baterias, que melhoram a circulação de ar. As baterias são acondicionadas com recurso a batentes de madeira e elásticos, como descrito em \ref{sec:chassi}\todo{mostrar em anexo foto das baterias montadas}. As baterias estão ligadas por cabos multifilares de elevado calibre\todo{qto} com as ligações expostas, o que aumenta o risco de choques elétricos e exige dos utilizadores cuidado adicional\todo[trabalhos futuros]{isolar ligações}. \todo[conclusão]{Como apreciação global, o sistema das baterias funciona bem de forma estática e sem interferência, mas não cumpre satisfatoriamente os critérios de segurança.}
+
 No esquema elétrico \texttt{1-Alimentações} do apêndice \ref{ap:b} estão desenhadas as ligações elétricas às baterias. A tensão é fornecida ao sistema em duas voltagens: \SI{12}{V} e \SI{72}{V}, filtrada e limitada por fusíveis, sendo a bateria ligada à massa comum às duas alimentações, o que a torna alvo de um esforço adicional e a mais vulnerável do conjunto. O terminal negativo da bateria \texttt{B1} foi definido como o ponto comum dos circuitos e ligado à massa por um cabo de elevado calibre \todo{qto?}. A estrutura de ferro do \emph{chassi} foi definida como massa, por apresentar o menor potencial possível.
 
 %Descrever as baterias, e a sua disposição na moto. Justificar a sua escolha. Dizer que só foi possível assim por causa do motor. Apresentar um valor esperado para a autonomia (com base nos cálculos do motor de lynch), mas dizer que se incluíram o máximo que se conseguiu no espaço que havia. Dizer que se optou por ir à campeão, sem sistema de gestão das baterias. Referir as limitações no isolamento dos circuitos e no fato de não estarem fixas à moto. Referir os carregadores.
 %autonomia:
-A tensão do conjunto das baterias carregadas varia entre os \SI{81}{V} quando novo e os atuais \SI{71.6}{V}, em que as baterias estão no seu fim de vida e já não aceitam carga. Quando descarregadas, as baterias apresentam uma tensão de \SI{72}{V} (durante a sua vida útil). A energia nominal do conjunto é de \SI{56.3}{Ah}, ou \SI{4.05}{KWh}, e a sua autonomia estimada é apresentada em \eqref{eq:autonomia_estimada}.
+A tensão do conjunto das baterias carregadas varia entre os \SI{81}{V} quando novo e os atuais \SI{71.6}{V}, em que as baterias estão no seu fim de vida e já não aceitam carga. Quando descarregadas, as baterias apresentam uma tensão de \SI{72}{V} (durante a sua vida útil). A energia nominal do conjunto é de \SI{56.3}{Ah}, ou \SI{4.05}{KWh}, e a sua autonomia estimada é apresentada em \eqref{eq:autonomia_estimada}. Foram adquiridos também dois carregadores para as baterias do \ac{ROVIM}: um individual de 12 V e outro de 72 V, de modo a poder carregar o conjunto sem o retirar do veículo.
 
 %As baterias selecionadas para o \ac{ROVIM} foram projetadas para funcionarem em conjunto com o sistema de propulsão. De modo a limitar a complexidade do planeamento, assumiu-se como residual o consumo de energia dos outros componentes elétricos.\todo{apresentar cálculos para a autonomia}
 
@@ -96,23 +94,23 @@ A tensão do conjunto das baterias carregadas varia entre os \SI{81}{V} quando no
 
 %Atualmente, as baterias atuais estão no seu fim de vida (5 anos em repouso \cite{NP55-12R_datasheet}), pelo que devem ser substituídas.
 
-Foram adquiridos também dois carregadores para as baterias do \ac{ROVIM}: um individual de 12 V e outro de 72 V, de modo a poder carregar o conjunto sem o retirar do veículo.
 
-\section{Tração}
+\section{Sistema de tração do \acs{ROVIM}}
 \label{sec:tracao}
 
-O sistema de propulsão, do qual o subsistema de tração faz parte, é a parte mais importante do veículo, na medida em que desempenha a funcionalidade principal, influência significativamente a localização e o dimensionamento dos outros componentes e tem o maior potencial para causar acidentes sérios, nomeadamente curto-circuitos e embates.
+\subsection{Dimensionamento do sistema}
+O sistema de propulsão, do qual o subsistema de tração faz parte, é a parte mais importante do veículo, na medida em que desempenha a funcionalidade principal, influencia significativamente a localização e o dimensionamento dos outros componentes e tem o maior potencial para causar acidentes sérios, nomeadamente curto-circuitos e embates.
 
 %O sistema de propulsão foi dimensionado como um todo e foi, junto com a adaptação do \emph{chassi}, a primeira tarefa realizada.
 Nesta secção é apresentado o dimensionamento das baterias junto com o do motor, já que para calcular a autonomia do veículo é preciso conhecer as suas necessidades de potência. 
 %A escolha da tecnologia a usar é influenciada pela capacidade de cumprimento dos requisitos e critérios de desenho, discutidos em \ref{ch:estado_arte}, enquanto que o dimensionamento do subsistema se prende com o cumprimento dos requisitos de potência e de localização dos componentes.
-Os requisitos/critérios principais que balizaram o dimensionamento do sistema de propulsão foram a velocidade máxima, a autonomia, a flexibilidade e a segurança. De modo a simplificar o dimensionamento das baterias foram ignoradas as contribuição dos outros sistemas elétricos para a autonomia. Esta aproximação foi tomada porque se prevê que o motor de tração seja o principal consumidor de energia e porque se pretende apenas uma ordem de grandeza das necessidades do veículo, já que na seleção dos componentes entram outros fatores de escolha mais importantes.
+Os requisitos/critérios principais que balizaram o dimensionamento do sistema de propulsão foram a velocidade máxima, a autonomia, a flexibilidade e a segurança. De modo a simplificar o dimensionamento das baterias foram ignoradas as contribuições dos outros sistemas elétricos para a autonomia, uma vez que se prevê que o motor de tração seja o principal consumidor de energia e porque se pretende apenas uma ordem de grandeza das necessidades do veículo, pois na seleção dos componentes entram outros fatores de escolha mais importantes.
 %, de onde se deriva a potência mínima do motor, a flexibilidade, que implica que o motor deva ser sobredimensionado, e a segurança, que implica limitar ativa e passivamente a velocidade máxima possível de atingir.
 
 %A partir do requisito R\ref{requisitos:R2} e do peso do veículo deriva-se a potência mínima do sistema de tração a partir da relação potência--binário:
 %. Para cálculo da potência mínima do sistema é des
 
-A potência mínima pode ser calcula através da relação potência -- binário:
+A potência mínima pode ser calcula através da relação entre a potência e o binário:
 %
 \begin{equation}
 P = \omega \cdot T  \label{eq:potencia}
@@ -139,20 +137,20 @@ Substituindo em \eqref{eq:potencia}, obtém-se a expressão para a potência mínima
 De acordo com \cite[p. 117]{coefs_atrito}, o coeficiente de atrito típico dos pneus de um automóvel pode variar entre \num{0.010}--\num{0.015} numa superfície de betão e é de cerca de \num{0.3} numa superfície de areia. Substituindo os valores em \eqref{eq:potencia_vmb} e considerando o pior caso para a circulação numa superfície de betão à velocidade mínima do requisito R\ref{requisitos:R2}, obtém-se a potência mínima necessária para o motor de tração,%e o binário mínimo a aplicar nas rodas para esta aplicação:
 %
 \begin{align}
-    P_{min} &= 10 \cdot \frac{3600}{1000} \cdot 300 \cdot 10 \cdot 0.015\\
-            &= \SI{1620}{\watt}
+    P_{min} &= \frac{10}{3.6} \cdot  250 \cdot 10 \cdot 0.015\\
+            &= \SI{104.2}{\watt}
 \end{align}
 %
 %\begin{align}
-%    T_{min} &= 300 \cdot 10 \cdot 0.015 \cdot 0.28\\
+%    T_{min} &= 250 \cdot 10 \cdot 0.015 \cdot 0.28\\
 %          &= \SI{12.6}{\newton\meter}
 %\end{align}
 %
-Para o perfil típico de utilização deste veículo, um sistema de propulsão com estas características será suficiente. Mas é necessário garantir uma margem de segurança no dimensionamento, e antever possíveis alterações futuras. Por isso desenhou-se um cenário extremo de possível utilização futura do veículo, em que este transporta uma carga adicional de \SI{100}{\kilogram} numa superfície de areia, a um terço da velocidade máxima. Neste caso as necessidades da propulsão são de:
+Para o perfil típico de utilização deste veículo, um sistema de propulsão com estas características será suficiente, mas é necessário garantir uma margem de segurança no dimensionamento, e antever possíveis alterações futuras. Por isso desenhou-se um cenário extremo de possível utilização futura do veículo, em que este transporta uma carga adicional de \SI{150}{\kilogram} numa superfície de areia, a um terço da velocidade máxima. Neste caso as necessidades da propulsão são de:
 %
 \begin{align}
-    P_{min} &= \frac{10}{3} \cdot \frac{3600}{1000} \cdot 400 \cdot 10 \cdot 0.3\\
-            &= \SI{14400}{\watt} \label{eq:potencia_estimada}
+    P_{min} &= \frac{10}{3} \cdot \frac{1}{3.6} \cdot 400 \cdot 10 \cdot 0.3\\
+            &= \SI{1111}{\watt} \label{eq:potencia_estimada}
 \end{align}
 %
 %\begin{align}\label{eq:potência_extrema_estimada}
@@ -169,25 +167,27 @@ Com base nas necessidades de potência apresentadas é possível estimar a autonomi
 Substituindo em \eqref{eq:autonomia} para o cenário tipico de utilização, obtém-se a autonomia mínima de:
 %
 \begin{align} 
-    t &= \frac{4.05}{1620}\\
-        &= \SI{2.5}{\hour} \label{eq:autonomia_estimada}
+    t &= \frac{4.05 K}{125}\\
+        &= \SI{38.9}{\hour} \label{eq:autonomia_estimada}
 \end{align}
 %
 E para o cenário extremo de utilização:
 %
 \begin{align}
-    t &= \frac{4.05}{14400}\\
-        &= \SI{0.28}{\hour}
+    t &= \frac{4.05 K}{1111}\\
+        &= \SI{3.65}{\hour}
 \end{align}
 %
-De \eqref{eq:autonomia_estimada} se conclui que o conjunto das baterias utilizado é suficiente para cumprir o requisito R\ref{requisitos:R1}, embora com pouca folga.
+A partir de \eqref{eq:autonomia_estimada} se conclui que o conjunto das baterias utilizado cumpre folgadamente o requisito R\ref{requisitos:R1} para o caso típico de utilização.% embora com pouca folga.
 %As baterias embarcadas possuem uma capacidade de \SI{4.05}{KWh}, de onde se obtém a autonomia mínim
 %Tendo em conta os critérios de desenho e os requisitos da plataforma, procurou-se limitar a velocidade do motor de forma ativa e passiva
 %Foi com base neste cenário extremo que se escolheram os componentes do subsistema de tração da \ac{T2D}.
 
 %Com base nas estimativas das necessidades de potência apresentadas em \eqref{eq:potencia_estimada} e \eqref{eq:potencia_extrema_estimada} partiu-se para escolha do motor a usar, mas estas acabaram por ter pouca relevância em comparação o principal fator de escolha do motor foi o comprimento axial
+\done\todo{alterar requisito autonomia}
 
-Com base nas estimativas das necessidades de potência, nos requisitos da plataforma e nas restrições à localização dos componentes, escolheu-se o motor \texttt{Agni B95--R} para a propulsão do veículo. Este é um modelo do motor axial de Lynch, de \SI{16}{KW} e \SI{230}{A} nominais, capaz de atingir \SI{6000}{rpm} a \SI{72}{V} e \SI{55}{Nm} a \SI{400}{A}, e foi selecionado devido ao seu reduzido comprimento axial, por ser amplamente suficiente para satisfazer as necessidades de potência do projeto e porque vinha distribuído num \emph{kit} com o controlador e a maior parte das peças necessárias para instalar o subsistema de tração, o que simplificou o processo de dimensionamento e compra de componentes. A instalação do conjunto motor+redutor no moto é ilustrada na figura \todo{figura redutor}\ref{fig:motor+redutor}.
+\subsection{Sistema embarcado}
+\todo{rever estas conclusões. rever estes calculos}Com base nos requisitos da plataforma e nas restrições à localização dos componentes, escolheu-se o motor \texttt{Agni B95--R} para a propulsão do veículo. Este é um modelo do motor axial de Lynch, de \SI{16}{KW} e \SI{230}{A} nominais, capaz de atingir \SI{6000}{rpm} a \SI{72}{V} e \SI{55}{Nm} a \SI{400}{A}, muito mais potente que o necessário, mas que ainda assim foi o selecionado devido ao seu reduzido comprimento axial e porque vinha distribuído num \emph{kit} com o controlador e a maior parte das peças necessárias para instalar o subsistema de tração, o que simplificou o processo de dimensionamento e compra de componentes. A instalação do conjunto motor+redutor no moto é ilustrada na figura \todo{figura redutor}\ref{fig:motor+redutor}.
 
 \begin{figure}[!htbp]
     \centering
@@ -216,26 +216,26 @@ Ou \SI{32.25}{\kilo\meter/\hour}\todo[conclusao]{devia ter limitado mais a veloc
              &= \SI{1080.2}{\newton\meter}
 \end{align}
 
-Optou-se por construir em vez de comprar um redutor porque as alternativas encontradas eram caras, com pouca relação de redução e exigiam alterações à disposição dos componentes e à forma como se liga o eixo ao redutor. Ao construir o redutor de raiz, foi possível controlar em detalhe estes parâmetros de acordo com as exigências do projeto.
+Optou-se por construir em vez de comprar um redutor, porque as alternativas encontradas eram caras, com pouca relação de redução e exigiam alterações à disposição dos componentes e à forma de ligação do eixo ao redutor. Ao construir o redutor de raiz, foi possível controlar em detalhe estes parâmetros de acordo com as exigências do projeto.
 
 %\todo{dizer pq se fêz um de raiz - que se aproveitaram os carretos e corrente originais da moto, que as opções eram muito caras, com pouca redução, ou transmissão de binário unidirecional para as caixas sem fim coroa--pinhão além disso complicava o acoplamento do redutor ao eixo.}%. O binário é transmitido do motor ao eixo traseiro por três acoplamentos de engrenagens e carretos, totalizando uma desmultiplicação total de \num{19.(63)} vezes.
 
-A construção do redutor consiste em duas chapas de metal que cobrem lateralmente as engrenagens e onde assentam os rolamentos do veios, e quatro espaçadores nos cantos das placas, que as fixam em paralelo e com elas formam um contentor. O veio do motor fica acoplado a uma engrenagem dentro do contentor. À saída, um carreto instalado no último veio (que se propaga para além do espaço entre as duas chapas) transmite o binário para o carreto acoplado ao eixo traseiro através de uma corrente.
+A construção do redutor consiste em duas chapas de metal, que cobrem lateralmente as engrenagens e onde assentam os rolamentos do veios; e quatro espaçadores nos cantos das placas, que as fixam em paralelo e com elas formam um contentor. O veio do motor fica acoplado a uma engrenagem dentro do contentor. À saída, um carreto instalado no último veio (que se propaga para além do espaço entre as duas chapas) transmite o binário para o carreto acoplado ao eixo traseiro através de uma corrente.
 
 %A figura \ref{fig:motor_redutor_instalados_3_4}\todo{adicionar figura que mostre as engrenagens da caixa, o motor, e a corrente e os carretos - plano 3/4 sugere-se} mostra a instalação no veículo do conjunto motor + redutor. O apêndice \ref{ap:e}\todo{criar apêndice D} contém os desenhos técnicos das peças.
 
-O \emph{kit} do motor comprado era composto também pelo seu controlador, um acelerador de punho, um contator, um fusível e fios e conetores compatíveis com o controlador, que é o elemento agregador do subsistema de tração, onde todas as ligações elétricas são efetuadas.
+
 
 %O apêndice \ref{ap:d} contém o esquema elétrico da montagem do termístor. Este termístor tem um resistência de \todo{quantos?} K$\Omega$ (medida com um multímetro) à temperatura ambiente, e de cerca de 2 K$\Omega$ à temperatura máxima aceitável para o funcionamento das escovas do motor\cite{NTC_datasheet}.
 
 %A versão reforçada usada nesta aplicação atinge as 6000 \ac{rpm} e tem uma potência nominal de 16 KW a 72 V, cerca de 230 A de corrente nominal. A potência de pico é de cerca de 30 KW, e a corrente de pico cerca de 400 A.
-O controlador é o modelo recomendado pelo construtor do motor, um \texttt{Sigmadrive PMT835M}. Este é um controlador de quatro quadrantes para motores \ac{DC} de ímanes permanentes, de \SI{80}{V} e \SI{350}{A} nominais \cite{datasheet_PMT835M}, indicado para uso na tração de veículos elétricos. Vem equipado com dois \acp{LED} informativos e um programador removível. O controlador, em conjunto com o fusível e o contator foram montados na plataforma superior de estibordo, sendo que foram introduzidos espaçadores entre o controlador e a plataforma, para melhorar a dissipação de calor\todo{mostrar foto}.
+O \emph{kit} do motor adquirido era composto também pelo seu controlador, um acelerador de punho, um contactor, um fusível, fios e conetores compatíveis com o controlador, que é o elemento agregador do subsistema de tração, onde todas as ligações elétricas são efetuadas. O controlador é o modelo recomendado pelo construtor do motor, um \texttt{Sigmadrive PMT835M}. Este é um controlador de quatro quadrantes para motores \ac{DC} de ímanes permanentes, de \SI{80}{V} e \SI{350}{A} nominais \cite{datasheet_PMT835M}, indicado para uso na tração de veículos elétricos. Vem equipado com dois \acp{LED} informativos e um programador removível e foi montado em conjunto com o fusível e o contactor na plataforma superior de estibordo, sendo introduzidos espaçadores entre o controlador e a plataforma para melhorar a dissipação de calor\todo{mostrar foto}.
 
 Numa primeira fase, de modo a atingir o objetivo intermédio de condução manual, as ligações do controlador foram efetuadas de acordo com as recomendações do fabricante \cite[p. 15]{datasheet_PMT835M}, a um acelerador potenciométrico, a um sensor de velocidade (apresentado em detalhe em \ref{ssec:encoder}), ao motor e ao seu termístor, às baterias, a um \ac{LED} exterior e aos vários interruptores de controlo. Após a validação intermédia, passaram-se os sinais de controlo da tração já construídos por um multiplexador de duas entradas para uma saída, que seleciona os modos de condução.
 
-As ligações elétricas finais do controlador são apresentadas no esquema \texttt{2 -- Tração} do apêndice \ref{ap:b}. O acelerador comanda um potenciómetro de \SI{5}{K\ohm}, alimentado a \SI{5}{V} e usado para gerar o sinal de aceleração de modo manual. É também ligado um \ac{LED} exterior para indicação de erros. A ligação às baterias é feita através de cabo multifilar de elevado calibre\todo{qto} até à plataforma superior, onde liga ao fusível e ao contator, equipado com uma resistência de pré-carga de \SI{10}{K\ohm} (fornecida no \emph{kit}). A alimentação para ligar o contator é fornecida ao controlador através de uma ligação de baixa corrente (com fusível lento de \SI{1}{A}) entre o fusível principal e o contator, e que passa por um interruptor de ligar/desligar. A ligação do contator foi alterada para passar a depender de um sistema de segurança com capacidade de cortar a alimentação do controlador em caso de emergência (ver \ref{ssec:seguranca})
+As ligações elétricas finais do controlador são apresentadas no esquema \texttt{2 -- Tração} do apêndice \ref{ap:b}. O acelerador comanda um potenciómetro de \SI{5}{K\ohm}, alimentado a \SI{5}{V} e usado para gerar o sinal de aceleração de modo manual. É também ligado um \ac{LED} exterior para indicação de erros. A ligação às baterias é feita através de cabo multifilar de elevado calibre\todo{qto} até à plataforma superior, onde liga ao fusível e ao contactor, equipado com uma resistência de pré-carga de \SI{10}{K\ohm} (fornecida no \emph{kit}). A alimentação para ligar o contactor é fornecida ao controlador através de uma ligação de baixa corrente (com fusível lento de \SI{1}{A}) entre o fusível principal e o contactor, e que passa por um interruptor de ligar/desligar. A ligação do contactor foi alterada para passar a depender de um sistema de segurança com capacidade de cortar a alimentação do controlador em caso de emergência (ver \ref{ssec:seguranca}).
 
-O controlador prevê também a ligação ao sensor de temperatura do motor, estando programado para funcionar com o modelo \texttt{Philips KTY81-220} ligado com uma resistência de \emph{pull--up} de \SI{2.2}{K\ohm} a \SI{5}{V}. Este é um termístor diferente do que vem equipado no motor, um \ac{NTC} de \SI{37.5}{K\ohm} a \SI{25}{\degree} e cerca de \SI{5}{K\ohm} à temperatura a partir da qual se deve começar a limitar a corrente no motor \cite{NTC_datasheet} enquanto que o \texttt{KTY81-220} é um \ac{PTC} de \SI{2}{K\ohm} a \SI{25}{\degree} de caraterística linear e coeficiente de temperatura de \SI{0.79}{\%/\kelvin} \cite{PTC_datasheet}. O circuito recomendado foi modificado para adaptar o sensor existente ao esperado pelo controlador. A montagem de entrada do pino do sensor de temperatura é um divisor resistivo, onde a tensão no ponto intermédio é dada por:
+O controlador prevê também a ligação a um sensor de temperatura do motor, estando programado para funcionar com o modelo \texttt{Philips KTY81-220} ligado com uma resistência de \emph{pull--up} de \SI{2.2}{K\ohm} a \SI{5}{V}. Este é um termístor diferente do que vem equipado no motor, um \ac{NTC} de \SI{37.5}{K\ohm} a \SI{25}{\degree} e cerca de \SI{5}{K\ohm} à temperatura a partir da qual se deve começar a limitar a corrente no motor \cite{NTC_datasheet}, enquanto que o \texttt{KTY81-220} é um \ac{PTC} de \SI{2}{K\ohm} a \SI{25}{\degree} de caraterística linear e coeficiente de temperatura de \SI{0.79}{\%/\kelvin} \cite{PTC_datasheet}. O circuito recomendado foi modificado para adaptar o sensor existente ao esperado pelo controlador. A montagem de entrada do pino do sensor de temperatura é um divisor resistivo, onde a tensão no ponto intermédio é dada por:
 %
 \begin{equation}
     V = V_{CC} \cdot \frac{R_{pull-down}}{R_{pull-down} + R_{pull-up}}
@@ -263,9 +263,9 @@ Como a resistência dos sensores varia em sentidos opostos, é necessário substitu
       &= \SI{7.75}{\kilo\ohm}
 \end{align}
 %
-O sensor de temperatura foi ligado ao pino do controlador, juntamente com uma resistência de \emph{pull--down} estandardizada de valor próximo, \SI{7.5}{\kilo\ohm}. As ligação do sensor de temperatura, assim como do sensor de velocidade foram feitas em fio de microfone, blindado, para minimizar o ruído induzido pelas escovas e os ímanes permanentes do motor.
+O sensor de temperatura foi ligado ao pino do controlador, juntamente com uma resistência de \emph{pull--down} estandardizada de valor próximo, \SI{7.5}{\kilo\ohm}. As ligação do sensor de temperatura, assim como as do sensor de velocidade, foram feitas em fio de microfone blindado para minimizar o ruído induzido pelas escovas e pelos ímanes permanentes do motor.
 
-O controlador possuí entradas para controlo das várias funções disponibilizadas, das quais apenas as seguintes são usadas: as entradas de seleção da direção da marcha (A1 e A2), um indicador do dispositivo de homem morto (A3), e do travão de mão (A7) e os controladores da travagem regenerativa e da aceleração (A8 e A9). O indicador do dispositivo do homem morto é usado apenas por imposição do programa do controlador, já que no projeto é usado outro mais abrangente. O indicador do travão de mão é usado para implementar a funcionalidade de imobilização do veículo, recorrendo à capacidade de \emph{"Anti Roll-back"} que o controlador disponibiliza.
+O controlador possuí entradas para controlo das várias funções disponibilizadas, das quais apenas as seguintes são usadas: as entradas de seleção da direção da marcha (A1 e A2), um indicador do dispositivo de homem morto (A3), e do travão de mão (A7) e os controladores da travagem regenerativa e da aceleração (A8 e A9). O indicador do dispositivo do homem morto é usado apenas por imposição do programa do controlador, já que no projeto é usado outro mais abrangente. O indicador do travão de mão é usado para imobilizar o veículo, recorrendo à capacidade de \emph{"Anti Roll-back"} que o controlador disponibiliza.
 
 O controlador possuí vários parâmetros configuráveis através do programador removível. A configuração adotada para este projeto é apresentada no apêndice \ref{ap:c}.
 
@@ -275,14 +275,14 @@ O controlador possuí vários parâmetros configuráveis através do programador remo
 O sistema de tração foi equipado com um sensor de velocidade para fins de monitorização e controlo do atuador. Foi escolhido um codificador de relutância variável por ser simples de construir e de montar, já que todas as engrenagens são de metal.
 \todo[conclusão]{devia ter usado um codificador ótico e aproveitado o fato de ter feito o reduto para maquinar o seu engate no veio}
 
-O núcleo do sensor é constituído por um circuito magnético permanente e um transdutor de energia magnética (uma bobina). Quando o sensor está próximo de uma engrenagem em rotação, os seus dentes vão fazer variar a relutância do circuito magnético e induzir uma tensão sinusoidal aos terminais da bobina de frequência proporcional à velocidade da engrenagem.
+O núcleo do sensor é constituído por um circuito magnético permanente e um transdutor de energia magnética (uma bobina). Quando o sensor está próximo de uma engrenagem em rotação, os seus dentes vão fazer variar a relutância do circuito magnético e induzir uma tensão alternada aos terminais da bobina de frequência proporcional à velocidade da engrenagem.
 
-A figura \ref{fig:corte_encoder} representa esquematicamente um corte longitudinal da cápsula do sensor construído. No topo do lado da engrenagem está um pólo de material ferromagnético, acoplado a um imane de neodímio cilíndrico, e envolvido por uma bobina de \num{800} espiras de fio de cobre de \SI{0.08}{mm} de diâmetro, ligada à entrada de uma placa com o circuito de condicionamento apresentado no esquema \texttt{Encoder} do apêndice \ref{ap:b} impresso. A montagem está encapsulada num tubo de \ac{PVC} com cola Araldite\textsuperscript{\textregistered} e montada no veículo como ilustra a figura \ref{fig:encoder_montagem}.
+A figura \ref{fig:corte_encoder} representa esquematicamente um corte longitudinal da cápsula do sensor construído. No topo do lado da engrenagem está um pólo de material ferromagnético, acoplado a um imane de neodímio cilíndrico, e envolvido por uma bobina de \num{800} espiras de fio de cobre de \SI{0.08}{mm} de diâmetro, ligada à entrada de uma placa com o circuito de condicionamento apresentado no esquema \texttt{Encoder} do apêndice \ref{ap:b} impresso, e de forma simplificada na imagem \ref{fig:encoder_simple}. A montagem está encapsulada num tubo de \ac{PVC} com uma resina (Araldite\textsuperscript{\textregistered}) e montada no veículo como ilustra a figura \ref{fig:encoder_montagem}.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.3\linewidth]{recursos/imagens/corte_capsula_sensor.jpg}
-    \caption[Corte longitudinal da cápsula do sensor de velocidade.]{Corte longitudinal da cápsula do sensor de velocidade. Legenda:\\1: bobina; 2: pólo ferromagnético; 3: imane de neodímio; 4: \acs{PCB}.}
+    \includegraphics[width=0.5\linewidth]{recursos/imagens/sensor_corte.jpg}
+\caption[Corte longitudinal da cápsula do sensor de velocidade.]{Esquema de um corte longitudinal de um sensor de relutância variável \cite{fig_sensor}.}% Legenda:\\"GEAR WHEEL": engrenagem onde é medida a velocidade; "POLE PIECE": pólo ferromagnético; "PERMANENT MAGNET": imane de neodímio; "HOUSING": encapsulamento; "SIGNAL WIRES": ligação à bobina; "COIL": bobina.}
     \label{fig:corte_encoder}
 \end{figure}
 
@@ -293,12 +293,19 @@ A figura \ref{fig:corte_encoder} representa esquematicamente um corte longitudin
     \label{fig:encoder_montagem}
 \end{figure}
 
-O circuito de condicionamento de sinal da \ac{PCB} transforma a tensão sinusoidal vinda da bobina numa onda quadrada de frequência proporcional à velocidade. O sinal da bobina é primeiramente amplificado e retificado com recurso a um amplificador operacional \emph{rail--to--rail} em montagem retificadora de precisão de meia onda. O sinal retificado é depois passado por um comparador com histerese adaptativa, que gera o sinal da saída e está ligado a um \ac{LED} que pisca a cada pulso, fornecendo assim uma confirmação visual da operação do sensor.
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.3\linewidth]{recursos/imagens/encoder_simple.jpg}
+    \caption{Circuito elétrico simplificado do sensor de velocidade.}
+    \label{fig:encoder_simple}
+\end{figure}
+
+O circuito de condicionamento de sinal da \ac{PCB} transforma a tensão alternada induzida na bobina num sinal binário de frequência proporcional à velocidade. O sinal da bobina é primeiramente amplificado e retificado com recurso a um amplificador operacional \emph{rail--to--rail} em montagem retificadora de precisão de meia onda. O sinal retificado é depois passado por um comparador com histerese, que gera o sinal da saída e está ligado a um \ac{LED} que pisca a cada pulso, fornecendo assim uma confirmação visual da operação do sensor.
 
 Para dimensionar o comparador, foi analisado o comportamento do sinal produzido pelo amplificador. Numa montagem de ensaio a \SI{4}{\milli\meter} de uma engrenagem a \SI{90}{rpm}, mediu-se uma amplitude de \SI{20}{\milli\volt} para o sinal produzido pela bobina, que corresponde ao sinal retificado pelo amplificador com ciclo de utilização de \SI{50}{\%}. Após o dimensionamento do comparador, mediu-se o limiar mínimo na tensão aos terminais da bobina que permite gerar um sinal com intensidade suficiente para o disparar (e gerar uma onda quadrada na saída), \SI{4}{\milli\volt}.
- \todo{calcular frequencia maxima e minima de rotação do carreto.}
+ \todo{calcular frequência maxima e minima de rotação do carreto.}
 
- O circuito final foi montado e testado para várias velocidades, primeiro em bancada, e depois no veículo. Os gráficos da figura \ref{fig:saida_encoder} mostram os resultados obtidos para diferentes velocidades. Foi também medido o consumo do circuito, sendo de cerca de \SI{300}{\micro\ampere} em repouso e de \SI{15}{\milli\ampere} em funcionamento a elevada frequência.\todo{pq é a frequencia é uma ordem de grandeza diferente da freq do carreto?}
+ O circuito final foi montado e testado para várias velocidades, primeiro em bancada, e depois no veículo. Os gráficos da figura \ref{fig:saida_encoder} mostram os resultados obtidos para diferentes velocidades. Foi também medido o consumo do circuito, sendo de cerca de \SI{300}{\micro\ampere} em repouso e de \SI{15}{\milli\ampere} em funcionamento a elevada frequência.\todo{pq é a frequência é uma ordem de grandeza diferente da freq do carreto?}
 
 \begin{figure}[!htbp]
     \centering
@@ -315,18 +322,18 @@ Para dimensionar o comparador, foi analisado o comportamento do sinal produzido 
 \label{fig:saida_encoder}
 \end{figure}
 
-\section{Travagem}
+\section{Sistema de travagem do \acs{ROVIM}}
 \label{sec:travagem}
 
-Os objetivos do sistema de travagem do \ac{ROVIM} são diminuir a velocidade e garantir a paragem em segurança do veículo. Existem três tipos de mecanismos que permitem ao \ac{ROVIM} diminuir a sua velocidade: o travão da frente, o travão traseiro e o mecanismo de travagem regenerativa do controlador da tração. Decidiu-se manter o travão da frente para uso em modo manual de condução, a travagem regenerativa para uso em modo autónomo, e o travão traseiro para uso em caso de emergência. A travagem regenerativa não é um mecanismo muito eficaz para travar um veículo mas, devido às baixas velocidades atingidas e à disponibilidade permanente de um travão mais poderoso, considerou-se suficiente. Ao dedicar o travão elétrico apenas às situações de emergência foi possível desenhar um sistema de segurança mais eficaz.
+Os objetivos do sistema de travagem do \ac{ROVIM} são diminuir a velocidade e garantir a paragem em segurança do veículo. Existem três tipos de mecanismos que permitem ao \ac{ROVIM} diminuir a sua velocidade: o travão da frente, o travão traseiro e o mecanismo de travagem regenerativa do controlador da tração. Decidiu-se usar o travão da frente para uso em modo manual de condução, a travagem regenerativa para uso em modo autónomo e o travão traseiro para uso em caso de emergência. A travagem regenerativa não é um mecanismo muito eficaz para travar um veículo mas, devido às baixas velocidades atingidas e à disponibilidade permanente de um travão mais poderoso, considerou-se suficiente. Ao dedicar o travão elétrico apenas às situações de emergência foi possível desenhar um sistema de segurança mais eficaz.
 
-O travão da frente foi portanto mantido inalterado e foi desenhado um atuador para o travão de trás. O travão traseiro é um travão de tambor acionado por uma alavanca com um pivô com liberdade de rotação onde, na configuração de origem, enroscava um ferro que propagava a força exercida no pedal e puxava o travão. Projetou-se em substituição um veio roscado sem fim acionado por um motor, que enrosca no pivô da alavanca.% Como o ferro original seguia junto à forquilha traseira, colocou-se o motor sensivelmente em linha com a antiga trajetória do ferro.
+O travão da frente foi portanto mantido inalterado e foi desenhado um atuador para o travão de trás. Este é um travão de tambor acionado por uma alavanca com um pivô com liberdade de rotação onde, na configuração de origem, enroscava um ferro que propagava a força exercida no pedal e puxava o travão. Projetou-se em substituição um veio roscado sem fim acionado por um motor, que enrosca no pivô da alavanca.% Como o ferro original seguia junto à forquilha traseira, colocou-se o motor sensivelmente em linha com a antiga trajetória do ferro.
 
-Uma análise à operação do travão revelou que, durante o curso da alavanca, o ângulo do pivô com o plano da forquilha ( e portanto com o veio do motor) varia, o que introduz forças radiais indesejadas no veio. Foi medida a força necessária para puxar completamente a alavanca do travão, \SI{80}{N}.% Para acomodar esta variação foram desenhados apoios semi-rígidos, que permitem algum ajuste da altura do motor durante a sua operação.
+Uma análise à operação do travão revelou que, durante o curso da alavanca, o ângulo do pivô com o plano da forquilha (e portanto com o veio do motor) varia, o que introduz forças radiais indesejadas no veio. Foi medida a força necessária para puxar completamente a alavanca do travão, \SI{80}{N}.% Para acomodar esta variação foram desenhados apoios semi-rígidos, que permitem algum ajuste da altura do motor durante a sua operação.
 
 O pivô da alavanca, em conjunto com o veio roscado, formam um sistema artesanal semelhante a uma engrenagem de parafuso sem fim e coroa, ideal para esta aplicação devido à transmissão unidirecional de binário, que impede o travão de destravar sozinho quando o motor pára. No entanto, os parâmetros do redutor são desconhecidos, o que torna mais difícil o cálculo do binário de motor necessário para acionar o travão. Assim, optou-se por uma abordagem empírica, em que se testou a capacidade dos motores para a função \emph{à posteriori}. O motor de direção, quando testado, apresentou binário suficiente para a função, pelo que se decidiu usar um idêntico.
 
-O motor usado é um servomotor \texttt{PARVEX RS430H}. Este é um motor \ac{DC} compacto de ímanes permanentes, de \SI{3000}{rpm} a \SI{78}{V}, \SI{1.36}{N.m} de binário máximo e corrente nominal de \SI{6.6}{A}, vocacionado para pequenas aplicações robóticas \cite{datasheet_RS430H}. O motor é fixo a uma plataforma flexível assente na forquilha traseira com recurso a duas braçadeiras semi-rígidas de metal, que permitem atenuar o esforço radial no veio resultante da oscilação do pivô. O veio do motor é ligado através de um adaptador em latão feito de raiz a um veio roscado que propaga o movimento e enrosca no pivô da alavanca do travão. A figura \ref{fig:travao_montagem} mostra a montagem do travão na moto. O esquema elétrico do sistema é apresentado no apêndice \ref{ap:b}, esquema \texttt{4 - Travão}.
+O motor usado é um servomotor \texttt{PARVEX RS430H}, um motor \ac{DC} compacto de ímanes permanentes, de \SI{3000}{rpm} a \SI{78}{V}, \SI{1.36}{N.m} de binário máximo e corrente nominal de \SI{6.6}{A}, vocacionado para pequenas aplicações robóticas \cite{datasheet_RS430H}. O motor é fixo a uma plataforma flexível assente na forquilha traseira com recurso a duas braçadeiras semi-rígidas de metal, que permitem atenuar o esforço radial no veio resultante da oscilação do pivô. O veio do motor é ligado através de um adaptador em latão feito de raiz a um fuso que propaga o movimento e enrosca no pivô da alavanca do travão. A figura \ref{fig:travao_montagem} mostra a montagem do travão na moto. O esquema elétrico do sistema é apresentado no apêndice \ref{ap:b}, esquema \texttt{4 - Travão}.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.7\linewidth]{recursos/imagens/trv_montagem.jpg}
@@ -334,13 +341,13 @@ O motor usado é um servomotor \texttt{PARVEX RS430H}. Este é um motor \ac{DC} co
     \label{fig:travao_montagem}
 \end{figure}
 
-Devido às características do travão elétrico, que ou está todo travado ou todo destravado, e aos requisitos de segurança da plataforma, optou-se por dispensar conversor de potência e alimentar o travão diretamente da bateria. Esta opção simplifica o controlo do motor e aumenta a sua fiabilidade, já que dispensa eletrónica do estado sólido, propensa a falhar de forma não controlada quando sujeita a transientes elevados. O controlador foi construído com recurso a comutadores eletromecânicos (relés e interruptores), mais resilientes a picos de corrente e previsíveis em caso de falha, permitindo assim aumentar a tolerância a falhas.
+Devido às características do travão elétrico, que ou está todo travado ou todo destravado, e aos requisitos de segurança da plataforma, optou-se por dispensar o conversor de potência e alimentar o travão diretamente da bateria. Esta opção simplifica o controlo do motor e aumenta a sua fiabilidade, já que dispensa eletrónica do estado sólido, propensa a falhar de forma não controlada quando sujeita a transientes elevados. O controlador foi construído com recurso a comutadores eletromecânicos (relés e interruptores), mais resilientes a picos de corrente e previsíveis em caso de falha, permitindo assim aumentar a tolerância a falhas.
 
-O motor do travão é controlado através de um relé que seleciona a polaridade da alimentação, estando definido o sentido de travagem por defeito. Todos os relés usados foram equipados com um díodo de roda livre, para a bobina de acionamento poder descarregar quando desliga. O relé pode ser acionado para inverter a polaridade com recurso a dois mecanismos: um botão de pressão manual e um sinal vindo do microcontrolador. Esta configuração não permite travar enquanto houver uma ordem de destravagem pendente, o que pode originar uma falha de segurança em caso de erro do microcontrolador. Para a mitigar, foi adicionada eletrónica adicional para o comando de destravagem por computador depender também do dispositivo do homem morto (ver \ref{sec:integracao}). A ligação para a destravagem por computador encontra-se pronta a usar, mas está atualmente desligada por opção de desenho\todo[trabalhos futuros]{progredir o sistema para mais controlo à distância após testes}.
+O motor do travão é controlado através de um relé que seleciona a polaridade da alimentação, estando definido o sentido de travagem por defeito. Todos os relés usados foram equipados com um díodo de roda livre, para a bobina de acionamento poder descarregar quando desliga. O relé pode ser acionado para inverter a polaridade com recurso a dois mecanismos: um botão de pressão manual e um sinal vindo do microcontrolador. Esta configuração não permite travar enquanto houver uma ordem de destravagem pendente, o que pode originar uma falha de segurança em caso de erro do microcontrolador. Para a mitigar, foi adicionada eletrónica adicional para que o comando de destravagem por computador dependa também do dispositivo do homem morto (ver \ref{sec:integracao}). A ligação para a destravagem por computador encontra-se pronta a usar, mas está atualmente desligada por opção de desenho\todo[trabalhos futuros]{progredir o sistema para mais controlo à distância após testes}.
 
 A alimentação para a travagem, que está ligada por defeito, passa ainda por um circuito de segurança (discutido em \ref{ssec:seguranca}), responsável por dar a ordem de travagem. Como a destravagem é controlada deliberadamente pelo utilizador, não necessita de processamento adicional.
 
-Os limites do curso da alavanca do travão foram transladados para uma zona mais acessível, com recurso a um adaptador especial mostrado na figura \ref{fig:fc_trv}, e nele foram instalados sensores de fim de curso, por onde passa a alimentação para o motor, e que controlam a sua paragem. Deste modo, quando o travão chega a um dos limites de operação o sensor abre o circuito e o motor deixa de ser alimentado. O sinal dos interruptores do lado da destravagem foi usado para comandar dois \acp{LED} que indicam ao utilizador a destravagem completa (verde) e a travagem, ainda que parcial (vermelho). Apesar de terem sido usados \acp{LED} de \SI{12}{V}, foi adicionada por precaução uma resistência de limitação de corrente, de \SI{1.2}{\kilo\ohm}. Quando um dos \acp{LED} conduz, a sua corrente é dada pela lei de Ohm:
+Os limites do curso da alavanca do travão foram transladados para uma zona mais acessível, com recurso a um adaptador especial mostrado na figura \ref{fig:fc_trv}, e nele foram instalados sensores de fim de curso, por onde passa a alimentação para o motor, e que controlam a sua paragem. Deste modo, quando o travão chega a um dos limites de operação o sensor abre o circuito e o motor deixa de ser alimentado. O sinal dos interruptores do lado da destravagem foi usado para comandar dois \acp{LED} que indicam ao utilizador a destravagem completa (verde) e a travagem, ainda que parcial (vermelho). Apesar de terem sido usados \acp{LED} de \SI{12}{V}, foi adicionada por precaução uma resistência de limitação de corrente de \SI{1.2}{\kilo\ohm}. Quando um dos \acp{LED} conduz, a sua corrente é dada pela lei de Ohm:
 %
 \begin{equation} \label{eq:ohm}
     I = \frac{V}{R}
@@ -353,10 +360,19 @@ Substituindo em \eqref{eq:ohm}, obtém-se a corrente em cada \ac{LED}:
       &= \SI{10}{\milli\ampere}
 \end{align}
 %
-Que é facilmente dissipada pela resistência.
+A potência que a resistência tem que dissipar é então:
+%
+\begin{align}
+    P &= V_R \cdot I\\
+      &\approx 11.3 \cdot 10 m\\
+      &= \SI{113}{\milli\ampere}
+\end{align}
+\todo{calcular potencia dissipada.}Que está dentro dos seus limites.
+
 \begin{figure}[!htbp]
+    \centering
     \includegraphics[width=0.5\linewidth]{recursos/imagens/trv_fc_destravado.jpg}
-    \caption[Montagem dos sensores do travão.]{Montagem dos sensores do travão, vista de cima. Legenda:\\1: fim de curso da travagem; 2: patilha solidária com a alavanca do travão, que ativa os sensores; 3: fim de curso de destravagem.}
+    \caption[Montagem dos sensores do travão.]{Montagem dos sensores do travão, vista de cima com o travão destravado. Legenda:\\1: patilha do fim de curso de travagem; 2: patilha solidária com a alavanca do travão, que ativa os sensores; 3: patilhas dos fins de curso de destravagem. A seta a picotado denota o curso de 2.}
     \label{fig:fc_trv}
 \end{figure}
 
@@ -373,10 +389,10 @@ Substituindo em \eqref{eq:ib_q2} obtém-se,
     \frac{V_{BE\ Q2}}{R_{8}} + I_{B\ Q2} &= \frac{V_{Disp\ homem\ morto} - V_{BE\ Q2}}{R_{6} + R_{7}}\\
     \frac{0.7}{27 k} + I_{B\ Q2} &= \frac{12 - 0.7}{1.2 K + 1.2 K}\\
     I_{B\ Q2} &= 4.7 m - 0.026 m\\
-             &= \SI{4.674}{\milli\ampere}
+             &= \SI{4.7}{\milli\ampere}
 \end{align}
 %
-Neste caso, o relé K2 arma se for aplicada tensão em R5, e a corrente no coletor de Q1 é, assumindo que os transístores estão saturados (a resistência da bobina do relé é de \SI{360}{\ohm} \cite{datasheet_schrack}):
+Neste caso o relé K2 arma se for aplicada tensão em R5 e a corrente no coletor de Q1 é, assumindo que os transístores estão saturados (a resistência da bobina do relé é de \SI{360}{\ohm} \cite{datasheet_schrack}):
 %
 \begin{align}
     I_{C\ Q1} &= \frac{V_{VCC\ 12V} - V_{CE\ Q1} - V_{CE\ Q2}}{R_{K2}}\\
@@ -389,17 +405,17 @@ E a sua corrente de base:
 \begin{align}
     I_{B\ Q1} &= \frac{V_{Auto\ destrv} - (V_{CE\ Q2} + V_{EB\ Q1})}{R_{5}}\\
              &= \frac{5 - 0.2 -0.7}{2.7 K}\\
-             &= \SI{1.518}{\milli\ampere}
+             &= \SI{1.5}{\milli\ampere}
 \end{align}
 %
 De onde se pode calcular a corrente do coletor de Q2,
 %
 \begin{align}
     I_{C\ Q2} &= I_{E\ Q1} = I_{C\ Q1} + I_{B\ Q1}\\
-             &= 32 m + 1.518 m\\
-             &= \SI{33.518}{\milli\ampere}
+             &= 32 m + 1.5 m\\
+             &= \SI{33.5}{\milli\ampere}
 \end{align}
-
+%
 As condições de saturação de um transístor \ac{TJB} podem ser aproximadas por:
 %
 \begin{align}
@@ -411,23 +427,23 @@ O valor de $\beta$ para Q1 é maior que \num{75} \cite{datasheet_2N2219A}, enquan
 
 Já quando o dispositivo do homem morto é retirado, Q2 não conduz e não é possível destravar o travão. O sistema foi desenhado assim para que o microcontrolador não tenha a capacidade de bloquear o controlador de travagem no caso extremo de uma falha.
 
-Na polarização da base de Q2 foram usadas duas resistências de modo manter o funcionamento do interruptor no caso de uma delas falhar e passar a um curto--circuito. A resistência R8 serve como \emph{pull--down} da base de Q2, enquanto que C8 serve para filtrar o regime transitório na comutação do dispositivo do homem morto, de modo a proteger o transístor de picos de tensão. Q1 é um transístor de elevada corrente nominal, indicado para aplicações de comutação e ideal para conduzir o circuito da bobina do relé. O transístor Q2 deveria possuir as mesmas características, mas por falta de outros componentes, foi usado um transístor de uso geral\todo[conclusão]{houve limitações no acesso à alguns componentes, mas não impediu a realização dos objetivos}.
+Na polarização da base de Q2 foram usadas duas resistências em série, de modo manter o funcionamento do interruptor no caso de uma delas falhar e passar a um curto--circuito. A resistência R8 serve como \emph{pull--down} da base de Q2, enquanto que C8 serve para filtrar o regime transitório na comutação do dispositivo do homem morto, de modo a proteger o transístor de picos de tensão. Q1 é um transístor de elevada corrente nominal, indicado para aplicações de comutação e ideal para conduzir o circuito da bobina do relé. O transístor Q2 deveria possuir as mesmas características, mas por falta de outros componentes, foi usado um transístor de uso geral\todo[conclusão]{houve limitações no acesso à alguns componentes, mas não impediu a realização dos objetivos}.
 
-Este tipo de controlo não prevê nenhum tipo de arranque suave. Embora não seja problemático para o funcionamento do circuito, A ligação do motor à alimentação de forma instantânea cria um pico de corrente no arranque do motor que, a longo prazo, vai provocar um desgaste adicional nos componentes. Para tentar mitigar esse desgaste, foi introduzido um condensador de elevada tensão nominal em paralelo com o motor, para tentar alisar os picos de corrente.\todo{apresentar resultados do condensador}
+Este tipo de controlo não prevê nenhum tipo de arranque suave. Embora não seja problemático para o funcionamento do circuito, a ligação do motor à alimentação cria um pico de corrente no arranque do motor que, a longo prazo, vai provocar um desgaste adicional nos componentes. Para tentar mitigar esse desgaste, foi introduzido um condensador de elevada tensão nominal em paralelo com o motor, para tentar alisar os picos de corrente.\todo{apresentar resultados do condensador}
 
 Após a construção do circuito, mediu-se o tempo de travagem e destravagem, que é sempre inferior a \SI{5}{\second}.
 
-\section{Direção}
+\section{Sistema de direção do \acs{ROVIM}}
 \label{sec:direcao}
 
-A direção permite virar o \ac{ROVIM}. Este subsistema não requer padrões de segurança e fiabilidade tão elevados como os outros dois, mas representa um tipo de problema diferente, ao nível do seu controlo. No contexto desta aplicação, pretende-se controlar o ângulo de viragem das rodas, como um servomecanismo de um robô.
+Este sistema permite que o \ac{ROVIM} execute trajetórias não retilíneas de forma comandada. Este subsistema não requer padrões de segurança e fiabilidade tão elevados como os da tração e travagem mas, ao nível do seu controlo, representa um tipo de problema diferente. No contexto desta aplicação, pretende-se controlar o ângulo de viragem das rodas, como um servomecanismo de um robô.
 
-O \emph{chassi} incorpora uma geometria de direção de Ackerman acionada através de um tubo quase vertical (a coluna da direção) solidário com o guiador. Quando o guiador é virado, o movimento é transmitido pela coluna até um pivô ao nível das rodas, que puxa os tirantes. Este sistema é perfeitamente adequado para utilizar em modo manual, pelo que se manteve, e se projetou uma solução complementar para uso em modo autónomo.
+O \emph{chassi} incorpora uma geometria de direção de Ackerman acionada através de um tubo quase vertical (a coluna da direção), solidário com o guiador. Quando o guiador é virado, o movimento é transmitido pela coluna até um pivô ao nível das rodas, que puxa os tirantes. Este sistema é perfeitamente adequado para utilizar em modo manual, pelo que se manteve, e se projetou uma solução complementar para uso em modo autónomo.
 
 Uma análise à operação estática do sistema revelou que, quando assente num piso de azulejo, são necessários pelo menos \SI{25}{\newton} de força aplicados na ponta do guiador para a direção vencer a força de atrito e virar até cerca de \SI{80}{\%} do seu curso, e cerca de \SI{30}{\newton} para virar o restante. O raio do guiador é de \SI{41}{\centi\meter} e a sua ponta descreve a trajetória de um segmento circular que, de extremo a extremo, mede \SI{58}{cm} de corda. A relação de uma corda com o segmento circular que o define é dada por:
 %
 \begin{equation}
-corda = 2 \cdot r \cdot \sin (\frac{\theta}{2}) 
+    \text{corda} = 2 \cdot r \cdot \sin (\frac{\theta}{2}) 
 \end{equation}
 %
 \todo{explicar as variaveis das formulas}De onde se obtém a amplitude do ângulo de viragem da moto:
@@ -456,11 +472,11 @@ Com base nos valores medidos obtém-se o binário aplicado no caso testado (que é 
 %%
 %Em que $\mu$ é o coeficiente de atrito de deslizamento.
 
-A geometria da direção de Ackerman evita que as rodas escorreguem durante a viragem, desde que o veículo esteja em movimento. Neste caso o binário de atrito corresponde, grosso modo, ao binário de rolamento do veículo. Para o cenário típico de utilização referido em \ref{sec:tracao}, substituindo em \eqref{eq:binario},
+A geometria da direção de Ackerman evita que as rodas escorreguem durante a viragem, desde que o veículo esteja em movimento, sendo neste caso o binário de atrito corresponde ao binário de rolamento do veículo. Para o cenário típico de utilização referido em \ref{sec:tracao}, substituindo em \eqref{eq:binario},
 %
 \begin{align}
-    T &= 300 \cdot 10 \cdot 0.015 \cdot 0.23\\
-      &= \SI{10.35}{\newton\meter}
+    T &= 250 \cdot 10 \cdot 0.015 \cdot 0.23\\
+      &= \SI{8.6}{\newton\meter}
 \end{align}
 %
 E para o cenário extremo,
@@ -471,18 +487,26 @@ E para o cenário extremo,
 \end{align}
 
 %No entanto pretende-se dimensionar para o pior caso de utilização, para acomodar possíveis alterações futuras. Por isso, dimensionou-se o atuador da direção para
-\todo{identificar as perturbações e os diferentes terrenos onde vai andar, dizer que se pretende controlar a posição}Com base nos critérios de desenho da plataforma, procurou-se dimensionar um atuador tendo em conta o pior caso, de modo a precaver modificações futuras. Com base nesta análise, foi selecionado um servomotor \texttt{PARVEX RS430H}. Este é um motor \ac{DC} compacto de ímanes permanentes, de \SI{3000}{rpm} a \SI{78}{V}, \SI{1.36}{\newton\meter} de binário máximo e corrente nominal de \SI{6.6}{A}, vocacionado para pequenas aplicações robóticas \cite{datasheet_RS430H}. O motor foi ligado a um redutor, acoplado à direção através de um correia, como ilustrado na figura \ref{fig:atuador_dir}.
+\todo{identificar as perturbações e os diferentes terrenos onde vai andar, dizer que se pretende controlar a posição}Com base nos critérios de desenho da plataforma, procurou-se dimensionar um atuador tendo em conta o pior caso, de modo a precaver modificações futuras. Com base nesta análise, foi selecionado um servomotor \texttt{PARVEX RS430H}, um motor \ac{DC} compacto de ímanes permanentes, de \SI{3000}{rpm} a \SI{78}{V}, \SI{1.36}{\newton\meter} de binário máximo e corrente nominal de \SI{6.6}{A}, vocacionado para pequenas aplicações robóticas \cite{datasheet_RS430H}. O motor foi ligado a um redutor, acoplado à direção através de um correia, como ilustrado na figura \ref{fig:atuador_dir}.
 
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{recursos/imagens/atuador_direcao.jpg}
-    \caption[Montagem do atuador da direção.]{Montagem do atuador da direção. Legenda:\\ 1: coluna da direção; 2: esticador; 3: fixador das duas partes da coluna; 4: redutor da direção; 5: veio do redutor; 6: polia de \num{30} dentes; 7: correia; 8: motor da direção; 9: polia de \num{60} dentes.}
+    \begin{subfigure}[b]{0.45\linewidth}
+    \subcaptionbox{Montagem completa do sistema da direção.}{
+    \includegraphics[width=\linewidth]{recursos/imagens/capa.jpg}}
+\end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{0.45\linewidth}
+    \subcaptionbox{Pormenor da montagem do atuador. Legenda:\\ 1: coluna da direção; 2: esticador; 3: fixador das duas partes da coluna; 4: redutor da direção; 5: veio do redutor; 6: polia de \num{30} dentes; 7: correia; 8: motor da direção; 9: polia de \num{60} dentes.}{
+    \includegraphics[width=\linewidth]{recursos/imagens/atuador_direcao.jpg} }
+\end{subfigure}
+    \caption{Montagem do atuador da direção.}
     \label{fig:atuador_dir}
 \end{figure}
 
-O redutor usado é um \texttt{STM RMI S28}\todo{confirmar modelo}, um redutor compatível com as dimensões do motor, de parafuso sem fim e coroa, com relação de redução de \num{49}, \SI{56}{\%} de rendimento a \SI{1400}{RPM} de (velocidade máxima recomendada) e potência de entrada de \SI{80}{\watt} \cite{datasheet_STM}, o que está dentro dos limites da operação do motor nesta aplicação. O redutor é apropriado devido à sua elevada relação de redução e reduzidas dimensões, mas especialmente porque transmite o binário unidirecionalmente, o que reduz o perturbação das irregularidades do terreno no sistema de controlo. O motor foi acoplado ao redutor e este fixado a uma estrutura no \emph{chassi}.
+O redutor usado é um \texttt{STM RMI S28}\todo{confirmar modelo}, um redutor compatível com as dimensões do motor, de parafuso sem fim e coroa, com relação de redução de \num{49}, \SI{56}{\%} de rendimento a \SI{1400}{RPM} de (velocidade máxima recomendada) e potência de entrada de \SI{80}{\watt} \cite{datasheet_STM}, o que está dentro dos limites da operação do motor nesta aplicação. O redutor é apropriado devido à sua elevada relação de redução, reduzidas dimensões e especialmente porque transmite o binário unidirecionalmente, o que reduz a perturbação das irregularidades do terreno no sistema de controlo. O motor foi acoplado ao redutor e este fixado a uma estrutura no \emph{chassi}.
 
-Para transmitir o binário para as rodas, mantendo a funcionalidade inicial, a coluna da direção foi cortada para lhe fixar uma polia dentada de \num{60} dentes de \SI{5}{mm} de passo e \SI{16}{mm} de espessura. No redutor foi instalado um veio de latão \todo{foto anexo} onde fixa uma polia compatível, de \num{30} dentes. A distância entre os eixos das duas polias é de \SI{77}{mm}, pelo que, a partir do seu diâmetro primitivo, \SI{103}{mm} e \SI{51}{mm} \cite{catalogo_polias} respetivamente, se calcula o perímetro mínimo de ligação entre as duas pela fórmula:
+Para transmitir o binário para as rodas, mantendo a funcionalidade inicial, a coluna da direção foi cortada para lhe fixar uma polia dentada de \num{60} dentes de \SI{5}{mm} de passo e \SI{16}{mm} de espessura. No redutor foi instalado um veio de latão \todo{foto anexo} onde fixa uma polia compatível, de \num{30} dentes. A distância entre os eixos das duas polias é de \SI{77}{mm}, pelo que, a partir dos seus diâmetros primitivos, \SI{103}{mm} e \SI{51}{mm} \cite{catalogo_polias} respetivamente, se calcula o perímetro mínimo de ligação entre as duas pela fórmula:
 %
 \begin{align}
     P_{correia} &\geq \frac{dp_1}{2} + \frac{dp_2}{2} + 2 \cdot d_{eixos}\\
@@ -490,19 +514,19 @@ Para transmitir o binário para as rodas, mantendo a funcionalidade inicial, a co
     &\geq \SI{396}{mm}
 \end{align}
 %
-Com base nestes cálculos foi escolhida uma correia de \SI{460}{mm} (a mais aproximada), esticada através de um rolo de nylon ajustável, assente num suporte próprio. A correia, quando esticada, impede a direção de se mexer livremente, pelo que é necessário soltá-la para poder operar a direção com o guiador.
+Com base nestes cálculos foi escolhida uma correia maleável de \SI{460}{mm} (a mais aproximada), esticada através de um rolo de nylon ajustável, assente num suporte próprio. A correia, quando esticada, impede a direção de se mexer livremente, pelo que é necessário soltá-la para poder operar a direção com o guiador. No entanto, é suficientemente flexível para funcionar como fusível mecânico e limitar os danos no sistema em caso de perda de controlo do motor.
 
 A razão de redução total do sistema projetado é de \num{98}, que permite obter um binário nas rodas de:\todo{referir que muito do trabalho foi despendido a fixar os componentes ao veículo, e puxar a brasa à minha sardinha}
 %
 \begin{align}
-    T_{\text{máx}} &= RR \cdot T_{motor}\\
+    T_{\text{máx}} &= RR \cdot T_{m}\\
                     &= 98 \cdot 1.36\\
                     &= \SI{133.28}{\newton\meter}
 \end{align}
 %
-O que é insuficiente para o caso extremo de condução definido, mas foi ainda assim considerado aceitável na fase de projeto, e permitiu escolher um redutor mais fácil de obter e colocar.
+Em que $T_{m}$ representa o binário do motor. O que é insuficiente para o caso extremo de condução definido, mas foi ainda assim considerado aceitável na fase de projeto, e permitiu escolher um redutor mais pequeno e fácil de obter, o que permitiu instalar o atuador mais abaixo na coluna da direção, e manter a zona superior livre para adições futuras.
 
-Após a instalação do acoplador para a direção, foram detetados dois problemas relevantes: a coluna da direção ficou com uma zona morta e a correia salta para binários relativamente pequenos. Devido ao corte feito na coluna da direção não foi possível aparafusar as agora duas partes de forma a ficarem totalmente solidárias e passou a ser necessário virar o guiador numa direção cerca de \todo{qts?}\SI{}{\degree} até que a direção comece a responder. A solução passaria por soldar as duas partes, mas optou-se por não o fazer após a deteção do problema com a correia. Devido a falhas no desenho da transmissão, a correia escolhida apresenta limitações severas na sua capacidade de transmitir binário entre os veios. Testando o atuador com a moto parada e as rodas em azulejo, verificou-se que a correia começava a saltar antes de chegar a \SI{80}{\%} do curso da direção, o que significa que o binário que consegue transmitir é inferior a:
+Após a instalação do acoplador para a direção, foram detetados dois problemas relevantes: a coluna da direção ficou com uma zona morta e a correia salta para valores de binário relativamente pequenos. Devido ao corte feito na coluna da direção não foi possível aparafusar as duas partes de forma totalmente solidária, e passou a ser necessário virar o guiador numa direção cerca de \SI{5}{\degree} até que a direção comece a responder. A solução passaria por soldar as duas partes, mas optou-se por não o fazer após a deteção do problema com a correia. Devido a falhas no desenho da transmissão, a correia escolhida apresenta limitações severas na sua capacidade de transmitir binário entre os veios. Testando o atuador com a moto parada e as rodas em azulejo, verificou-se que a correia começava a saltar antes de chegar a \SI{80}{\%} do curso da direção, o que significa que o binário que consegue transmitir é inferior a:
 %
 \begin{align}
     T_{\text{máx correia}} &< F_{\SI{80}{\%}} \cdot b\\
@@ -512,7 +536,7 @@ Após a instalação do acoplador para a direção, foram detetados dois problemas re
 %
 O que frustrou o dimensionamento feito para o sistema\todo[trabalhos futuros]{substituir as polias e correia por carretos e corrente de bicicleta, e usar o esticador para conseguir colocar e tirar a corrente à mesma}. Mesmo assim optou-se por avançar com esta configuração para prova do conceito, e guardar as modificações após uma avaliação global da performance do veículo, pelo que se restringiu a operação da direção a quando a moto está em movimento, de modo a mitigar o problema.
 
-Para comandar o motor foram adquiridos um conversor e um controlador indicados para controlo de pequenos motores elétricos e aplicações de robótica. O conversor usado é um \texttt{OSMC V4.24}, uma ponte em H de elevada potência para comando de motores \ac{DC} de ímanes permanentes de \SI{12}{V} a \SI{80}{V}, capaz de fornecer até \SI{160}{A} de corrente em contínuo, parte de um projeto de código aberto. Para comandar esta placa foi adquirido um microcontrolador com uma interface compatível, onde se implementou o programa de controlo da posição da direção. O microcontrolador é descrito em mais detalhe em \ref{sec:programa}.
+Para comandar o motor foram adquiridos um conversor e um controlador indicados para controlo de pequenos motores elétricos e aplicações de robótica. O conversor usado é um \texttt{OSMC V4.24}, uma ponte em H de elevada potência para comando de motores \ac{DC} de ímanes permanentes de \SI{12}{V} a \SI{80}{V}, capaz de comutar até \SI{160}{A} de corrente, parte de um projeto de código aberto. Para comandar esta placa foi adquirido um microcontrolador com uma interface compatível, onde se implementou o programa de controlo da posição da direção. O microcontrolador é descrito em mais detalhe em \ref{sec:programa}.
 
 \begin{figure}[!ht]
     \centering
@@ -521,7 +545,7 @@ Para comandar o motor foram adquiridos um conversor e um controlador indicados p
     \label{fig:potenciometro}
 \end{figure}
 
-Para poder controlar com precisão da direção, projetou-se um programa de controlo em malha fechada, discutido em \ref{ssec:controlo_dir}, e um sensor de posição para fechar a malha. O sensor, um potenciómetro de precisão de 3 voltas e \SI{5}{\kilo\ohm} \cite{datasheet_vishay}, é montado junto ao guiador (por ser a opção mais simples) e ligado ao microcontrolador por um fio de microfone blindado, e lê a posição angular da parte superior da coluna da direção com recurso a duas engrenagens acopladas: uma fixa à direção e outra ao potenciómetro, como mostrado na figura \ref{fig:potenciometro}. Para maximizar o curso do potenciómetro, as engrenagens foram dimensionadas; começando por escolher a mais pequena disponível, de \num{12} dentes, para o potenciómetro. Pretende-se que três revoluções da engrenagem pequena, \num{36} dentes, correspondam a aproximadamente $90/360=1/4$ dos dentes da engrenagem maior, o que perfaz \num{144}. Por não haver engrenagens tão grandes, foi escolhida a maior possível, de \num{120} dentes. O intervalo de valores percorrida pelo potenciómetro é dado por:
+Para poder controlar com precisão da direção, projetou-se um programa de controlo em malha fechada, discutido em \ref{ssec:controlo_dir}, e um sensor de posição para fechar a malha. O sensor, um potenciómetro de precisão de 3 voltas e \SI{5}{\kilo\ohm} \cite{datasheet_vishay}, é montado junto ao guiador (por ser a opção mais simples) e ligado ao microcontrolador por um fio de microfone blindado, e lê a posição angular da parte superior da coluna da direção com recurso a duas engrenagens acopladas: uma fixa à direção e outra ao potenciómetro, como mostrado na figura \ref{fig:potenciometro}. As engrenagens foram dimensionadas para maximizar o curso do sensor, começando por definir a engrenagem mais pequena disponível, de \num{12} dentes, para o potenciómetro. Pretende-se que três revoluções da engrenagem pequena, \num{36} dentes, correspondam a aproximadamente $90/360=1/4$ dos dentes da engrenagem maior, o que perfaz \num{144}. Por não haver engrenagens tão grandes, foi escolhida a maior possível, de \num{120} dentes. O intervalo de valores percorrido pelo potenciómetro é dado por:
 %
 \begin{align}
     \Delta R &= R_{pot} \cdot \frac{n_{engrenagem\ maior}}{144}\\
@@ -529,19 +553,17 @@ Para poder controlar com precisão da direção, projetou-se um programa de control
     &= \SI{4.17}{\kilo\ohm}
 \end{align}
 %
-Na prática, a gama de valores do potenciómetro é ligeiramente menor devido aos interruptores de fim de curso, discutidos adiante. Esta limitação do alcance do potenciómetro é benéfica e desejável, porque evita que este chegue ao fim do seu curso, danificando-o. Para além disso a gama de valores obtida com a engrenagem de \num{120} dentes é suficiente para obter leituras precisas. 
-
-Ambas as engrenagens estão fixadas de forma pouco firme, pelo que a montagem pode descalibrar ficar descalibrada em caso de manipulação\todo[conclusão]{se a roda dentada maior for mexida, descalibra os fdc e anula a lógica subjacente}.
+Na prática, a gama de valores do potenciómetro é ligeiramente menor devido aos interruptores de fim de curso, discutidos adiante. Esta limitação do alcance do potenciómetro é benéfica e desejável, porque evita que este chegue ao fim do seu curso, danificando-o. Para além disso a gama de valores obtida com a engrenagem de \num{120} dentes é suficiente para obter leituras precisas. Ambas as engrenagens estão fixas de forma pouco firme, pelo que a montagem pode descalibrar ficar descalibrada em caso de manipulação\todo[conclusão]{se a roda dentada maior for mexida, descalibra os fdc e anula a lógica subjacente}.
 
 \todo{dizer que os reles não prestam para altas freqs de comutação}
-As ligações elétricas do sistema da direção são apresentadas no esquema \texttt{6 - Direção} do apêndice \ref{ap:b}. A alimentação para o motor provem de uma ligação a \SI{12}{V} com um fusível de \SI{6.3}{A} e passa por um contator de corte geral, com uma resistência de pré-carga\todo{referir em algum lado os díodos de roda livre -- basta uma vez}. À semelhança do circuito sugerido pelo fabricante do circuito de tração, incluiu-se aqui um circuito simples de pré-carga dos condensadores do conversor, de modo a alisar o pico de corrente aquando da ligação do circuito e assim aumentar a sua vida útil. A placa do conversor tem dois grandes condensadores ligados da alimentação à massa em paralelo, C1 e C8, com um capacidade conjunta de \SI{1200}{\micro\farad}. Após a ligação do contator, o circuito dos condensadores pode ser aproximado a um circuito $RC$ ligado a uma fonte de tensão, onde ocorre um pico de corrente dado por:
-%No caso de a resistência não existir, após ligar o contator, os condensadores C1 e C8 vão carregar a uma corrente dada por:
+As ligações elétricas do sistema da direção são apresentadas no esquema \texttt{6 - Direção} do apêndice \ref{ap:b}. A alimentação para o motor provem de uma ligação a \SI{12}{V} com um fusível de \SI{6.3}{A} e passa por um contactor de corte geral, com uma resistência de pré-carga\todo{referir em algum lado os díodos de roda livre -- basta uma vez}. À semelhança do circuito sugerido pelo fabricante do circuito de tração, incluiu-se aqui um circuito simples de pré-carga dos condensadores do conversor, de modo a alisar o pico de corrente aquando da ligação do circuito e assim aumentar a sua vida útil. A placa do conversor tem dois condensadores de capacidade elevada ligados da alimentação à massa em paralelo, C1 e C8, com um capacidade conjunta de \SI{1200}{\micro\farad}. Após a ligação do contactor, o circuito dos condensadores pode ser aproximado a um circuito $RC$ ligado a uma fonte de tensão, onde ocorre um pico de corrente dado por:
+%No caso de a resistência não existir, após ligar o contactor, os condensadores C1 e C8 vão carregar a uma corrente dada por:
 %
 \begin{align}
     I_{t=0+} &= \frac{V}{R} \label{eq:pico_corrente}
 \end{align}
 %
-A constante de tempo do circuito é dada por:
+Como se sabe, a constante de tempo de um circuito RC é dada por:
 %
 \begin{align}
     \tau &= R \cdot C \label{eq:tau}
@@ -563,7 +585,7 @@ E em \eqref{eq:tau},
      &= \SI{9.36}{\micro\second}
 \end{align}
 %
-Ambos os valores são bastante elevados e provocam o desgaste prematuro dos componentes e podem provocar a abertura do fusível sem que tenha havido algum curto-circuito. Por isso projetou-se uma resistência de pré-carga de potência a dissipar inferior a \SI{5}{\watt}, facimente disponível no mercado. A energia acumulada nos condensadores é de:
+Ambos os valores são bastante elevados e provocam o desgaste prematuro dos componentes, podendo provocar a abertura do fusível sem que tenha havido algum curto-circuito. Por isso projetou-se uma resistência de pré-carga de potência a dissipar inferior a \SI{5}{\watt}, facilmente disponível no mercado. A energia acumulada nos condensadores é de:
 %Por isso projetou-se a resistência de pré-carga para provocar um pico de corrente \num{2} vezes superior à corrente nominal do fusível. Substituindo em \eqref{eq:pico_corrente}\todo{errado}
 \begin{align}
     E &= C \cdot \frac{V^{2}}{2}\\
@@ -571,7 +593,7 @@ Ambos os valores são bastante elevados e provocam o desgaste prematuro dos compo
       &= \SI{86.4}{\milli\joule}
 \end{align}
 %
-Para aproximar a potência necessária da resitência de pré-carga, assume-se que esta tem que dissipar toda a energia durante uma contante de tempo, de onde se pode obter o valor da resistência a usar:
+Para aproximar a potência necessária da resistência de pré-carga, assume-se que esta tem que dissipar toda a energia durante uma contante de tempo, de onde se pode obter o valor da resistência a usar:
 %
 \begin{align}
     P &= \frac{E}{T}\\
@@ -595,7 +617,7 @@ E em \eqref{eq:tau},
          &= \SI{17.28}{\milli\second}
 \end{align}
 %
-Conclui-se então pela escolha de uma resistência de pré-carga de \SI{15}{\ohm}, \SI{5}{\watt}. No entanto, como não foram encontradas resistências aproximadas a essa, usou-se uma de \SI{1.5}{\kilo\ohm} de \SI{5}{\watt}. Para esta resistência, a corrente máxima de carga dos condensadores é de \SI{8}{\milli\ampere}, e a constante de tempo de \SI{1.8}{\second}, o que se traduz numa potência dissipada na resistência de \SI{48}{\milli\watt}, bem dentro dos limites do dispositivo.
+Conclui-se então que a resistência de pré-carga de \SI{15}{\ohm} e \SI{5}{\watt}. No entanto, como não foram encontradas resistências aproximadas a essa, usou-se uma de \SI{1.5}{\kilo\ohm} de \SI{5}{\watt}. Para esta resistência, a corrente máxima de carga dos condensadores é de \SI{8}{\milli\ampere}, e a constante de tempo de \SI{1.8}{\second}, o que se traduz numa potência dissipada na resistência de \SI{48}{\milli\watt}, bem dentro dos limites do dispositivo.
 
 %o circuito foi desenhado inicialmente para uma alimentação de \SI{24}{V}, tendo sido depois alterado para os atuais \num{12}. Nesse caso a resistência necessária era de 
 %A introdução da resistência de pré-carga limitou o tempo e a corrente de carga,
@@ -617,9 +639,9 @@ Conclui-se então pela escolha de uma resistência de pré-carga de \SI{15}{\ohm}, 
 %%
 %Que está bem dentro das suas capacidades.
 
-De forma a proteger o \emph{hardware}, foram instalados dois interruptores de fim de curso junto ao sensor de posição, que fazem uso de batentes cravados na engrenagem maior, como mostra a figura \ref{fig:potenciometro}. Os batentes e interruptores foram calibrados de modo a dispararem ligeiramente antes de a direção chegar ao seu limite. Os interruptores produzem dois sinais complementares, sendo o normalmente fechado usado para cortar o contator e o normalmente aberto para ativar o circuito de segurança (ver \ref{ssec:seguranca}). Os interruptores estão ligados de modo que é impossível saber de qual dos lados ocorreu o erro, sendo essa verificação feita através do sensor de posição.
+De forma a proteger o \emph{hardware}, foram instalados dois interruptores de fim de curso junto ao sensor de posição, que fazem uso de batentes cravados na engrenagem maior, como mostra a figura \ref{fig:potenciometro}. Os batentes e interruptores foram calibrados de modo a dispararem ligeiramente antes da direção chegar ao seu limite. Os interruptores produzem dois sinais complementares, sendo o normalmente fechado usado para cortar o contactor e o normalmente aberto para ativar o circuito de segurança (ver \ref{ssec:seguranca}).%Os interruptores estão ligados de modo que é impossível saber de qual dos lados ocorreu o erro, sendo essa verificação feita através do sensor de posição.
 
-No caso de acontecer um erro, só é possível alimentar o motor para poder recuperá-lo através de um botão de pressão que coneta a alimentação à bobina do contator, evitando a verificação de segurança feita pelos interruptores de fim de curso.
+No caso de acontecer um erro, só é possível alimentar o motor para poder recuperá-lo através de um botão de pressão que coneta a alimentação à bobina do contactor, evitando a verificação de segurança feita pelos interruptores de fim de curso.
 
 %As ligações do conversor \texttt{OSMC} foram feitas de acordo com a documentação, ao microcontrolador, à bateria e ao motor. A ventoinha não é usada nesta aplicação.
 
@@ -646,7 +668,7 @@ No caso de acontecer um erro, só é possível alimentar o motor para poder recuper
 %Com base nesta análise preliminar do problema ir-se-ia partir para o desenho de um controlador após a instalação do atuador. 
 O controlo da posição da direção assemelha-se a uma aplicação típica de um controlador \ac{PID}, em que o microcontrolador corre um programa que, através dos dados obtidos no sensor de posição, atua o motor em função do erro. No entanto, o problema do controlo foi severamente agravado durante a sua construção, pela zona morta (ver \ref{sec:direcao}) e pelas limitações da correia. A zona morta apenas afeta o comportamento do sistema nas mudanças de direção, e pode ser integrada no projeto do controlador como uma dificuldade acrescida. Já a limitação do binário impede o desenho efetivo de um bom controlador e não pode ser ignorada. Perante este constrangimento optou-se por avançar com a prova do conceito, relegar a construção de um bom controlador para uma iteração posterior, e mitigar o problema temporariamente com o projeto de um controlador em banco de ensaio (com as rodas no ar) e limitando a operação da direção a quando a moto estiver em movimento.
 
-Em \ref{sec:direcao} provou-se através de medições que a posição depende de forma não linear do binário, mas a entrada do sistema é em tensão, e a tensão é independente do binário para este motor, a não linearidade não se verifica, permitindo assim o uso da teoria dos \acp{SLIT} \todo{Isto é verdade para este motor também?}. Para implementar um controlo em posição é necessário integrar no tempo a velocidade, pelo que se dispensa a parte integral do controlador, já que esta é inerente ao sistema sob controlo. Assim, o controlador a desenhar para este sistema é um \ac{PD}.
+Como demonstrado pelas medições em \ref{sec:direcao}, a relação entre a posição da direção e o binário aplicado na coluna não é linear, mas, para efeitos de estimação dos parâmetros do controlador, considera-se como tal, de modo a poder usar as simplificações de cálculo para os \acp{SLIT}. Para implementar um controlo em posição é necessário integrar no tempo a velocidade, pelo que se dispensa a parte integral do controlador, já que esta é inerente ao sistema sob controlo. Assim, o controlador a desenhar para este sistema é um \ac{PD}.
 
 O projeto do controlador tipicamente requer um modelo matemático do sistema a controlar, e neste projeto tentou-se inicialmente modelar matematicamente o sistema, mas a dificuldade em calcular o momento de inércia do atuador completo e as variações do coeficiente de atrito previstas durante a operação tornam pouco exequível esta abordagem. Por isso partiu-se para o desenho de um controlador através do método de Ziegler-Nichols, mais simples, e mais fácil de realizar neste caso. Optou-se por realizar o método da curva de reação para obter os parâmetros de um controlador \ac{PID}, e transformá-lo depois num \ac{PD}.%A curva experimental em malha aberta do sistema é dada aproximadamente por \cite[cap.8, transparência 12]{Slides_controlo}:
 %
@@ -683,8 +705,8 @@ O período de amostragem pode variar até \SI{255}{\milli\second} (é guardado numa
 
     Com o motor em vazio (desacoplado da direção) foi aplicado o método o método de Ziegler-Nichols para obter um controlador para o sistema, mas este não apresentou resultados satisfatórios, pois o modelo ensaiado não representa a totalidade do sistema, apenas uma parte, pelo que o controlador pré--programado foi afinado manualmente e usado no programa, devido à sua razoável resposta ao escalão. \todo[conclusão]{o método de ZG  é para sistemas controlados em velocidade. Ora viu-se que se não se usar o sistema todo, ele não presta, pelo que se têm que fazer para o sistema todo, e parar a resposta ao escalão antes de chegar ao fdc.}Os parâmetros do controlador embarcado são:
     \begin{align}
-        K_p &= 0x260 &= \frac{608}{1024} &= 0.594
-        K_d &= 0x600 &= \frac{1536}{1024} &= 1.5
+        K_p &= 0x260 &= \frac{608}{1024} &= 0.594\\
+        K_d &= 0x600 &= \frac{1536}{1024} &= 1.5\\
     \end{align}
 
 %Fazer o diagrama de blocos completo (ad/da, bla bla).
@@ -692,7 +714,7 @@ O período de amostragem pode variar até \SI{255}{\milli\second} (é guardado numa
 %Explicar o modelo do sistema criado.
 %imagens e tabelas: diagrama de blocos do pid ideal: zona morta + pid diferente consoante o tipo de terreno + perturbação no sinal de comando devido ao saltar da correia + perturabação na variável controlada devido a irregularidades do terreno (ruído no sensor não é relevante)
 
-\section{Eletrónica}
+\section{Sistema eletrónico desenvolvido}
 \label{sec:integracao}
 
 \subsection{Mecanismo de segurança}
@@ -706,9 +728,9 @@ Devido aos requisitos de segurança apertados deste projeto foi desenhado um meca
 
 O circuito é ativado em situação de emergência por um de vários gatilhos: um interruptor de emergência, um dispositivo de homem morto, um comando do microcontrolador ou um erro detetado pelos sensores de fim de curso (da travagem e direção). O interruptor de emergência é um botão estandardizado da indústria e está localizado na traseira do veículo, para acesso mais fácil em caso de perda do controlo. O dispositivo do homem morto consiste num fusível atado com uma guita que deve estar preso ao corpo do utilizador, caso esteja junto da moto. No caso do veículo perder o controlo e fugir, o fusível salta e o circuito dispara. O gatilho do microcontrolador serve para o programa de controlo ter poder sobre o mecanismo, e por fim os sensores de fim de curso disparam o circuito caso o atuador que monitorizam ultrapasse os limites normais de operação.
 
-O mecanismo consiste em dois circuitos acionados de forma complementar, através de um dos gatilhos: um circuito de corte da alimentação do controlador da tração através do seu contator, que está normalmente fechado, e outro de controlo do acionamento da travagem do travão elétrico, que está normalmente aberto. Durante a operação normal um circuito fecha a malha de alimentação do contator e o outro abre a de alimentação da travagem. Quando ocorre uma situação de emergência e algum dos gatilhos é acionado, o respetivo relé comuta ambos os circuitos e o contator da direção corta e o travão trava e, devido ao gatilho do fim de curso da travagem, o mecanismo permanece num estado de emergência enquanto o travão não estiver totalmente destravado. Como o travão é alimentado diretamente da bateria, quando se desliga o interruptor de corte geral o dispositivo do homem morto deixa de ser alimentado e o travão é acionado, garantindo que o veículo encerra sempre num estado seguro.
+O mecanismo consiste em dois circuitos acionados de forma complementar, através de um dos gatilhos: um circuito de corte da alimentação do controlador da tração através do seu contactor, que está normalmente fechado, e outro de controlo do acionamento da travagem do travão elétrico, que está normalmente aberto. Durante a operação normal um circuito fecha a malha de alimentação do contactor e o outro abre a de alimentação da travagem. Quando ocorre uma situação de emergência e algum dos gatilhos é acionado, o respetivo relé comuta ambos os circuitos e o contactor da direção corta e o travão trava e, devido ao gatilho do fim de curso da travagem, o mecanismo permanece num estado de emergência enquanto o travão não estiver totalmente destravado. Como o travão é alimentado diretamente da bateria, quando se desliga o interruptor de corte geral o dispositivo do homem morto deixa de ser alimentado e o travão é acionado, garantindo que o veículo encerra sempre num estado seguro.
 
-O corte da alimentação do motor da direção não foi incluída no circuito principal por acrescentar complexidade adicional e não representar um risco elevado para a segurança dos utilizadores. Ainda assim, o contator da direção também é cortado pelo gatilho dos seus sensores de fim de curso.
+O corte da alimentação do motor da direção não foi incluída no circuito principal por acrescentar complexidade adicional e não representar um risco elevado para a segurança dos utilizadores. Ainda assim, o contactor da direção também é cortado pelo gatilho dos seus sensores de fim de curso.
 
 No caso em que o programa do microcontrolador falhe, pode suceder que o comando de paragem que este envie não fique ativo tempo suficiente para travar completamente o travão. Para colmatar essa possibilidade, o sinal foi passado por um circuito monoestável, responsável por garantir que o relé do gatilho é atuado tempo suficiente. De acordo com \cite{datasheet_555}, o tempo do pulso gerado pelo circuito é dado por:
 %
@@ -764,7 +786,7 @@ A partir de \eqref{eq:R12} e \eqref{eq:R14}, escolheram-se resistências de \SI{2
 
 Para agrupar as capacidades individuais dos vários subsistemas do módulo num conjunto coerente de funcionalidades foram desenhados e construídos vários circuitos de interface, aqui tratados.
 
-O processamento eletrónico do \ac{ROVIM} foi agrupado em várias placas eletrónicas e painéis de instrumentação, que foram, salvo raras exceções, reunidos dentro de uma caixa paralelepipédica fixada à plataforma superior de bombordo, arrumando e protegendo assim o seu interior de interferência involuntária. Na figura \ref{fig:caixa} é mostrado o conteúdo embarcado na caixa: um painel de instrumentos e uma placa elétrica artesanal fixos nas laterais, e a placa do microcontrolador, a do conversor de potência do motor da direção, e outras três placas artesanais fixadas em placas de acrílico assentes no fundo, para além das ligações aos vários periféricos. As placas artesanais e as ligações elétricas estão organizados de maneira confusa devido às sucessivas adições e modificações efetuadas durante o desenrolar do projeto. Contornar esta situação implicaria refazer várias vezes as ligações e as placas com materiais e técnicas de fabrico mais complexos, pelo que se aceitou esta situação durante a fase da prova do conceito\todo[trabalhos futuros]{agora que o conceito já está provado, já se podem refazer as placas e ligações com fichas}.
+O processamento eletrónico do \ac{ROVIM} foi agrupado em várias placas eletrónicas e painéis de instrumentação, que foram, salvo raras exceções, reunidos dentro de uma caixa paralelepipédica fixada à plataforma superior de bombordo, arrumando e protegendo assim o seu interior de interferência involuntária. Na figura \ref{fig:caixa} é mostrado o conteúdo embarcado na caixa: um painel de instrumentos e uma placa elétrica artesanal fixos nas laterais, e a placa do microcontrolador, a do conversor de potência do motor da direção, e outras três placas protótipo fixadas em placas de acrílico assentes no fundo, para além das ligações aos vários periféricos. As placas protótipo e as ligações elétricas estão organizados de maneira confusa devido às sucessivas adições e modificações efetuadas durante o desenrolar do projeto. Contornar esta situação implicaria refazer várias vezes as ligações e as placas com materiais e técnicas de fabrico mais complexos, pelo que se aceitou esta situação durante a fase da prova do conceito\todo[trabalhos futuros]{agora que o conceito já está provado, já se podem refazer as placas e ligações com fichas}.
 
 Os circuitos eletrónicos realizados estão divididos em três partes, repartidos por quatro placas ilustradas na figura \ref{fig:placas}: mecanismos de corte de corrente e acionamento do travão na placa D, processamento eletrónico de sinal, originalmente na placa E e posteriormente expandido para a placa G, e corte de corrente da direção na placa F. As ligações entre as várias placas são apresentadas no circuito \texttt{9 - Ligações placas artesanais} do apêndice \ref{ap:b}. Os painéis de instrumentação são ilustrados na \ref{fig:paineis}, e estão agrupados em dois tipos: os que fixam elementos de interface que necessitam de estar numa posição específica e os restantes, que foram agrupados no painel fixado na caixa da eletrónica. As ligações dos painéis de instrumentação são apresentadas no esquema \texttt{3 - Instrumentação} do apêndice \ref{ap:b}.
 
@@ -797,7 +819,7 @@ Os circuitos eletrónicos realizados estão divididos em três partes, repartidos p
         \subcaptionbox{Placa G. Legenda:\\1: pino 1; 2: pino 12.}{
         \includegraphics[width=\linewidth]{recursos/imagens/placa_g.jpg} }
     \end{subfigure}
-    \caption{Placas artesanais.}
+    \caption{Placas protótipo.}
     \label{fig:placas}
 \end{figure}
 
@@ -807,7 +829,7 @@ Os circuitos eletrónicos realizados estão divididos em três partes, repartidos p
 %        \subcaptionbox{Placa artesanal E -- processamento eletrónico de sinal, vista do lado do cobre. Legenda:\\1: pino 1; 2: pino 7; 3: pino 1 do conetor J5; 4: relé K8; 5: relé K9; 6: relé K10; 7: pino 22; 8: pino 34.}{
 %        \includegraphics[width=\linewidth]{recursos/imagens/elet_placa_e.jpg} }
 %    \end{subfigure}
-%    \caption{Placas artesanais E e G -- processamento eletrónico de sinal.}
+%    \caption{Placas protótipo E e G -- processamento eletrónico de sinal.}
 %    \label{fig:elet_placa_e_g.jpg}
 %\end{figure}
 %%
@@ -848,7 +870,7 @@ Os circuitos eletrónicos realizados estão divididos em três partes, repartidos p
 \label{fig:paineis}
 \end{figure}
 
-A placa do microcontrolador implementa o cérebro do módulo (ver \ref{sec:programa}) e o controlador da direção, e comanda a placa do conversor \texttt{OSMC}, entre outras. A placa D contém os relés K2 -- K6 e as suas ligações e implementa parte do circuito de controlo do travão e do circuito de corte de corrente de segurança. As placas E e G incluem o condicionamento de sinal das entradas e saídas do microcontrolador, o monoestável, o circuito de comutação de modos de condução e o circuito do sensor de temperatura. Por fim, a placa F integra o fusível e o contator da direção. O painel de instrumentação da caixa contém os interruptores de comando do controlador da tração, os botões de recuperação de erros, e os indicadores luminosos do estado do travão e do controlador da tração. Fora da caixa estão instalados o dispositivo do homem morto e o interruptor de emergência, o controlador da tração e o seu fusível e contator e o acelerador de punho. Os restantes sensores e atuadores estão montados junto dos respetivos elementos.
+A placa do microcontrolador implementa o cérebro do módulo (ver \ref{sec:programa}) e o controlador da direção, e comanda a placa do conversor \texttt{OSMC}, entre outras. A placa D contém os relés K2 -- K6 e as suas ligações e implementa parte do circuito de controlo do travão e do circuito de corte de corrente de segurança. As placas E e G incluem o condicionamento de sinal das entradas e saídas do microcontrolador, o monoestável, o circuito de comutação de modos de condução e o circuito do sensor de temperatura. Por fim, a placa F integra o fusível e o contactor da direção. O painel de instrumentação da caixa contém os interruptores de comando do controlador da tração, os botões de recuperação de erros, e os indicadores luminosos do estado do travão e do controlador da tração. Fora da caixa estão instalados o dispositivo do homem morto e o interruptor de emergência, o controlador da tração e o seu fusível e contactor e o acelerador de punho. Os restantes sensores e atuadores estão montados junto dos respetivos elementos.
 
 O corte geral do sistema é implementado por um interruptor de chave removível que controla a alimentação para a eletrónica de sinal. Um dos circuitos eletrónicos embarcados comuta entre os modos de condução: manual, através do \emph{hardware} instalado na moto, e autónomo, operado através de uma interface de \emph{software}. Os modos geram os sinais de comando do controlador da tração, que comanda a marcha do veículo, e atuam sobre a coluna da direção, que determina a posição angular das rodas da frente. A comutação entre manual e autónomo na direção é feita mecanicamente e já discutida em \ref{sec:direcao}, pelo que se omite aqui. As ligações elétricas do circuito de comutação dos sinais do controlador é apresentado no esquema \texttt{7 - Comutação manual/autónomo}.
 
@@ -969,7 +991,7 @@ Devido à indisponibilidade de condensadores de \SI{33}{\micro\farad} disponíveis
 %    f_c &= \frac{1}{2\cdot \pi \cdot R \cdot C} \label{eq:fc_rc}\\
 %\end{align} 
 %À exceção do sinal do sensor de velocidade
-\section{Programa de controlo}
+\section{Programa de controlo da \acs{T2D}}
 \label{sec:programa}
 
 O programa de controlo da \ac{T2D} constitui o "cérebro" do sistema, que controla os vários órgãos do veículo e onde a inteligência mais avançada se concentra. O programa, cujo código é detalhado no apêndice \ref{ap:a}, implementa os comandos que exploram as várias funcionalidades do veículo, monitoriza o estado do veículo e serve de interface com o módulo superior. Nesta iteração do protótipo optou-se por impedir o programa de destravar o veículo, limitando desta forma a autonomia da condução, mas garantindo um maior grau de confiança no sistema.
@@ -1069,7 +1091,7 @@ De forma a facilitar o uso da direção pelo utilizador, foi criada uma função de 
 \begin{figure}[!htbp]
     \centering
     \includegraphics{recursos/imagens/Esquema_angulo_dir.jpg}
-    \caption[Forma de representação do ângulo da direção.]{Forma de representação do ângulo da direção. Os \SI{0}{\degree} correspondem à viragem total a estibordo.}
+    \caption[Forma de representação do ângulo da direção.]{Forma de representação do ângulo da direção. Esquema da parte frontal do veículo, visto de cima. Os \SI{0}{\degree} correspondem à viragem total a estibordo.}
     \label{fig:angulo_dir}
 \end{figure}
 

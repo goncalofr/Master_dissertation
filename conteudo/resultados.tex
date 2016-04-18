@@ -1,13 +1,13 @@
-\chapter{Utilização do \acs{ROVIM}}
+\chapter{Utilização da \acs{T2D}}
 \label{ch:utilizacao}
 Este capítulo descreve a interface e as funcionalidades da \ac{T2D}.
 O veículo é aqui apresentado em detalhe do ponto de vista da sua utilização, enquanto que o capítulo \ref{ch:componentes_sistema} se foca na sua concepção. Armado com este conhecimento, o leitor pode agora compreender a explicação das várias funcionalidades acessíveis ao utilizador.
 
 Este capítulo pretende mostrar ao leitor o resultado final do protótipo. No seu final o leitor deve conseguir operar o veículo com confiança e em segurança.
 \section{Interface com o utilizador}
-A interface com o utilizador é composta por vários elementos, de dois tipos: físicos e de \emph{software}. 
+A interface com o utilizador é composta por vários elementos de dois tipos: físicos e de \emph{software}.
 
-Os elementos físicos correspondem aos vários \acp{LED}, interruptores, botões e outros controlos embarcados no veículo que requerem interação presencial com um utilizador humano. Estes elementos foram já descritos no capítulo \ref{ch:componentes_sistema}, mas são aqui agrupados. É possível controlar o veículo recorrendo apenas a este tipo de interface, ainda que com funcionalidades limitadas.
+Os elementos físicos correspondem aos vários \acp{LED}, interruptores, botões e outros controlos embarcados no veículo, que requerem interação presencial com um utilizador humano. Estes elementos foram já descritos no capítulo \ref{ch:componentes_sistema}, mas são aqui agrupados e abordados de outra perspetiva. É possível controlar o veículo recorrendo apenas a este tipo de interface, ainda que com funcionalidades limitadas. 
 
 A interface de \emph{software} consiste num conjunto de comandos que permitem, em conjunto com os elementos físicos, interagir e controlar todas as funcionalidades do sistema. A interface de \emph{software} é acessível por dois canais distintos, um dos quais pode também ser utilizado por outros programas de computador.
 
@@ -157,11 +157,7 @@ A tabela \ref{tab:leds} apresenta os indicadores visuais presentes no \ac{ROVIM}
         \end{tabular} & Indica a direção e intensidade da alimentação do motor da direção\\
         &  \ref{fig:caixa}  & LED1 & Verde & Indica o estado do motor da tração\\
         &  \ref{fig:caixa}  & LED2 & Verde &Indica o estado do motor da direção\\
-        &  \ref{fig:caixa}  & LED3 &
-        \begin{tabular}{@{}l}
-            Verde\\
-            Vermelho\\
-        \end{tabular} &Indica a existência de erros no sistema\\
+        &  \ref{fig:caixa}  & LED3 & Vermelho & Indica a existência de erros no sistema\\
         & & Indicador de marcha & Vermelho & Indica que o veículo está em movimento\\
         \bottomrule
     \end{tabular}
@@ -217,28 +213,23 @@ Este dispositivo é apenas usado na fase de desenvolvimento e em funções avançada
 
 \subsection{Interface série}
 \label{ssec:interface_serie}
-A interface série é uma de duas interfaces disponibilizadas pelo programa de controlo da \ac{T2D}.% Ao contrário do painel de instrumentação, esta não controla diretamente o \emph{hardware}.
+A interface série é uma de duas interfaces disponibilizadas pelo programa de controlo da \ac{T2D}, em conjunto com a interface \ac{I2C}.
 
-A interface série do \ac{ROVIM} é uma extensão da interface \ac{TE} do \emph{firmware} dalf para servir os objetivos desta plataforma. A principal diferença de concepção entre as duas é que a extensão do \ac{ROVIM} foi pensada para transmitir muito mais informação ao utilizador do que a versão original.
+A interface série do \ac{ROVIM} é uma extensão da interface \ac{TE} do \emph{firmware} dalf para servir os objetivos desta plataforma. A principal diferença de concepção entre as duas é que a extensão do \ac{ROVIM} foi pensada para transmitir muito mais informação ao utilizador do que a versão original. A interface original dalf foi, na medida do possível, inalterada. A sua documentação está disponível no manual do utilizador do dalf \cite{dalf_om}, secção 10, e será aqui apenas complementada para a extensão do \ac{ROVIM}.
 
-A interface original dalf foi, na medida do possível, inalterada. A sua documentação está disponível no manual do utilizador do dalf \cite{dalf_om}, secção 10, e será aqui apenas complementada para a extensão do \ac{ROVIM}.
+\todo{rever}
+A interface série é a interface preferencial para desenvolvimento e depuração do módulo e para condução do \ac{ROVIM} por humanos. Ao contrário da interface \ac{I2C}, permite comunicar assincronamente com o utilizador e pode ser usada para controlar a \ac{T2D} independentemente dos outros módulos do \ac{ROVIM}, sendo que de momento, apenas esta interface disponibiliza todas as funcionalidades do programa. Esta é estabelecida através de uma ligação RS232 em modo \ac{ASCII}, configurada para 57600 baud/s, 8 bit, sem paridade, e com 1 bit de paragem, que pode ser usada com recurso a uma aplicação de emulador de terminal num \ac{PC}. Os parâmetros estão formatados em formato hexadecimal.
 
-O \emph{software} de controlo do \ac{ROVIM} instalado no microcontrolador pode ser comandado através de duas interfaces: a interface série e a interface \ac{I2C}.
-
-A interface série é a interface preferencial para desenvolvimento e depuração do módulo e para condução do \ac{ROVIM} por humanos. Ao contrário da interface \ac{I2C}, permite comunicar assincronamente com o utilizador. A interface série deve ser usada para controlar a \ac{T2D} independentemente dos outros módulos do \ac{ROVIM}. De momento, apenas a interface série está disponível para controlar todas as funcionalidades do \ac{ROVIM}.
-
-A interface série é uma ligação RS232 em modo \ac{ASCII}, que pode ser usada com recurso a uma aplicação de emulador de terminal num \ac{PC}. Os parâmetros estão formatados em formato hexadecimal.
-
-\subsubsection{Configuração da ligação}
-A interface série do \ac{ROVIM} aceita comandos em formato \ac{ASCII} hexadecimal, e envia resultados e informações de estado no mesmo formato.
-
-A interface é estabelecida através de uma ligação RS232 configurada para 57600 baud/s, 8 bit, sem paridade, e com 1 bit de paragem. O equipamento necessário para estabelecer esta ligação consiste num cabo RS232 (ou equivalente \ac{USB}), um computador com uma ligação para o cabo e uma aplicação de emulação do terminal.
+%\subsubsection{Configuração da ligação}
+%A interface série do \ac{ROVIM} aceita comandos em formato \ac{ASCII} hexadecimal, e envia resultados e informações de estado no mesmo formato.
+%
+%A interface é estabelecida através de uma ligação RS232 configurada para 57600 baud/s, 8 bit, sem paridade, e com 1 bit de paragem. O equipamento necessário para estabelecer esta ligação consiste num cabo RS232 (ou equivalente \ac{USB}), um computador com uma ligação para o cabo e uma aplicação de emulação do terminal.
 \subsubsection{Sintaxe dos comandos \acs{ROVIM} \acs{T2D}}
 Cada comando original da interface \ac{TE} do \emph{firmware} dalf é invocado através de uma sequência de caracteres formatada, em que o primeiro \emph{byte} é o identificador, que consiste numa letra do alfabeto, seguido depois pelos parâmetros do comando, em número variável. Nesta abordagem apenas estão disponíveis 26 comandos base, dos quais apenas 2 não são já usados (\textsf{G} e \textsf{H}).
 
 A interface do \ac{ROVIM} usa o comando da letra \textsf{G} para extender a funcionalidade. Cada comando da extensão da interface é diferenciado dos comandos originais pelo prefixo \textsf{G}, seguido de um identificador numeral único. O comando da letra \textsf{H} é usado para mostrar uma mensagem de ajuda.
 
-A tabela \ref{tab:comandos_rovim} apresenta resumidamente os comandos específicos da extensão da interface para o \ac{ROVIM}, assim como os comandos da interface original dalf mais úteis para esta aplicação. Serve como listagem rápida dos comandos disponíveis.
+A tabela \ref{tab:comandos_rovim} apresenta resumidamente os comandos específicos da extensão da interface para o \ac{ROVIM}, assim como os comandos da interface original dalf mais úteis para esta aplicação, servindo como listagem rápida dos comandos disponíveis.
 
 \begin{table}[htbp]
     \begin{center}
@@ -268,9 +259,9 @@ A tabela \ref{tab:comandos_rovim} apresenta resumidamente os comandos específico
 
 \paragraph*{Identificação dos motores} \mbox{}
 
-Alguns comandos da interface série atuam sobre motores, e exigem a identificação do motor sobre o qual atuar. Existem dois motores registados no \emph{software}: o motor da tração e o motor da direção. O motor da tração é identificado pelo número 1, enquanto que o da direção é o número 2.
+Alguns comandos da interface série exigem a identificação do motor sobre o qual atuar. Existem dois motores registados no \emph{software}: o motor da tração e o motor da direção. O motor da tração é identificado pelo número 1, enquanto que o da direção é o número 2. Quando a identificação do motor é facultativa, o comando atua sobre ambos se esta não for especificada.
 
-Alguns comandos permitem que não seja especificado o número do motor. Nesse caso atuam sobre ambos. Nestes casos esta opção é referida na sua especificação.
+%Alguns comandos permitem que não seja especificado o número do motor, nesse caso atuam sobre ambos. Nestes casos esta opção é referida na sua especificação.
 \subsubsection{Especificação dos comandos \acs{ROVIM}}
 \label{sssec:cmd_spec}
 
@@ -314,7 +305,7 @@ Para sair de \emph{lockdown}, o utilizador deve seguir o procedimento descrito e
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G10}$\vrectangleblack$ & Entra em modo de segurança\\
+        \textsf{G10} & Entra em modo de segurança\\
 
 \end{tabular}
 \end{center}
@@ -332,7 +323,7 @@ Ao invocar o comando o \ac{ROVIM} verifica o estado do sistema, e se não existir
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G11}$\vrectangleblack$ & Sai do modo de segurança
+        \textsf{G11} & Sai do modo de segurança
 
 \end{tabular}
 \end{center}
@@ -361,8 +352,8 @@ Este comando serve para parar os motores de forma controlada e sem perder a sua 
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G12 01}$\vrectangleblack$ & Pára o motor da tração\\
-        \textsf{G12}$\vrectangleblack$ & Pára ambos os motores\\
+        \textsf{G12 01} & Pára o motor da tração\\
+        \textsf{G12} & Pára ambos os motores\\
 \end{tabular}
 \end{center}
 
@@ -381,12 +372,12 @@ Não é necessário nem recomendado usar este comando durante a utilização normal d
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} @{\qquad} m{0.6\textwidth} @l}
-        \textsf{G13 01 0D}$\vrectangleblack$ & Trava o travão de emergência\\
-        \textsf{G13 01 0E}$\vrectangleblack$ & Erro - não é possível definir valor de pinos de entrada\\
-        \textsf{G13 02 09}$\vrectangleblack$ & Liga a marcha trás em modo autónomo\\
-        \textsf{G13 03 0F}$\vrectangleblack$ & Alterna a ativação do travão de mão\\
-        \textsf{G13 04 0E}$\vrectangleblack$ & Retorna \num{1} se o interruptor de emergência estiver pressionado, ou \num{0}, se estiver solto\\
-        \textsf{G13 04 09}$\vrectangleblack$ & Retorna \num{0} se a marcha atrás estiver ligada em modo autónomo, \num{1} em caso contrário\\
+        \textsf{G13 01 0D} & Trava o travão de emergência\\
+        \textsf{G13 01 0E} & Erro - não é possível definir valor de pinos de entrada\\
+        \textsf{G13 02 09} & Liga a marcha trás em modo autónomo\\
+        \textsf{G13 03 0F} & Alterna a ativação do travão de mão\\
+        \textsf{G13 04 0E} & Retorna \num{1} se o interruptor de emergência estiver pressionado, ou \num{0}, se estiver solto\\
+        \textsf{G13 04 09} & Retorna \num{0} se a marcha atrás estiver ligada em modo autónomo, \num{1} em caso contrário\\
 \end{tabular}
 \end{center}
 
@@ -398,15 +389,15 @@ Não é necessário nem recomendado usar este comando durante a utilização normal d
 \end{description}
 
 
-Este comando controla o acelerador do motor da tração do \ac{ROVIM}, em modo autónomo de condução, de modo semelhante ao acelerador de punho. É usado internamente pelo \emph{software} do \ac{ROVIM}.
+Este comando controla o acelerador do motor da tração do \ac{ROVIM}, em modo autónomo de condução, de modo semelhante ao acelerador de punho.
 
 Outros parâmetros necessários para movimentar o veículo são controlados pelo comando \textsf{G16} pelo que este comando deve ser usado apenas após definir o tipo de marcha. Em condições normais de condução este comando não é necessário, mas pode ser usado sem restrições.
 
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G14 0}$\vrectangleblack$ & Coloca o acelerador a \SI{0}{\%}\\
-        \textsf{G14 32}$\vrectangleblack$ & Coloca o acelerador a \SI{50}{\%}\\
+        \textsf{G14 0} & Coloca o acelerador a \SI{0}{\%}\\
+        \textsf{G14 32} & Coloca o acelerador a \SI{50}{\%}\\
 \end{tabular}
 \end{center}
 
@@ -417,15 +408,13 @@ Outros parâmetros necessários para movimentar o veículo são controlados pelo com
     \item[\textbf{D0 =}] \textbf{\% do desacelerador (0-100)}
 \end{description}
 
-Este comando controla a recuperação de energia do motor da tração do \ac{ROVIM}, que funciona como mecanismo de travagem controlada em modo autónomo de condução. É usado internamente pelo \emph{software} do \ac{ROVIM}.
-
-Este comando é usado para diminuir a velocidade do veículo em condições normais de condução. Para manter o veículo imóvel ou travagens de emergência devem ser usados os comandos apropriados, respetivamente \textsf{G10} e \textsf{G16}.
+Este comando controla a recuperação de energia do motor da tração do \ac{ROVIM}, que funciona como mecanismo de travagem controlada em modo autónomo de condução. É usado para diminuir a velocidade do veículo em condições normais de condução. Para manter o veículo imóvel ou travagens de emergência devem ser usados os comandos apropriados, respetivamente \textsf{G10} e \textsf{G16}.
 
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G15 0}$\vrectangleblack$ & Desativa o desacelerador\\
-        \textsf{G15 64}$\vrectangleblack$ & Liga o desacelerador ao máximo\\
+        \textsf{G15 0} & Desativa o desacelerador\\
+        \textsf{G15 64} & Liga o desacelerador ao máximo\\
 \end{tabular}
 \end{center}
 
@@ -451,13 +440,13 @@ Caso se selecione um tipo de movimento contrário ao atual, o veículo pára a marc
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G16 0 20}$\vrectangleblack$ & Coloca o veículo a andar para a frente a cerca de \SI{3.2}{Km/h}\\
-        \textsf{G14 40}$\vrectangleblack$ & Ajusta o acelerador para \SI{64}{\%}\\
-        \textsf{G16 1 4}$\vrectangleblack$ & Erro - não é permitida uma velocidade tão baixa\\
-        \textsf{G16 1 10}$\vrectangleblack$ & Inverte a marcha a \SI{1}{Km/h}\\
-        \textsf{G16 2}$\vrectangleblack$ & Coloca o veículo em ponto morto\\
-        \textsf{G16 3 0}$\vrectangleblack$ & Pára e imobiliza o veículo\\
-        \textsf{G16}$\vrectangleblack$ & Pára e imobiliza o veículo\\
+        \textsf{G16 0 20} & Coloca o veículo a andar para a frente a cerca de \SI{3.2}{Km/h}\\
+        \textsf{G14 40} & Ajusta o acelerador para \SI{64}{\%}\\
+        \textsf{G16 1 4} & Erro - não é permitida uma velocidade tão baixa\\
+        \textsf{G16 1 10} & Inverte a marcha a \SI{1}{Km/h}\\
+        \textsf{G16 2} & Coloca o veículo em ponto morto\\
+        \textsf{G16 3 0} & Pára e imobiliza o veículo\\
+        \textsf{G16} & Pára e imobiliza o veículo\\
 \end{tabular}
 \end{center}
 
@@ -477,12 +466,12 @@ Devido à fragilidade do acoplamento mecânico (a correia salta se o binário for m
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G16 0 A}$\vrectangleblack$ & Coloca o veículo a andar a cerca de \SI{1}{Km/h}\\
-        \textsf{G17 2B}$\vrectangleblack$ & Alinha  a direção\\
-        \textsf{G17 56}$\vrectangleblack$ & Vira tudo a bombordo\\
-        \textsf{G16}$\vrectangleblack$ & Pára o veículo\\
-        \textsf{G17}$\vrectangleblack$ & Pára o motor da direção\\
-        \textsf{G17 2B}$\vrectangleblack$ & Erro - o \ac{ROVIM} não está em movimento\\
+        \textsf{G16 0 A} & Coloca o veículo a andar a cerca de \SI{1}{Km/h}\\
+        \textsf{G17 2B} & Alinha  a direção\\
+        \textsf{G17 56} & Vira tudo a bombordo\\
+        \textsf{G16} & Pára o veículo\\
+        \textsf{G17} & Pára o motor da direção\\
+        \textsf{G17 2B} & Erro - o \ac{ROVIM} não está em movimento\\
 \end{tabular}
 \end{center}
 
@@ -522,7 +511,7 @@ Inicia uma repetição da tarefa de monitorização do sistema, se possível (se esti
 
 Liga o modo de depuração da tarefa de geração do sinal de \ac{PWM} dos sinais de acelerador e desacelerador de modo autónomo.
 
-O argumento \textbf{D1} é obrigatório, e define o número de períodos em que a depuração está ativada. Os argumentos \textbf{D2} e \textbf{D3} definem o sinal de \ac{PWM} a gerar e são facultativos. Se este comando for usado para gerar um sinal, este continuará ativo após terminar a depuração.
+O argumento \textbf{D1} é obrigatório e define o número de períodos em que a depuração está ativada. Os argumentos \textbf{D2} e \textbf{D3} definem o sinal de \ac{PWM} a gerar e são facultativos. Se este comando for usado para gerar um sinal, este continuará ativo após terminar a depuração.
 
 \subparagraph*{6=Controlar o \emph{watchdog}} \mbox{}
 
@@ -543,14 +532,14 @@ O \emph{software} mostra uma mensagem para cada erro, quando é detetado. A mensa
 \textbf{Exemplo:}
 \begin{center}
     \begin{tabular}{@{} m{0.2\textwidth} m{0.6\textwidth}}
-        \textsf{G18 01}$\vrectangleblack$ & Mostra o nível de verbosidade\\
-        \textsf{G18 02 0F}$\vrectangleblack$ & Repõe o nível de verbosidade predefinido\\
-        \textsf{G18 03}$\vrectangleblack$ & Alterna o modo de repetição da tarefa de monitorização do sistema\\
-        \textsf{G18 04}$\vrectangleblack$ & Corre a tarefa de monitorização\\
-        \textsf{G18 05 05 01 14}$\vrectangleblack$ & Estabelece o acelerador a \SI{20}{\%} e arranca a depuração da tarefa de geração de \ac{PWM} durante 5 períodos do sinal\\
-        \textsf{G18 06 01}$\vrectangleblack$ & Reinicia a sistema\\
-        \textsf{G18 07}$\vrectangleblack$ & Alterna a limitação à execução dos comandos interditos em \emph{lockdown} \\
-        \textsf{G18 09}$\vrectangleblack$ & Mostra informação sobre os erros atuais\\
+        \textsf{G18 01} & Mostra o nível de verbosidade\\
+        \textsf{G18 02 0F} & Repõe o nível de verbosidade predefinido\\
+        \textsf{G18 03} & Alterna o modo de repetição da tarefa de monitorização do sistema\\
+        \textsf{G18 04} & Corre a tarefa de monitorização\\
+        \textsf{G18 05 05 01 14} & Estabelece o acelerador a \SI{20}{\%} e arranca a depuração da tarefa de geração de \ac{PWM} durante 5 períodos do sinal\\
+        \textsf{G18 06 01} & Reinicia a sistema\\
+        \textsf{G18 07} & Alterna a limitação à execução dos comandos interditos em \emph{lockdown} \\
+        \textsf{G18 09} & Mostra informação sobre os erros atuais\\
 \end{tabular}
 \end{center}
 
@@ -575,11 +564,11 @@ A interface \ac{I2C} é funcionalmente idêntica à interface série, que está docum
 
 A interface \ac{I2C} não está ainda preparada para operar o \ac{ROVIM}.% É da responsabilidade do utilizador extender e testar esta interface para esta aplicação quando necessário.
 
-\section{funcionalidades}
+\section{Funcionalidades}
 
 \todo{confirmar a sequência dos flowcharts}
 \subsection{Chave dos fluxogramas}
-Os símbolos dos fluxogramas deste capítulo são apresentados na figura \ref{flux:legenda}, e são os seguintes:
+Os símbolos dos fluxogramas deste capítulo são apresentados na figura \ref{flux:legenda} e são os seguintes:
 \begin{description}[noitemsep] %http://tex.stackexchange.com/questions/10684/vertical-space-in-lists
     %\item[conetor] Círculo que representa uma ligação a outro fluxograma. A ligação é feita ao conetor do outro fluxograma com o mesmo nome;
     \item[Processo] Retângulo que representa uma ação do utilizador;
@@ -616,14 +605,14 @@ O fluxograma da figura \ref{flux:ligar} apresenta o procedimento a seguir para l
 Antes de ligar o \ac{ROVIM}, o utilizador deve passar em revista o estado do veículo, para se assegurar que os sistemas se encontram operacionais e assim evitar acidentes. Os pontos a ter em atenção são:
 
 \begin{enumerate}
-    \item O sistema de travagem. Por ser o subsistema fundamental para a segurança do veículo, é importante verificar que está tudo bem, nomeadamente que os componentes estão apertados;
+    \item O sistema de travagem, por ser o subsistema fundamental para a segurança do veículo, é importante verificar que está tudo bem, nomeadamente que os componentes estão apertados;
     \item Garantir que os pneus estão cheios;
     \item Garantir que a correia da direção se encontra bem apertada, caso se pretenda condução autónoma;
     \item Garantir que não os componentes não estão molhados;
-    \item As baterias. Garantir que não estão deslocadas, e que as suas ligações estão desimpedidas.
+    \item As baterias, garantir que não estão deslocadas, e que as suas ligações estão desimpedidas.
 \end{enumerate}
 
-Em condições normais estas verificações serão sempre passadas com sucesso, mas é importante estar ciente delas, especialmente após  longos períodos de inatividade ou após utilização do veículo por outras pessoas.
+Em condições normais estas verificações serão sempre passadas com sucesso, mas é importante estar ciente delas, especialmente após longos períodos de inatividade ou após utilização do veículo por outros utilizadores.
 
 \subsubsection{Configuração inicial dos seletores}
 \label{sssec:configurar}
@@ -652,7 +641,7 @@ O fluxograma da figura \ref{flux:desligar} apresenta o procedimento para desliga
 \subsection{Travagem de emergência/Ir para~\emph{lockdown}}
 \label{ssec:ir_lockdown}
 
-O \ac{ROVIM} está preparado para entrar automaticamente em \emph{lockdown} quando detetar um erro grave. Mas o utilizador pode também enviá-lo deliberadamente, das seguintes formas:
+O \ac{ROVIM} está preparado para entrar automaticamente em \emph{lockdown} quando detetar um erro grave, mas o utilizador pode também enviá-lo deliberadamente, das seguintes formas:
 
 \begin{itemize}
     \item Ativando o interruptor de emergência;
@@ -674,7 +663,7 @@ O fluxograma da figura \ref{flux:sair_lockdown} apresenta o procedimento para sa
 \label{flux:sair_lockdown}
 \end{figure}
 
-Nas situações em que aconteça um erro e o programa entre neste modo de segurança, é necessário primeiramente recuperar do erro. Só quando não o programa não detetar erros é que sai com sucesso deste estado.
+Nas situações em que aconteça um erro e o programa entre neste modo de segurança, é necessário primeiramente recuperar do erro. Só quando o programa não detetar erros é que sai com sucesso deste estado.
 
 \subsection{Alternar modos de condução}
 \label{ssec:alternar_modos}
@@ -710,14 +699,14 @@ Para evitar erros no \emph{software} é necessário ligar a moto sempre como o sel
 \label{ssec:selecionar_marcha}
 Só após selecionar a marcha do veículo é possível controlar o motor da tração para gerar movimento. Existem dois tipos de marcha: marcha frente e marcha trás.
 
-O seletor F/N/T seleciona, quando em modo manual, nas posições Frente e Trás as marchas para a frente e para trás, respetivamente. Depois de selecionada a marcha, a velocidade do veículo é controlada com recurso ao acelerador.
+O seletor F/N/T seleciona, quando em modo manual, nas posições Frente e Trás, as marchas para a frente e para trás, respetivamente. Depois de selecionada a marcha, a velocidade do veículo é controlada com recurso ao acelerador.
 
 Em modo autónomo o comando \textsf{G16} permite selecionar o tipo de marcha e a velocidade desejada, permitindo efetivamente mover o veículo. Não é possível selecionar a marcha sem colocar o veículo em movimento em modo autónomo.
 
 \subsection{Acelerar}
 \label{ssec:acelerar}
 
-O acelerador funciona de modo diferente para os dois modos de condução. Em modo manual é um tradicional acelerador analógico de punho. Em modo autónomo este é controlado pelo comando \textsf{G14}.
+O acelerador funciona de modo diferente para os dois modos de condução. Em modo manual é um tradicional acelerador analógico de punho, enquanto que em modo autónomo este é controlado pelo comando \textsf{G14}.
 
 O controlo do acelerador só tem efeito após selecionar a marcha, como explicado em \ref{ssec:selecionar_marcha}.
 \subsection{Desacelerar}
@@ -737,13 +726,11 @@ Em ponto morto, o veículo move-se livremente, sem a interferência do motor. Em m
 \label{ssec:imobilizar}
 É possível imobilizar o veículo sem atuar o travão de emergência e entrar em \emph{lockdown}. O veículo não está efetivamente travado -- apenas é ligada a travagem regenerativa, que resiste ao movimento. Esta capacidade é suficiente para manter o veículo imóvel em terrenos ligeiramente inclinados. Caso esta funcionalidade seja ativada com o veículo em movimento, este será desacelerado com recurso à travagem regenerativa até parar, mantendo-se depois imóvel.
 
-Em modo manual esta funcionalidade é ativada em ponto morto, ao bloquear a tração com recurso ao seletor Ativar tração.
-
-Em modo autónomo, o comando \textsf{G16} permite selecionar esta funcionalidade.
+Em modo manual esta funcionalidade é ativada em ponto morto, ao bloquear a tração com recurso ao seletor "Ativar tração". Em modo autónomo, o comando \textsf{G16} permite selecionar esta funcionalidade.
 \section{Exemplo tipico de utilização}
 Uma situação tipica de utilização da \ac{T2D} consiste em três fases principais: arrancar, conduzir e desligar.
 
-O arranque consiste em ligar a moto (ver \ref{ssec:ligar}), sair de \emph{lockdown} (ver \ref{ssec:sair_lockdown}), selecionar o modo de condução (ver \ref{ssec:alternar_modos}) e selecionar a marcha (ver \ref{ssec:selecionar_marcha}). O \ac{ROVIM} está estão pronto a ser conduzido.
+O arranque consiste em ligar a moto (ver \ref{ssec:ligar}), sair de \emph{lockdown} (ver \ref{ssec:sair_lockdown}), selecionar o modo de condução (ver \ref{ssec:alternar_modos}) e selecionar a marcha (ver \ref{ssec:selecionar_marcha}). O \ac{ROVIM} está então pronto a ser conduzido.
 
 A condução consiste em acelerar (ver \ref{ssec:acelerar}), desacelerar (ver \ref{ssec:acelerar}), virar (ver \ref{ssec:acelerar}) e alterar a tipo de movimento (ver \ref{ssec:selecionar_marcha}, \ref{ssec:ponto_morto}, \ref{ssec:imobilizar}). Estas operações permitem ao utilizador seguir uma determinada trajetória, por si definida.% \ac{ROVIM} permite realizar estas operações consoante a trajetória pretendida pelo utilizador.
 
@@ -754,7 +741,7 @@ Quando terminar o turno de condução, é necessário desligar o \ac{ROVIM} (ver \re
 \section{Resolução de problemas}
 \label{sec:resolucao_problemas}
 
-O utilizador está sujeito a gerar erros durante a utilização do \ac{ROVIM}. Quando acontecem, é necessário detetá-los e corrigi-los. As maneiras de detetar erros no \ac{ROVIM}, por ordem de utilidade, são:
+O utilizador está sujeito a gerar erros durante a utilização do \ac{ROVIM}. Quando acontecem é necessário detetá-los e corrigi-los. As maneiras de detetar erros no \ac{ROVIM}, por ordem de utilidade, são:
 
 \begin{itemize}
     \item Inspeção ao \emph{hardware}. A inspeção visual permite detetar muitas situações de erro. Casos como botões ou seletores de controlo mal configurados,  indicações visuais dos \acp{LED}, interruptores de fim de curso ativados são comuns e podem ser detetados através da inspeção visual;
@@ -769,6 +756,6 @@ O utilizador está sujeito a gerar erros durante a utilização do \ac{ROVIM}. Quan
 Os problemas conhecidos da \ac{T2D} são:
 
 \begin{enumerate}
-    \item A velocidades baixas (menos de \SI{1}{Km/h}) o sensor de velocidade não tem exatidão;
+    \item A velocidades baixas (menos de \SI{0.5}{Km/h}) o sensor de velocidade não tem exatidão;
     \item É possível o motor da direção continuar ligado após a paragem do veículo.
 \end{enumerate}
